@@ -1,6 +1,6 @@
 <?php
 //connect
-$servername = "darts.coretechs.com";
+$servername = "localhost";
 $username = "php";
 $password = "password";
 $database = "darts";
