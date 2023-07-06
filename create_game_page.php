@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Conditional Form</title>
+    <title>Create Game</title>
     <script>
         function showForm() {
             var gameType = document.getElementById("game_type").value;
-            var form = document.getElementById("count_form");
-            form.style.display = "none";
+            var count_form = document.getElementById("count_form");
+            var highscore_form = document.getElementById("highscore_form");
+            highscore_form.style.display = "none";
+            count_form.style.display = "none";
 
-            if (gameType === "countdown" || gameType === "countup") {
-                form.style.display = "block";
+            if (gameType === "countdown") {
+                count_form.style.display = "block";
+                highscore_form.style.display = "none";
             } 
             else if (gameType === "highscore") {
-                form.style.display = "none";
+                count_form.style.display = "none";
+                highscore_form.style.display = "block";
             }
             
             if (gameType === "countdown") {
                 document.getElementById("count_label").innerHTML = "Count Down From:";
             }
-            else if (gameType === "countup") {
-                document.getElementById("count_label").innerHTML = "Count Up To";
+            else if (gameType === "highscore") {
+                document.getElementById("round_label").innerHTML = "Number of Rounds:";
             }
         }
         
@@ -72,22 +76,33 @@
     </script>
 </head>
 <body>
-    <h1>Conditional Form</h1>
-
+    <h1>Create Game</h1>
+    <form id ="create_game_form" action ="scripts/create_game.php" method = "POST">
     <label for="game_type">Game Type:</label>
     <select name="game_type" id="game_type" onchange="showForm()">
         <option value="">Select Type</option>
         <option value="countdown">Count Down</option>
-        <option value="countup">Count Up</option>
         <option value="highscore">High Score</option>
     </select>
-
     <br><br>
+
     <div id="count_form" style="display:none">
-    <label for="count_select" id ="count_label">test</label>
-    <select id="count_select">
+    <label for="count_select" id ="count_label"></label>
+    <select id="count_select" name="count_select">
         <option value="301">301</option>
         <option value="501">501</option>
+    </select>
+    <br><br>
+    </div>
+
+    <div id="highscore_form" style="display:none">
+    <label for="round_select" id ="round_label"></label>
+    <select id="round_select" name="round_select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
     </select>
     <br><br>
     </div>
@@ -106,9 +121,9 @@
         <div id = player_form></div>
 
     </div>
+    <button type="submit">Launch Game</button>
+    </form>
     
    
 </body>
 </html>
-
-
