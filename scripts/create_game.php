@@ -21,15 +21,23 @@ for ($i = 1; $i <= $player_count; $i++) {
 $players_json = json_encode($player_names);
 
 if ($game_type == 'Countdown') {
-    $sql = "INSERT INTO 'game_data' ('type','starting_points','player_count','players','time') 
-        VALUES ('$game_type','$starting_points','$player_count','$players_json','NOW())";
+    $sql = "INSERT INTO game_data (type,starting_points,player_count,players,time) 
+        VALUES ('$game_type', '$starting_points', '$player_count', '$players_json', NOW())";
 }
 elseif ($game_type == 'Highscore') {
-    $sql = "INSERT INTO 'game_data' ('type','number_of_rounds','player_count','players','time') 
-        VALUES ('$game_type','$number_of_rounds','$player_count','$players_json','NOW())";
+    $sql = "INSERT INTO game_data (type,number_of_rounds,player_count,players,time) 
+        VALUES ('$game_type', '$number_of_rounds', '$player_count', '$players_json', NOW())";
 }
 
+// insert in database 
+$rs = mysqli_query($conn, $sql);
 
+if($rs)
+{
+	echo "Success";
+} else {
+    echo "Failure";
+}
 
 $conn->close();
 ?>
