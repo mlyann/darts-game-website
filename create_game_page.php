@@ -10,11 +10,11 @@
             highscore_form.style.display = "none";
             count_form.style.display = "none";
 
-            if (gameType === "countdown") {
+            if (gameType === "Countdown") {
                 count_form.style.display = "block";
                 highscore_form.style.display = "none";
             } 
-            else if (gameType === "highscore") {
+            else if (gameType === "Highscore") {
                 count_form.style.display = "none";
                 highscore_form.style.display = "block";
             }
@@ -81,8 +81,8 @@
     <label for="game_type">Game Type:</label>
     <select name="game_type" id="game_type" onchange="showForm()">
         <option value="">Select Type</option>
-        <option value="countdown">Count Down</option>
-        <option value="highscore">High Score</option>
+        <option value="Countdown">Count Down</option>
+        <option value="Highscore">High Score</option>
     </select>
     <br><br>
 
