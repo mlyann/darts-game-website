@@ -19,10 +19,10 @@
                 highscore_form.style.display = "block";
             }
             
-            if (gameType === "countdown") {
+            if (gameType === "Countdown") {
                 document.getElementById("count_label").innerHTML = "Count Down From:";
             }
-            else if (gameType === "highscore") {
+            else if (gameType === "Highscore") {
                 document.getElementById("round_label").innerHTML = "Number of Rounds:";
             }
         }
