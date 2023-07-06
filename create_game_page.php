@@ -10,11 +10,11 @@
             highscore_form.style.display = "none";
             count_form.style.display = "none";
 
-            if (gameType === "countdown") {
+            if (gameType === "Countdown") {
                 count_form.style.display = "block";
                 highscore_form.style.display = "none";
             } 
-            else if (gameType === "highscore") {
+            else if (gameType === "Highscore") {
                 count_form.style.display = "none";
                 highscore_form.style.display = "block";
             }
