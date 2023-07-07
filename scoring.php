@@ -11,64 +11,97 @@
         <?php require 'scripts/getGamemode.php'; ?>//var gamemode = 'Countdown';
         
         var playerTurn = 0;
-        var currPlayer = "";
-        var dartsThrown = 1;
-
+        var dartIndex = 0;//darts thrown - 1
 
         function dart(score){
 
-          if(dartsThrown == 0){
+          if(dartIndex == 3){//disable buttons after dart limit is reached
+            <?php
 
-            newTurn();
+              if(dartIndex == 0){
+
+                $query = "UPDATE scores SET first = score";
+              }
+              else if(dartIndex == 1){
+
+                $query = "UPDATE scores SET second = score";
+              }
+              else if(dartIndex == 2){
+
+                $query = "UPDATE scores SET third = score";
+              }
+
+            ?>
+
+            if(gamemode == 'Countdown'){
+
+               var updatedScore = overallScore - score;//except when overall < 0
+
+
+               //CHANGE so this happens in updateCount()
+               //ask how it works when button is pressed and you win before pressing "end turn"
+               /* 
+              if(updatedScore == 0){//win
+
+                console.log(allPlayers[playerTurn] + " wins @ "+ overallScore + "!");
+                quit();
+              }
+              else if(updatedScore < 0){//bust
+
+                console.log("Bust!")
+                newTurn();//CONTINUES AFTER newTurn() completes, iterates dartIndex again at the bottom.
+              }
+              */
+  
+
+            }
+            else if(gamemode == 'Highscore'){
+
+              var updatedScore = overallScore + score;
+            }
+
+            dartIndex++;
           }
-
-
-
-          dartsThrown = (dartsThrown + 1) % 3;
         }
 
-        function newTurn(){
-        
-          playerTurn = (playerTurn + 1) % allPlayers.length;
-
-          currPlayer = allPlayers[playerTurn];
-
-          //get current player's overall score
-          <?php
-
-              $query = "SELECT overall FROM scores WHERE Name = currPlayer AND turn = (SELECT MAX(turn) FROM scores WHERE Name = currPlayer);"
-              
-              $result = mysqli_query($conn, $query);
-
-              if($result && $result->num_rows > 0){
-
-                $row = $result->fetch_assoc();
-                $overall = $row['overall'];
-              }
-            var overallScore = $overall;
-          ?>
+        //update countdown for curr player
+        function updateCount(){//if no bust, no win (countdown normally)
 
           if(gamemode == 'Countdown'){
 
 
           }
-          else if(gamemode == 'Highscore'){
 
-            $updatedScore = $overallScore + score;
-          }
-          else{
-
-            console.log("uh oh- enum wrong");
-          }
-          
-
-          //update turn score and first,second,or third
-            
+          newTurn();
         }
-        
-        function endTurn(){
-        
-            
+
+         //sets up turn for next player
+        function newTurn(){
+         
+          playerTurn = (playerTurn + 1) % allPlayers.length;
+
+          dartIndex = 0;
+
+          //get current player's overall score
+          <?php
+            $query = "SELECT overall FROM scores WHERE Name = allPlayers[playerTurn] AND turn = (SELECT MAX(turn) FROM scores WHERE Name = allPlayers[playerTurn]);"
+
+            $result = mysqli_query($conn, $query);
+
+            if($result && $result->num_rows > 0){
+
+                $row = $result->fetch_assoc();
+                $overall = $row['overall'];
+            }
+
+            var overallScore = $overall;
+          ?>
+        }
+
+        //backspace functionality
+        function delete(){
+
+
         }
 
         //temp
@@ -86,37 +119,37 @@
 
     <table>
         <tr>
-          <td><button class = "button" onclick="turn(20)">20</button></td>
-          <td><button class = "button" onclick="turn(19)">19</button></td>
-          <td><button class = "button" onclick="turn(18)">18</button></td>
-          <td><button class = "button" onclick="turn(17)">17</button></td>
-          <td><button class = "button" onclick="turn(16)">16</button></td>
+          <td><button class = "button" onclick="dart(20)">20</button></td>
+          <td><button class = "button" onclick="dart(19)">19</button></td>
+          <td><button class = "button" onclick="dart(18)">18</button></td>
+          <td><button class = "button" onclick="dart(17)">17</button></td>
+          <td><button class = "button" onclick="dart(16)">16</button></td>
         </tr>
         <tr>
-          <td><button class = "button" onclick="turn(15)">15</button></td>
-          <td><button class = "button" onclick="turn(14)">14</button></td>
-          <td><button class = "button" onclick="turn(13)">13</button></td>
-          <td><button class = "button" onclick="turn(12)">12</button></td>
-          <td><button class = "button" onclick="turn(11)">11</button></td>
+          <td><button class = "button" onclick="dart(15)">15</button></td>
+          <td><button class = "button" onclick="dart(14)">14</button></td>
+          <td><button class = "button" onclick="dart(13)">13</button></td>
+          <td><button class = "button" onclick="dart(12)">12</button></td>
+          <td><button class = "button" onclick="dart(11)">11</button></td>
         </tr>
         <tr>
-          <td><button class = "button" onclick="turn(10)">10</button></td>
-          <td><button class = "button" onclick="turn(9)">9</button></td>
-          <td><button class = "button" onclick="turn(8)">8</button></td>
-          <td><button class = "button" onclick="turn(7)">7</button></td>
-          <td><button class = "button" onclick="turn(6)">6</button></td>
+          <td><button class = "button" onclick="dart(10)">10</button></td>
+          <td><button class = "button" onclick="dart(9)">9</button></td>
+          <td><button class = "button" onclick="dart(8)">8</button></td>
+          <td><button class = "button" onclick="dart(7)">7</button></td>
+          <td><button class = "button" onclick="dart(6)">6</button></td>
         </tr>
         <tr>
-          <td><button class = "button" onclick="turn(5)">5</button></td>
-          <td><button class = "button" onclick="turn(4)">4</button></td>
-          <td><button class = "button" onclick="turn(3)">3</button></td>
-          <td><button class = "button" onclick="turn(2)">2</button></td>
-          <td><button class = "button" onclick="turn(1)">1</button></td>
+          <td><button class = "button" onclick="dart(5)">5</button></td>
+          <td><button class = "button" onclick="dart(4)">4</button></td>
+          <td><button class = "button" onclick="dart(3)">3</button></td>
+          <td><button class = "button" onclick="dart(2)">2</button></td>
+          <td><button class = "button" onclick="dart(1)">1</button></td>
         </tr>
         <tr>
           <td><button class = "button" onclick="">Bull</button></td>
           <td colspan = "3"><button class = "button" onclick="">Enter Turn</button></td>
-          <td><button class = "button" onclick="add(0)">Miss</button></td>
+          <td><button class = "button" onclick="dart(0)">Miss</button></td>
           
         </tr>
         
