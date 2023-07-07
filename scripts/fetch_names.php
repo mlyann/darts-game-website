@@ -1,5 +1,5 @@
 <?php
-    require 'scripts/connect.php';
+    require 'connect.php';
 
     $sql = "SELECT name FROM users";
     $result = $conn->query($sql);
