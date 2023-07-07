@@ -3,17 +3,66 @@
 <head>
     <title>Darts</title>
 
-    <?php require connect.php ?>
+    <?php require 'scripts/connect.php'; ?>
 
     <script>
 
+        <?php require 'scripts/getPlayers.php'; ?> //var allPlayers = ["[\name\"]"]
+        <?php require 'scripts/getGamemode.php'; ?>//var gamemode = 'Countdown';
         
+        var playerTurn = 0;
+        var currPlayer = "";
+        var dartsThrown = 1;
 
-        var currPlayer = "$playerName";
-        var countdown = true;
 
-        function turn(score){
+        function dart(score){
+
+          if(dartsThrown == 0){
+
+            newTurn();
+          }
+
+
+
+          dartsThrown = (dartsThrown + 1) % 3;
+        }
+
+        function newTurn(){
         
+          playerTurn = (playerTurn + 1) % allPlayers.length;
+
+          currPlayer = allPlayers[playerTurn];
+
+          //get current player's overall score
+          <?php
+
+              $query = "SELECT overall FROM scores WHERE Name = currPlayer AND turn = (SELECT MAX(turn) FROM scores WHERE Name = currPlayer);"
+              
+              $result = mysqli_query($conn, $query);
+
+              if($result && $result->num_rows > 0){
+
+                $row = $result->fetch_assoc();
+                $overall = $row['overall'];
+              }
+            var overallScore = $overall;
+          ?>
+
+          if(gamemode == 'Countdown'){
+
+
+          }
+          else if(gamemode == 'Highscore'){
+
+            $updatedScore = $overallScore + score;
+          }
+          else{
+
+            console.log("uh oh- enum wrong");
+          }
+          
+
+          //update turn score and first,second,or third
             
         }
         
