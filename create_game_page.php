@@ -19,10 +19,10 @@
                 highscore_form.style.display = "block";
             }
             
-            if (gameType === "Countdown") {
+            if (gameType === "countdown") {
                 document.getElementById("count_label").innerHTML = "Count Down From:";
             }
-            else if (gameType === "Highscore") {
+            else if (gameType === "highscore") {
                 document.getElementById("round_label").innerHTML = "Number of Rounds:";
             }
         }
@@ -43,24 +43,7 @@
                     var select = document.createElement("select");
                     select.id = "player_name_" + i;
                     select.name = "player_name_" + i;
-                    <?php
-                        require 'scripts/connect.php';
-
-                        $sql = "SELECT name FROM users";
-                        $result = $conn->query($sql);
-
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                $name = $row['name'];
-                                echo "var option = document.createElement('option');\n";
-                                echo "option.value = '$name';\n";
-                                echo "option.textContent = '$name';\n";
-                                echo "select.appendChild(option);\n";
-                            }
-                        }
-
-                        $conn->close();
-                    ?>
+                    <?php require 'scripts/fetch_names.php'; ?>
 
                     
 
