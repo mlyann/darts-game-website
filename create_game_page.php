@@ -2,31 +2,8 @@
 <html>
 <head>
     <title>Create Game</title>
-    <script>
-        function showForm() {
-            var gameType = document.getElementById("game_type").value;
-            var count_form = document.getElementById("count_form");
-            var highscore_form = document.getElementById("highscore_form");
-            highscore_form.style.display = "none";
-            count_form.style.display = "none";
-
-            if (gameType === "Countdown") {
-                count_form.style.display = "block";
-                highscore_form.style.display = "none";
-            } 
-            else if (gameType === "Highscore") {
-                count_form.style.display = "none";
-                highscore_form.style.display = "block";
-            }
-            
-            if (gameType === "Countdown") {
-                document.getElementById("count_label").innerHTML = "Count Down From:";
-            }
-            else if (gameType === "Highscore") {
-                document.getElementById("round_label").innerHTML = "Number of Rounds:";
-            }
-        }
-        
+    <script type="text/javascript" src="scripts/showConditionalCreateOption.js"></script>
+    <script type="text/javascript">
         function showPlayerForm() {
             var playerCount = document.getElementById("player_count").value;
             var playerForm = document.getElementById("player_form");
@@ -43,24 +20,7 @@
                     var select = document.createElement("select");
                     select.id = "player_name_" + i;
                     select.name = "player_name_" + i;
-                    <?php
-                        require 'scripts/connect.php';
-
-                        $sql = "SELECT name FROM users";
-                        $result = $conn->query($sql);
-
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                $name = $row['name'];
-                                echo "var option = document.createElement('option');\n";
-                                echo "option.value = '$name';\n";
-                                echo "option.textContent = '$name';\n";
-                                echo "select.appendChild(option);\n";
-                            }
-                        }
-
-                        $conn->close();
-                    ?>
+                    <?php require 'scripts/fetch_names.php'; ?>
 
                     
 
@@ -72,14 +32,14 @@
             }
 
         }
-
     </script>
+
 </head>
 <body>
     <h1>Create Game</h1>
     <form id ="create_game_form" action ="scripts/create_game.php" method = "POST">
     <label for="game_type">Game Type:</label>
-    <select name="game_type" id="game_type" onchange="showForm()">
+    <select name="game_type" id="game_type" onchange="showConditionalCreateOption()">
         <option value="">Select Type</option>
         <option value="Countdown">Count Down</option>
         <option value="Highscore">High Score</option>
