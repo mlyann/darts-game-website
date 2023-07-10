@@ -11,68 +11,96 @@
         <?php require 'scripts/getGamemode.php'; ?>//var gamemode = 'Countdown';
         
         var playerTurn = 0;
+
+        if(gamemode == 'Countdown'){
+          overallScore = 301;
+        }
+        else if(gamemode == 'Highscore'){
+          overallScore = 0;
+        }
+
+        //create initial table rows
+        
+
+        var updatedScore = overallScore;
+
         var dartIndex = 0;//darts thrown - 1
+        var turnScores = [];
 
         function dart(score){
 
           if(dartIndex == 3){//disable buttons after dart limit is reached
-            <?php
-
-              if(dartIndex == 0){
-
-                $query = "UPDATE scores SET first = score";
-              }
-              else if(dartIndex == 1){
-
-                $query = "UPDATE scores SET second = score";
-              }
-              else if(dartIndex == 2){
-
-                $query = "UPDATE scores SET third = score";
-              }
-
-            ?>
-
-            if(gamemode == 'Countdown'){
-
-               var updatedScore = overallScore - score;//except when overall < 0
-
-
-               //CHANGE so this happens in updateCount()
-               //ask how it works when button is pressed and you win before pressing "end turn"
-               /* 
-              if(updatedScore == 0){//win
-
-                console.log(allPlayers[playerTurn] + " wins @ "+ overallScore + "!");
-                quit();
-              }
-              else if(updatedScore < 0){//bust
-
-                console.log("Bust!")
-                newTurn();//CONTINUES AFTER newTurn() completes, iterates dartIndex again at the bottom.
-              }
-              */
-  
-
-            }
-            else if(gamemode == 'Highscore'){
-
-              var updatedScore = overallScore + score;
-            }
-
+            
+            turnScores[dartIndex] = score;
+          
             dartIndex++;
           }
         }
 
-        //update countdown for curr player
-        function updateCount(){//if no bust, no win (countdown normally)
+        //determines if the current player won (countdown)
+        function determineWinnerCD(){
+              
+              for(let i = 0; i<dartIndex; i++){
+                updatedScore -= turnScores[i];
+              }
+              
+              if(updatedScore == 0){//win
 
-          if(gamemode == 'Countdown'){
+                console.log(allPlayers[playerTurn] + " wins @ "+ overallScore + "!");
+                return true;
+              }
+              else if(updatedScore < 0){//bust
 
+                console.log("Bust!")
+              }
+              return false;
+        }
 
+        //updates/keeps track of highest scoring player (highscore)
+        function determineWinnerHS(){
+
+          for(let i=0; i<dartIndex; i++){
+            updatedScore += turnScores[i];
           }
 
-          newTurn();
+          
+
+        }
+
+        //submits the current scores
+        function submitTurn(){
+
+          var won;
+
+          if(gamemode == 'Countdown'){
+              won = determineWinnerCD();
+          }
+          /*
+          else if(gamemode == 'Highscore'){
+            won = false;
+          }
+          */
+
+          //updates the turn scores
+          var xhr = new XMLHttpRequest();
+
+          var data = new FormData();
+          data.append('turnScores', JSON.stringify(turnScores));
+          data.append('allPlayers', JSON.stringify(allPlayers));
+          data.append('playerTurn', playerTurn);
+
+          xhr.open('POST','scripts/updateTurnScores.php', true);
+          xhr.send(data);
+          <?php require 'updateTurnScores.php'; ?>
+
+
+
+          if(!won){
+            newTurn();
+          }
+          else{
+            quit();
+          }
         }
 
          //sets up turn for next player
@@ -82,20 +110,11 @@
 
           dartIndex = 0;
 
-          //get current player's overall score
-          <?php
-            $query = "SELECT overall FROM scores WHERE Name = allPlayers[playerTurn] AND turn = (SELECT MAX(turn) FROM scores WHERE Name = allPlayers[playerTurn]);"
-
-            $result = mysqli_query($conn, $query);
-
-            if($result && $result->num_rows > 0){
-
-                $row = $result->fetch_assoc();
-                $overall = $row['overall'];
-            }
-
-            var overallScore = $overall;
-          ?>
+          //get next player's overall score
+          if(gamemode == 'Countdown'){
+            <?php require 'scripts/getOverall.php'; ?>
+            updatedScore = overallScore;
+          }
         }
 
         //backspace functionality
