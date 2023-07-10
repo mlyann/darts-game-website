@@ -61,6 +61,17 @@
               if(updatedScore == 0){//win
 
                 console.log(allPlayers[playerTurn] + " wins @ "+ overallScore + "!");
+                $.ajax({
+                  url: "scripts/insert_winner.php",
+                  type: "POST",
+                  data:{
+                    name: allPlayers[playerTurn]
+                  },
+                  error: function(xhr, status, error){
+                    console.log("Error sending data to insert_winner.php: " + error);
+                  }
+                });
+
                 return true;
               }
               else if(updatedScore < 0){//bust
