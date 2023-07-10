@@ -20,7 +20,20 @@
         }
 
         //create initial table rows
-        
+        for(let i=0; i<allPlayers.length; i++){
+          $.ajax({
+              url: "scripts/createTurn.php",
+              type: "POST",
+              data: {
+                name: allPlayers[playerTurn],
+                overallScore: 301
+              },
+              error: function(xhr, status, error){
+                console.log("Error sending data to createTurn.php: " + error);
+              }
+            });
+            <?php require 'scripts/createTurn.php'; ?>
+        }
 
         var updatedScore = overallScore;
 
@@ -108,12 +121,8 @@
 
          //sets up turn for next player
         function newTurn(){
-         
-          playerTurn = (playerTurn + 1) % allPlayers.length;
 
-          dartIndex = 0;
-
-          //adds new row for next player
+          //adds new row for current player for their next turn
           //passes in player name and overall score (turn count is searched within the php file)
           $.ajax({
             url: "scripts/createTurn.php",
@@ -126,18 +135,21 @@
               console.log("Error sending data to createTurn.php: " + error);
             }
           });
+          <?php require 'scripts/createTurn.php'; ?>
+
+          playerTurn = (playerTurn + 1) % allPlayers.length;
+          dartIndex = 0;
 
           //get next player's overall score
           if(gamemode == 'Countdown'){
 
-            var xhr = new XMLHttpRequest();
-
-            var data = new FormData();
-            data.append('allPlayers', JSON.stringify(allPlayers));
-            data.append('playerTurn', playerTurn);
-
-            xhr.open('POST','scripts/getOverall.php',true);
-            xhr.send(data);
+            $.ajax({
+              url: "scripts/getOverall.php",
+              type: "POST"
+              data: {
+                name: allPlayers[playerTurn];
+              }
+            });
 
             <?php require 'scripts/getOverall.php'; ?>
             updatedScore = overallScore;
