@@ -100,7 +100,7 @@
             url: "scripts/updateTurnScores.php",
             type: "POST",
             data:{
-              turnScores: JSON.stringify(turnScores)
+              turnScores: JSON.stringify(turnScores),
               name: allPlayers[playerTurn]
             },
             error: function(xhr, status, error){
@@ -145,9 +145,9 @@
 
             $.ajax({
               url: "scripts/getOverall.php",
-              type: "POST"
+              type: "POST",
               data: {
-                name: allPlayers[playerTurn];
+                name: allPlayers[playerTurn]
               }
             });
 
@@ -165,10 +165,8 @@
         //temp
         function quit(){
         
-            
+          <?php mysqli_close($conn) ?>
         }
-
-
 
 
     </script>
@@ -205,8 +203,8 @@
           <td><button class = "button" onclick="dart(1)">1</button></td>
         </tr>
         <tr>
-          <td><button class = "button" onclick="">Bull</button></td>
-          <td colspan = "3"><button class = "button" onclick="">Enter Turn</button></td>
+          <td><button class = "button" onclick="dart(60)">Bull</button></td>
+          <td colspan = "3"><button class = "button" onclick="submitTurn()">Enter Turn</button></td>
           <td><button class = "button" onclick="dart(0)">Miss</button></td>
           
         </tr>
