@@ -27,6 +27,7 @@
         var dartIndex = 0;//darts thrown - 1
         var turnScores = [];
 
+        //records the single dart score
         function dart(score){
 
           if(dartIndex == 3){//disable buttons after dart limit is reached
@@ -77,21 +78,23 @@
           }
           /*
           else if(gamemode == 'Highscore'){
-            won = false;
+            won = false;//if playerTurn determine who won, otherweise won = false because not everybody went
           }
           */
 
-          //updates the turn scores
-          var xhr = new XMLHttpRequest();
-
-          var data = new FormData();
-          data.append('turnScores', JSON.stringify(turnScores));
-          data.append('allPlayers', JSON.stringify(allPlayers));
-          data.append('playerTurn', playerTurn);
-
-          xhr.open('POST','scripts/updateTurnScores.php', true);
-          xhr.send(data);
-          <?php require 'updateTurnScores.php'; ?>
+          //sends necessary data to update turn scores
+          $.ajax({
+            url: "scripts/updateTurnScores.php",
+            type: "POST",
+            data:{
+              turnScores: JSON.stringify(turnScores)
+              name: allPlayers[playerTurn]
+            },
+            error: function(xhr, status, error){
+              console.log("Error sending data to updateTurnScores.php: " + error);
+            }
+          });
+          <?php require 'scripts/updateTurnScores.php'; ?>
 
 
 
@@ -110,8 +113,32 @@
 
           dartIndex = 0;
 
+          //adds new row for next player
+          //passes in player name and overall score (turn count is searched within the php file)
+          $.ajax({
+            url: "scripts/createTurn.php",
+            type: "POST",
+            data: {
+              name: allPlayers[playerTurn],
+              overallScore: updatedScore
+            },
+            error: function(xhr, status, error){
+              console.log("Error sending data to createTurn.php: " + error);
+            }
+          });
+
           //get next player's overall score
           if(gamemode == 'Countdown'){
+
+            var xhr = new XMLHttpRequest();
+
+            var data = new FormData();
+            data.append('allPlayers', JSON.stringify(allPlayers));
+            data.append('playerTurn', playerTurn);
+
+            xhr.open('POST','scripts/getOverall.php',true);
+            xhr.send(data);
+
             <?php require 'scripts/getOverall.php'; ?>
             updatedScore = overallScore;
           }
