@@ -1,6 +1,15 @@
 <?php
 require 'connect.php';
 
+$clearGameData = "DELETE FROM game_data";
+$clearResult = mysqli_query($conn, $clearGameData);
+if($clearResult)
+{
+	echo "Success resetting gamedata\n";
+} else {
+    echo "Failure ressetting gamedata\n";
+}
+
 $game_type = $_POST['game_type'];
 
 if ($game_type == 'Countdown') {
