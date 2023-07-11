@@ -1,23 +1,25 @@
 <?php
-
     require 'connect.php';
 
-    $query = "SELECT JSON_UNQUOTE(players) AS name FROM game_data";
+    $query = "SELECT players FROM game_data";
     $result = mysqli_query($conn, $query);
 
-    if(!$result){
-        echo "Error getting players:" . mysqli_error($conn);
+    if (!$result) {
+        echo "Error getting players: " . mysqli_error($conn);
     }
 
     $playerNames = [];
 
-    while ($row = $result->fetch_assoc()){
-
-        $playerNames[] = $row['name'];
+    while ($row = $result->fetch_assoc()) {
+        $jsonNames = $row['players'];
+        $namesArray = json_decode($jsonNames, true);
+        
+        if (is_array($namesArray)) {
+            $playerNames = array_merge($playerNames, $namesArray);
+        }
     }
 
-    $jsonArr = json_encode($playerNames);
-    echo "var allPlayers = $jsonArr";
+    echo "var allPlayers = " . json_encode($playerNames) . ";";
 
     $conn->close();
 ?>
