@@ -32,7 +32,7 @@
                 console.log("Error sending data to createTurn.php: " + error);
               }
             });
-            <?php require 'scripts/createTurn.php'; ?>
+      
         }
         
 
@@ -92,8 +92,6 @@
           }
 
         }
-        
-        /*
 
         //submits the current scores
         function submitTurn(){
@@ -114,16 +112,16 @@
             url: "scripts/updateTurnScores.php",
             type: "POST",
             data:{
-              turnScores: JSON.stringify(turnScores),
+              turn1: turnScores[0],
+              turn2: turnScores[1],
+              turn3: turnScores[2],
               name: allPlayers[playerTurn]
             },
             error: function(xhr, status, error){
               console.log("Error sending data to updateTurnScores.php: " + error);
             }
           });
-#          <#?php require 'scripts/updateTurnScores.php'; ?>
-
-
+      
 
           if(!won){
             newTurn();
@@ -149,7 +147,7 @@
               console.log("Error sending data to createTurn.php: " + error);
             }
           });
-  #        <#?php require 'scripts/createTurn.php'; ?>
+      
 
           playerTurn = (playerTurn + 1) % allPlayers.length;
           dartIndex = 0;
@@ -165,7 +163,7 @@
               }
             });
 
- #           <#?php require 'scripts/getOverall.php'; ?>
+ 
             updatedScore = overallScore;
           }
         }
@@ -181,7 +179,7 @@
         
           
         }
-        */
+        
 
 
     </script>
