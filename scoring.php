@@ -164,9 +164,21 @@
                 name: allPlayers[playerTurn]
               }
             });
-
  
             updatedScore = overallScore;
+
+            //
+            $.ajax({
+            url: "scripts/createTurn.php",
+            type: "POST",
+            data: {
+              name: allPlayers[playerTurn],
+              overallScore: updatedScore
+            },
+            error: function(xhr, status, error){
+              console.log("Error sending data to createTurn.php: " + error);
+            }
+          });
           }
         }
 
