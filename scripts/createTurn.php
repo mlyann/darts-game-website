@@ -15,7 +15,7 @@
 
     $latestTurn++;
 
-    $query = "INSERT INTO scores (Name, overall, turn, first, second, third) VALUES ('$name','$overallScore', '$latestTurn', 0, 0, 0)";
+    $query = "INSERT INTO scores (Name, overall, turn) VALUES ('$name','$overallScore', '$latestTurn')";
 
     if(!(mysqli_query($conn, $query))){
 
