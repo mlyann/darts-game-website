@@ -15,6 +15,11 @@ $player_count = $_POST['player_count'];
 for ($i = 1; $i <= $player_count; $i++) {
     $player_name = $_POST["player_name_" . $i];
 
+    if (empty($player_name)) {
+        echo "Failure: Player name cannot be blank.";
+        exit;
+    }
+
     $player_names[] = $player_name;
 }
 
@@ -34,9 +39,18 @@ $rs = mysqli_query($conn, $sql);
 
 if($rs)
 {
-	echo "Success";
+	echo "Success creating game";
 } else {
-    echo "Failure";
+    echo "Failure creating game";
+}
+
+$clearScores = "DELETE FROM scores";
+$clearResult = mysqli_query($conn, $clearScores);
+if($clearResult)
+{
+	echo "Success resetting scores";
+} else {
+    echo "Failure ressetting scores";
 }
 
 $conn->close();
