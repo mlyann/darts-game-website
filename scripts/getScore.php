@@ -1,7 +1,7 @@
 <?php
 require 'connect.php';
 
-$query = "SELECT  FROM scores" WHERE ID = 1;
+$query = "SELECT  FROM scores WHERE ID = 1";
 $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) > 0) {

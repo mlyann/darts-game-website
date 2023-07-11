@@ -3,7 +3,7 @@
 
             $name = $_POST['name'];
 
-            $query = "SELECT overall FROM scores WHERE Name = name AND turn = (SELECT MAX(turn) FROM scores WHERE Name = name);"
+            $query = "SELECT overall FROM scores WHERE Name = name AND turn = (SELECT MAX(turn) FROM scores WHERE Name = name)";
 
             $result = mysqli_query($conn, $query);
 
