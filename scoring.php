@@ -3,8 +3,7 @@
 <head>
     <title>Darts</title>
 
-    <?php require 'scripts/connect.php'; ?>
-
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
 
         <?php require 'scripts/getPlayers.php'; ?> //var allPlayers = ["[\name\"]"]
@@ -21,6 +20,7 @@
 
         //create initial table rows
         for(let i=0; i<allPlayers.length; i++){
+         
           $.ajax({
               url: "scripts/createTurn.php",
               type: "POST",
@@ -34,6 +34,7 @@
             });
             <?php require 'scripts/createTurn.php'; ?>
         }
+        
 
         var updatedScore = overallScore;
 
@@ -61,6 +62,19 @@
               if(updatedScore == 0){//win
 
                 console.log(allPlayers[playerTurn] + " wins @ "+ overallScore + "!");
+
+                //sends winner's name to leaderboard
+                $.ajax({
+                  url: "scripts/insert_winner.php",
+                  type: "POST",
+                  data:{
+                    name: allPlayers[playerTurn]
+                  },
+                  error: function(xhr, status, error){
+                    console.log("Error sending data to insert_winner.php: " + error);
+                  }
+                });
+
                 return true;
               }
               else if(updatedScore < 0){//bust
@@ -77,9 +91,9 @@
             updatedScore += turnScores[i];
           }
 
-          
-
         }
+        
+        /*
 
         //submits the current scores
         function submitTurn(){
@@ -89,11 +103,11 @@
           if(gamemode == 'Countdown'){
               won = determineWinnerCD();
           }
-          /*
-          else if(gamemode == 'Highscore'){
-            won = false;//if playerTurn determine who won, otherweise won = false because not everybody went
-          }
-          */
+          
+          //else if(gamemode == 'Highscore'){
+            //won = false;//if playerTurn determine who won, otherweise won = false because not everybody went
+         // }
+          
 
           //sends necessary data to update turn scores
           $.ajax({
@@ -107,7 +121,7 @@
               console.log("Error sending data to updateTurnScores.php: " + error);
             }
           });
-          <?php require 'scripts/updateTurnScores.php'; ?>
+#          <#?php require 'scripts/updateTurnScores.php'; ?>
 
 
 
@@ -135,7 +149,7 @@
               console.log("Error sending data to createTurn.php: " + error);
             }
           });
-          <?php require 'scripts/createTurn.php'; ?>
+  #        <#?php require 'scripts/createTurn.php'; ?>
 
           playerTurn = (playerTurn + 1) % allPlayers.length;
           dartIndex = 0;
@@ -151,7 +165,7 @@
               }
             });
 
-            <?php require 'scripts/getOverall.php'; ?>
+ #           <#?php require 'scripts/getOverall.php'; ?>
             updatedScore = overallScore;
           }
         }
@@ -165,8 +179,9 @@
         //temp
         function quit(){
         
-          <?php mysqli_close($conn) ?>
+          
         }
+        */
 
 
     </script>

@@ -1,4 +1,5 @@
 <?php
+    require 'connect.php'
 
     $name = $_POST['name'];
     $overallScore = $_POST['overallScore'];
@@ -20,4 +21,6 @@
 
         echo "Error creating a new turn row: " . mysqli_error($conn);
     }
+
+    $conn->close();
 ?>

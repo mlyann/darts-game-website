@@ -1,4 +1,5 @@
 <?php
+            require 'connect.php';
 
             $name = $_POST['name'];
 
@@ -17,4 +18,6 @@
             }
 
             echo "var overallScore = $overall";
+
+            $conn->close();
 ?>

@@ -1,4 +1,5 @@
 <?php
+require 'connect.php';
 
 $query = "SELECT  FROM scores" WHERE ID = 1;
 $result = mysqli_query($conn, $query);
@@ -12,4 +13,6 @@ if (mysqli_num_rows($result) > 0) {
 } else {
     echo "No rows found.";
 }
+
+$conn->close();
 ?>

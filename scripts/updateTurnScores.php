@@ -1,5 +1,6 @@
 <?php
-              
+              require 'connect.php';
+
               $turnScores = json_decode($_POST['turnScores']);
               $name = $_POST['name'];
               
@@ -16,4 +17,6 @@
             if(!$result){
                 echo "Error updating turn scores:" . mysqli_error($conn);
             }
+            
+            $conn->close();
 ?>

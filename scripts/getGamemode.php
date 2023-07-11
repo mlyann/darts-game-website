@@ -1,5 +1,7 @@
 <?php
 
+require 'connect.php';
+
 $query = "SELECT type FROM game_data";
 $result = mysqli_query($conn, $query);
 
@@ -14,4 +16,5 @@ if($result && $result->num_rows > 0){
 }
 echo "var gamemode = '$mode'";
 
+$conn->close();
 ?>
