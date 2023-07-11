@@ -2,7 +2,7 @@
 
     require 'connect.php';
 
-    $query = "SELECT JSON_UNQUOTE(players) AS name FROM game_data WHERE ID=1";
+    $query = "SELECT JSON_UNQUOTE(players) AS name FROM game_data";
     $result = mysqli_query($conn, $query);
 
     if(!$result){
