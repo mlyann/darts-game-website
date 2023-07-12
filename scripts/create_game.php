@@ -63,4 +63,6 @@ if($clearResult)
 }
 
 $conn->close();
+header("Location: /scoring.php");
+exit;
 ?>
