@@ -42,17 +42,7 @@
         var turnScores = [];
 
         //records the single dart score
-        function dart(score){
-
-
-          if(dartIndex < 3){//disable buttons after dart limit is reached
-            
-            turnScores[dartIndex] = score;
-          
-            dartIndex++;
-            console.log(turnScores);
-          }
-        }
+        </script><script type="text/javascript" src="scripts/dart.js"></script><script>
 
         //determines if the current player won (countdown)
         function determineWinnerCD(){
