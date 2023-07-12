@@ -10,7 +10,7 @@
 require 'scripts/connect.php';
 // Query to retrieve the scores from the table
 $query = "SELECT Name, overall, turn, first, second, third FROM scores
-          WHERE turn = (SELECT MAX(turn) FROM scores WHERE Name = scores.Name)";
+          WHERE turn = (SELECT MAX(turn) FROM scores WHERE Name = scores.Name AND first IS NOT NULL)";
 $result = mysqli_query($conn, $query);
 
 // Check if the query was successful
