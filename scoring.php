@@ -197,50 +197,59 @@
 
 
     </script>
+    <style>
+  .center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .button {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+</style>
 </head>
 <body>
 
-    <table>
-        <tr>
-          <td><button class = "button" onclick="dart(20)">20</button></td>
-          <td><button class = "button" onclick="dart(19)">19</button></td>
-          <td><button class = "button" onclick="dart(18)">18</button></td>
-          <td><button class = "button" onclick="dart(17)">17</button></td>
-          <td><button class = "button" onclick="dart(16)">16</button></td>
-        </tr>
-        <tr>
-          <td><button class = "button" onclick="dart(15)">15</button></td>
-          <td><button class = "button" onclick="dart(14)">14</button></td>
-          <td><button class = "button" onclick="dart(13)">13</button></td>
-          <td><button class = "button" onclick="dart(12)">12</button></td>
-          <td><button class = "button" onclick="dart(11)">11</button></td>
-        </tr>
-        <tr>
-          <td><button class = "button" onclick="dart(10)">10</button></td>
-          <td><button class = "button" onclick="dart(9)">9</button></td>
-          <td><button class = "button" onclick="dart(8)">8</button></td>
-          <td><button class = "button" onclick="dart(7)">7</button></td>
-          <td><button class = "button" onclick="dart(6)">6</button></td>
-        </tr>
-        <tr>
-          <td><button class = "button" onclick="dart(5)">5</button></td>
-          <td><button class = "button" onclick="dart(4)">4</button></td>
-          <td><button class = "button" onclick="dart(3)">3</button></td>
-          <td><button class = "button" onclick="dart(2)">2</button></td>
-          <td><button class = "button" onclick="dart(1)">1</button></td>
-        </tr>
-        <tr>
-          <td><button class = "button" onclick="dart(60)">Bull</button></td>
-          <td colspan = "3"><button class = "button" onclick="submitTurn()">Enter Turn</button></td>
-          <td><button class = "button" onclick="dart(0)">Miss</button></td>
-          
-        </tr>
-        
-         <tr>
-           <td colspan="5"><button class = "button" id = "quitButton" onclick="quit()">Quit</button></td>
-         </tr>
-          
-      </table>
+<table class="center">
+  <tr>
+    <td><button class="button" onclick="dart(20)">20</button></td>
+    <td><button class="button" onclick="dart(19)">19</button></td>
+    <td><button class="button" onclick="dart(18)">18</button></td>
+    <td><button class="button" onclick="dart(17)">17</button></td>
+    <td><button class="button" onclick="dart(16)">16</button></td>
+  </tr>
+  <tr>
+    <td><button class="button" onclick="dart(15)">15</button></td>
+    <td><button class="button" onclick="dart(14)">14</button></td>
+    <td><button class="button" onclick="dart(13)">13</button></td>
+    <td><button class="button" onclick="dart(12)">12</button></td>
+    <td><button class="button" onclick="dart(11)">11</button></td>
+  </tr>
+  <tr>
+    <td><button class="button" onclick="dart(10)">10</button></td>
+    <td><button class="button" onclick="dart(9)">9</button></td>
+    <td><button class="button" onclick="dart(8)">8</button></td>
+    <td><button class="button" onclick="dart(7)">7</button></td>
+    <td><button class="button" onclick="dart(6)">6</button></td>
+  </tr>
+  <tr>
+    <td><button class="button" onclick="dart(5)">5</button></td>
+    <td><button class="button" onclick="dart(4)">4</button></td>
+    <td><button class="button" onclick="dart(3)">3</button></td>
+    <td><button class="button" onclick="dart(2)">2</button></td>
+    <td><button class="button" onclick="dart(1)">1</button></td>
+  </tr>
+  <tr>
+    <td><button class="button" onclick="dart(60)">Bull</button></td>
+    <td colspan="3"><button class="button" onclick="submitTurn()">Enter Turn</button></td>
+    <td><button class="button" onclick="dart(0)">Miss</button></td>
+  </tr>
+  <tr>
+    <td colspan="5"><button class="button" id="quitButton" onclick="quit()">Quit</button></td>
+  </tr>
+</table>
 
 </body>
 </html>
