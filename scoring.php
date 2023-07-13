@@ -46,35 +46,39 @@
 
         //determines if the current player won (countdown)
         function determineWinnerCD(){
-              
-              for(let i = 0; i<dartIndex; i++){
-                updatedScore -= turnScores[i];
-              }
-              
-              if(updatedScore == 0){//win
 
-                console.log(allPlayers[playerTurn] + " wins @ "+ overallScore + "!");
+prevScore = updatedScore;
 
-                //sends winner's name to leaderboard
-                $.ajax({
-                  url: "scripts/insert_winner.php",
-                  type: "POST",
-                  data:{
-                    name: allPlayers[playerTurn]
-                  },
-                  error: function(xhr, status, error){
-                    console.log("Error sending data to insert_winner.php: " + error);
-                  }
-                });
+for(let i = 0; i<dartIndex; i++){
+  updatedScore -= turnScores[i];
+}
 
-                return true;
-              }
-              else if(updatedScore < 0){//bust
+if(updatedScore == 0 && multiplierValue === 2){//win
 
-                console.log("Bust!")
-              }
-              return false;
-        }
+  console.log(allPlayers[playerTurn] + " wins!");
+
+  //sends winner's name to leaderboard
+  $.ajax({
+    url: "scripts/insert_winner.php",
+    type: "POST",
+    data:{
+      name: allPlayers[playerTurn]
+    },
+    error: function(xhr, status, error){
+      console.log("Error sending data to insert_winner.php: " + error);//internal server error
+    }
+  });
+
+  return true;
+}
+else {//bust
+
+  updatedScore = prevScore;
+  console.log("Bust!")
+  console.log(allPlayers[playerTurn]);
+}
+return false;
+}
 
         //updates/keeps track of highest scoring player (highscore)
         function determineWinnerHS(){
