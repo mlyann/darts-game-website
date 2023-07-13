@@ -1,0 +1,50 @@
+
+       /* Styles for mobile devices */
+        @media only screen and (max-width: 1000px) {
+            table {
+                width: 100%;
+                height: 100vh;
+                margin: 0;
+                background-color: #fff;
+                border-collapse: collapse;
+            }
+        
+            th, td {
+                padding: 20px;
+                text-align: center;
+                border: 1px solid #ddd;
+            }
+        
+            th {
+                font-size: 24px;
+                font-weight: bold;
+                background-color: #f2f2f2;
+            }
+        
+            .button {
+                display: block;
+                width: auto; /* Updated: Set width to auto */
+                height: auto;
+                padding: 20px;
+                margin-bottom: 10px;
+                font-size: 5vw;
+                text-align: center;
+                background-color: #4caf50;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+        
+            .button:hover {
+                background-color: #45a049;
+            }
+        
+            #quitButton {
+                background-color: #f44336;
+            }
+        
+            #quitButton:hover {
+                background-color: #d32f2f;
+            }
+        }        
