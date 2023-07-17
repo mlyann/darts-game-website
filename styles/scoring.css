@@ -55,8 +55,10 @@
       cursor: pointer;
     }
   
-    .button:hover {
-      background-color: #45a049;
+    .button:hover,
+    .button:active,
+    .button:focus {
+      background-color: darkgray;
     }
   
     #quitButton {
