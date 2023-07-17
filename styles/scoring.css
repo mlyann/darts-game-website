@@ -44,7 +44,7 @@
     .button {
       display: block;
       width: 100%; /* Set width to 100% */
-      height: auto; /* Set height to auto */
+      height: 100%; /* Set height to auto */
       padding: 20px;
       margin-bottom: 10px;
       font-size: 5vw;
