@@ -2,7 +2,8 @@
 <html>
 <head>
     <title>Display</title>
-    <meta http-equiv="refresh" content="5">
+    <meta http-equiv="refresh" content="2">
+    <link rel="stylesheet" type="text/css" href="styles/scoreDisplayPage.css">
     <style>
         table {
             border-collapse: collapse;
