@@ -34,7 +34,9 @@
             });
       
         }
-        
+        </script><script type="text/javascript" src="scripts/setCurrentPlayer.js"></script><script>
+        <?php require 'scripts/setCurrentPlayer.php'; ?>
+        setCurrentPlayer(allPlayers[0]);
 
         var updatedScore = overallScore;
 

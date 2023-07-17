@@ -1,6 +1,6 @@
 function setCurrentPlayer(player){
     $.ajax({
-      url: "setCurrentPlayer.php",
+      url: "scripts/setCurrentPlayer.php",
       type: "POST",
       data: {
         name: player

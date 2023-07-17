@@ -5,11 +5,7 @@ $name = $_POST['name'];
 
 $sql = "INSERT INTO game_data (currentPlayer) VALUES ('$name')";
 
-if ($conn->query($sql) === TRUE) {
-    echo "currentPlayer set successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
+mysqli_query($conn, $sql);
 
 // Close the database connection
 $conn->close();
