@@ -223,13 +223,13 @@ return false;
 <tr>
 <td></td>
 <td></td>
-  <td id = "currentPlayerCell">current</td>
+  <td id = "currentPlayerCell" class = "infoCell">current</td>
 </tr>
 <tr>
 <td></td>
-  <td id ="firstCell">first</td>
-  <td id="secondCell">second</td>
-  <td id="thirdCell">third</td>
+  <td id ="firstCell" class = "infoCell">first</td>
+  <td id="secondCell" class = "infoCell">second</td>
+  <td id="thirdCell" class = "infoCell">third</td>
 </tr>
 <tr>
   <td></td>

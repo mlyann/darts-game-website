@@ -40,6 +40,12 @@
       font-weight: bold;
       background-color: #f2f2f2;
     }
+
+    .infoCell {
+        height: 5%;
+        font-size: 4vw;
+        background-color: #efefef;
+      }
   
     .button {
       display: block;
