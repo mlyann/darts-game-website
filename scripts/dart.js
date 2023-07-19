@@ -1,11 +1,11 @@
-function dart(score){
+function dart(score, multiplierValue){
 
+  if(dartIndex < 3){//disable buttons after dart limit is reached
+    score = multiplierValue * score;
 
-    if(dartIndex < 3){//disable buttons after dart limit is reached
-      
-      turnScores[dartIndex] = score;
-    
-      dartIndex++;
-      console.log(turnScores);
-    }
+    turnScores[dartIndex] = score;
+  
+    dartIndex++;
+    console.log(turnScores);
   }
+}
