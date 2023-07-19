@@ -57,7 +57,7 @@
   if ($overall == 0 && $lastMult == 2) {
     $sql = "INSERT INTO wins (name, time) VALUES ('$currentPlayer', NOW())";
     mysqli_query($conn, $sql);
-    $sql = "INSERT INTO scores (name, overall) VALUES ('$currentPlayer', -353)";
+    $sql = "INSERT INTO scores (name, overall, turn) VALUES ('$currentPlayer', -353, 999)";
     mysqli_query($conn, $sql);
     //TODO end the game
   }//bust
