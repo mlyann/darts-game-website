@@ -18,22 +18,7 @@
           overallScore = 0;
         }
 
-        //create initial table rows
-        for(let i=0; i<allPlayers.length; i++){
-         
-          $.ajax({
-              url: "scripts/createTurn.php",
-              type: "POST",
-              data: {
-                name: allPlayers[playerTurn],
-                overallScore: 301
-              },
-              error: function(xhr, status, error){
-                console.log("Error sending data to createTurn.php: " + error);
-              }
-            });
-      
-        }
+
         </script><script type="text/javascript" src="scripts/setCurrentPlayer.js"></script><script>
         </script><script type="text/javascript" src="scripts/getCurrentPlayer.js"></script><script>
         </script><script type="text/javascript" src="scripts/updateTableCell.js"></script><script>
