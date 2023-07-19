@@ -4,6 +4,7 @@ function getCurrentPlayer() {
       method: 'GET',
       success: function(response) {
         // Process the response
+        response = "Current Player: " + response;
         updateTableCell('currentPlayerCell', response);
   
         // Call the function again after 1 second
