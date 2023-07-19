@@ -5,9 +5,11 @@ function getScores() {
       success: function(response) {
         response = JSON.parse(response);
         // Process the response
-        var first = response[0];
-        var second = response[1];
-        var third = response[2];
+        var first = response[0] ?? "";
+        var second = response[1] ?? "";
+        var third = response[2] ?? "";
+
+
         updateTableCell('firstCell', "First Dart: <br>" + first);
         updateTableCell('secondCell', "Second Dart: <br>" + second);
         updateTableCell('thirdCell', "Third Dart: <br>" + third);
