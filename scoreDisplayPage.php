@@ -4,26 +4,6 @@
     <title>Display</title>
     <meta http-equiv="refresh" content="2">
     <link rel="stylesheet" type="text/css" href="styles/scoreDisplayPage.css">
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        th {
-            background-color: #f2f2f2;
-        }
-        
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-    </style>
 </head>
 <body>
 <?php
@@ -31,7 +11,7 @@
 require 'scripts/connect.php';
 // Query to retrieve the scores from the table
 $query = "SELECT Name, overall, turn, first, second, third FROM scores
-          WHERE turn = (SELECT MAX(turn) FROM scores WHERE Name = scores.Name AND first IS NOT NULL)";
+          WHERE turn = (SELECT MAX(turn) FROM scores)";
 $result = mysqli_query($conn, $query);
 
 // Check if the query was successful
