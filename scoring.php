@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <title>Darts</title>
     <link rel="stylesheet" type="text/css" href="styles/scoring.css">
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -9,15 +8,23 @@
 
         <?php require 'scripts/getPlayers.php'; ?> //var allPlayers = ["[\name\"]"]
         <?php require 'scripts/getGamemode.php'; ?>//var gamemode = 'Countdown';
-        multiplierValue = 1;
+        
+        var playerTurn = 0;
 
-        //get first player
+        if(gamemode == 'Countdown'){
+          overallScore = 301;
+        }
+        else if(gamemode == 'Highscore'){
+          overallScore = 0;
+        }
+
+
         </script><script type="text/javascript" src="scripts/getCurrentPlayer.js"></script><script>
         </script><script type="text/javascript" src="scripts/updateTableCell.js"></script><script>
         getCurrentPlayer();
-        
+
         //populate score cells of table
-        </script><script type="text/javascript" src="scripts/getScores.js"></script><script>
+       </script><script type="text/javascript" src="scripts/getScores.js"></script><script>
         getScores();
 
 
@@ -25,26 +32,147 @@
         //records the single dart score
         </script><script type="text/javascript" src="scripts/dart.js"></script><script>
 
-        
-        //backspace functionality
-        function undo(){
+        //determines if the current player won (countdown)
+        function determineWinnerCD(){
 
-          if(dartIndex > 0){
+prevScore = updatedScore;
 
-            dartIndex--;
+for(let i = 0; i<dartIndex; i++){
+  updatedScore -= turnScores[i];
+}
 
-            //update the number visualization
+if(updatedScore == 0 && multiplierValue === 2){//win
+
+  console.log(allPlayers[playerTurn] + " wins!");
+
+  //sends winner's name to leaderboard
+  $.ajax({
+    url: "scripts/insert_winner.php",
+    type: "POST",
+    data:{
+      name: allPlayers[playerTurn]
+    },
+    error: function(xhr, status, error){
+      console.log("Error sending data to insert_winner.php: " + error);//internal server error
+    }
+  });
+
+  return true;
+}
+else {//bust
+
+  updatedScore = prevScore;
+  console.log("Bust!")
+  console.log(allPlayers[playerTurn]);
+}
+return false;
+}
+
+        //updates/keeps track of highest scoring player (highscore)
+        function determineWinnerHS(){
+
+          for(let i=0; i<dartIndex; i++){
+            updatedScore += turnScores[i];
+          }
+
+        }
+
+        //submits the current scores
+        function submitTurn(){
+
+          var won;
+
+          if(gamemode == 'Countdown'){
+              won = determineWinnerCD();
+          }
+          
+          //else if(gamemode == 'Highscore'){
+            //won = false;//if playerTurn determine who won, otherweise won = false because not everybody went
+         // }
+          
+
+          //sends necessary data to update turn scores
+          $.ajax({
+            url: "scripts/updateTurnScores.php",
+            type: "POST",
+            data:{
+              turn1: turnScores[0],
+              turn2: turnScores[1],
+              turn3: turnScores[2],
+              name: allPlayers[playerTurn]
+            },
+            error: function(xhr, status, error){
+              console.log("Error sending data to updateTurnScores.php: " + error);
+            }
+          });
+      
+
+          if(!won){
+            newTurn();
+          }
+          else{
+            quit();
           }
         }
 
         function submitTurnCD() {
           $.ajax({
-            url: 'scripts/submitTurnCD.php'
-          })
-        };
+            url: "scripts/createTurn.php",
+            type: "POST",
+            data: {
+              name: allPlayers[playerTurn],
+              overallScore: updatedScore
+            },
+            error: function(xhr, status, error){
+              console.log("Error sending data to createTurn.php: " + error);
+            }
+          });
+      
 
-       // function quit(){}
-    
+          playerTurn = (playerTurn + 1) % allPlayers.length;
+          dartIndex = 0;
+
+          //get next player's overall score
+          if(gamemode == 'Countdown'){
+
+            $.ajax({
+              url: "scripts/getOverall.php",
+              type: "POST",
+              data: {
+                name: allPlayers[playerTurn]
+              }
+            });
+ 
+            updatedScore = overallScore;
+
+            //
+            $.ajax({
+            url: "scripts/createTurn.php",
+            type: "POST",
+            data: {
+              name: allPlayers[playerTurn],
+              overallScore: updatedScore
+            },
+            error: function(xhr, status, error){
+              console.log("Error sending data to createTurn.php: " + error);
+            }
+          });
+          }
+        }
+
+        //backspace functionality
+        //function delete(){
+
+
+        //}
+
+        //temp
+       // function quit(){
+        
+          
+       // }
+        
+
        let multiplierActive = false; // Flag to track the active state of the multiplier
        </script><script type="text/javascript" src="scripts/multiplier.js"></script><script>
 
@@ -82,6 +210,7 @@
 </tr>
 <tr>
   <td></td>
+<tr>
   <td><button class="button" name = "doubleButton" onclick="multiplier('double')">Double</button></td>
   <td><button class="button" name = "tripleButton" onclick="multiplier('triple')">Triple</button></td>
   <td><button class ="button" onclick="undo()">Undo</button></td>
