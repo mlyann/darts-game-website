@@ -3,10 +3,10 @@ require 'connect.php';
 
 $name = $_POST['name'];
 
-$sql = "INSERT INTO wins (name) VALUES ('$name', NOW())";
+$sql = "INSERT INTO wins (name, time) VALUES ('$name', NOW())";
 
 if ($conn->query($sql) === TRUE) {
-    echo "User registered successfully.";
+    echo "User won successfully.";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
