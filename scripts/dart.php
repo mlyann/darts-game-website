@@ -7,8 +7,9 @@
     $row = mysqli_fetch_assoc($indexResult);
     $dartIndex = $row['dartIndex'];
 
-    //get score
+    //get score and lastMult
     $score = $_POST['score'];
+    $multiplierValue = $_POST['multiplierValue'];
 
     //get currentPlayer
     $sql = "SELECT currentPlayer FROM game_data";
@@ -46,6 +47,10 @@
     //increment dartIndex
     $indexQuery = "UPDATE game_data SET dartIndex = dartIndex + 1";
     mysqli_query($conn, $indexQuery);
+
+    //update lastMult column
+    $lastMultQuery = "UPDATE scores SET lastMult = $multiplierValue WHERE Name = '$currentPlayer' AND turn = $maxTurn";
+    mysqli_query($conn, $lastMultQuery);
 
     $conn->close();
 ?>
