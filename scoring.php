@@ -29,7 +29,6 @@
 
         var updatedScore = overallScore;
 
-        var dartIndex = 0;//darts thrown - 1
         var turnScores = [];
 
         //records the single dart score

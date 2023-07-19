@@ -1,11 +1,12 @@
 function dart(score, multiplierValue){
-
-  if(dartIndex < 3){//disable buttons after dart limit is reached
-    score = multiplierValue * score;
-
-    turnScores[dartIndex] = score;
-  
-    dartIndex++;
-    console.log(turnScores);
-  }
+  $.ajax({
+    url: "scripts/dart.php",
+    type: "POST",
+    data: {
+      score: score * multiplierValue
+    },
+    error: function(xhr, status, error){
+      console.log("Error sending data to dart.php: " + error);
+    }
+  });
 }
