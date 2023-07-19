@@ -19,11 +19,8 @@
         }
 
 
-        </script><script type="text/javascript" src="scripts/setCurrentPlayer.js"></script><script>
         </script><script type="text/javascript" src="scripts/getCurrentPlayer.js"></script><script>
         </script><script type="text/javascript" src="scripts/updateTableCell.js"></script><script>
-        <?php require 'scripts/setCurrentPlayer.php'; ?>
-        setCurrentPlayer(allPlayers[0]);
         getCurrentPlayer();
 
         //populate score cells of table
