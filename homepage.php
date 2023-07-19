@@ -11,6 +11,7 @@
         <li><a href="leaderboard_page.php">Leaderboard</a></li>
         <li><a href="register_page.php">Register/Unregister A Player!</a></li>
         <li><a href="create_game_page.php">Create a Game!</a></li>
+        <li><a href="scoreDisplayPage.php">View Game Score</a></li>
     </ul>
 </body>
 </html>

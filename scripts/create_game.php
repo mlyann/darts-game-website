@@ -34,13 +34,30 @@ for ($i = 1; $i <= $player_count; $i++) {
 
 $players_json = json_encode($player_names);
 
+$firstPlayer = $player_names[0];
+
 if ($game_type == 'Countdown') {
-    $sql = "INSERT INTO game_data (type,starting_points,player_count,players,time) 
-        VALUES ('$game_type', '$starting_points', '$player_count', '$players_json', NOW())";
+    $sql = "INSERT INTO game_data (type,starting_points,player_count,players,time, currentPlayer) 
+        VALUES ('$game_type', '$starting_points', '$player_count', '$players_json', NOW(), '$firstPlayer')";
 }
 elseif ($game_type == 'Highscore') {
-    $sql = "INSERT INTO game_data (type,number_of_rounds,player_count,players,time) 
-        VALUES ('$game_type', '$number_of_rounds', '$player_count', '$players_json', NOW())";
+    $sql = "INSERT INTO game_data (type, starting_points, number_of_rounds,player_count,players,time, currentPlayer) 
+        VALUES ('$game_type', '$starting_points', '$number_of_rounds', '$player_count', '$players_json', NOW(), '$firstPlayer')";
+}
+
+// insert into game_data 
+mysqli_query($conn, $sql);
+
+//create initial table rows in scores
+$sql = "SELECT players from game_data";
+$players = mysqli_query($conn, $sql);
+$row = $players->fetch_assoc();
+$playersArray = json_decode($row['players'], true);
+
+foreach ($playersArray as $player) {
+    $name = $player;
+    $sql = "INSERT INTO scores (Name, overall, turn) VALUES ('$name','$starting_points', '1')";
+    mysqli_query($conn, $sql);
 }
 
 // insert in database 

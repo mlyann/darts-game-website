@@ -20,21 +20,29 @@
           updatedScore = 301;
         }
         else if(gamemode == 'Highscore'){
-          updatedScore = 0;
+          overallScore = 0;
+        }
+
+        //create initial table rows
+        for(let i=0; i<allPlayers.length; i++){
+         
+          $.ajax({
+              url: "scripts/createTurn.php",
+              type: "POST",
+              data: {
+                name: allPlayers[playerTurn],
+                overallScore: 301
+              },
+              error: function(xhr, status, error){
+                console.log("Error sending data to createTurn.php: " + error);
+              }
+            });
+      
         }
         
 
+        var updatedScore = overallScore;
 
-        //get first player
-        </script><script type="text/javascript" src="scripts/getCurrentPlayer.js"></script><script>
-        </script><script type="text/javascript" src="scripts/updateTableCell.js"></script><script>
-        getCurrentPlayer();
-        
-        //populate score cells of table
-        </script><script type="text/javascript" src="scripts/getScores.js"></script><script>
-        getScores();
-
-        var dartIndex = 0;//darts thrown - 1
         var turnScores = [];
 
         //records the single dart score
@@ -42,16 +50,14 @@
 
         //determines if the current player won (countdown)
         function determineWinnerCD(){
-
-              prevScore = updatedScore;
-
+              
               for(let i = 0; i<dartIndex; i++){
                 updatedScore -= turnScores[i];
               }
+              
+              if(updatedScore == 0){//win
 
-              if(updatedScore == 0 && multiplierValue === 2){//win
-
-                console.log(allPlayers[playerTurn] + " wins!");
+                console.log(allPlayers[playerTurn] + " wins @ "+ overallScore + "!");
 
                 //sends winner's name to leaderboard
                 $.ajax({
@@ -61,15 +67,14 @@
                     name: allPlayers[playerTurn]
                   },
                   error: function(xhr, status, error){
-                    console.log("Error sending data to insert_winner.php: " + error);//internal server error
+                    console.log("Error sending data to insert_winner.php: " + error);
                   }
                 });
 
                 return true;
               }
-              else {//bust
+              else if(updatedScore < 0){//bust
 
-                updatedScore = prevScore;
                 console.log("Bust!")
               }
               return false;
@@ -157,6 +162,19 @@
 
 
 <table class="center">
+<tr>
+<td></td>
+<td></td>
+  <td id = "currentPlayerCell" class = "infoCell">current</td>
+</tr>
+<tr>
+<td></td>
+  <td id ="firstCell" class = "infoCell">first</td>
+  <td id="secondCell" class = "infoCell">second</td>
+  <td id="thirdCell" class = "infoCell">third</td>
+</tr>
+<tr>
+  <td></td>
 <tr>
 <td></td>
 <td></td>
