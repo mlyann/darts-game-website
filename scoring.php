@@ -41,6 +41,10 @@
         setCurrentPlayer(allPlayers[0]);
         getCurrentPlayer();
 
+        //populate score cells of table
+       </script><script type="text/javascript" src="scripts/getScores.js"></script><script>
+        getScores();
+
         var updatedScore = overallScore;
 
         var dartIndex = 0;//darts thrown - 1
@@ -216,6 +220,19 @@ return false;
 
 
 <table class="center">
+<tr>
+<td></td>
+<td></td>
+  <td id = "currentPlayerCell">current</td>
+</tr>
+<tr>
+<td></td>
+  <td id ="firstCell">first</td>
+  <td id="secondCell">second</td>
+  <td id="thirdCell">third</td>
+</tr>
+<tr>
+  <td></td>
 <tr>
   <td><button class="button" name = "doubleButton" onclick="multiplier('double')">Double</button></td>
   <td><button class="button" name = "tripleButton" onclick="multiplier('triple')">Triple</button></td>
