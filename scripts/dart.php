@@ -40,7 +40,7 @@
     mysqli_query($conn, $dartQuery);
 
     //update overall column
-    $overallQuery = "UPDATE scores SET overall = overall - first - second - third WHERE Name = '$currentPlayer' AND turn = $maxTurn";
+    $overallQuery = "UPDATE scores SET overall = COALESCE(overall,0) - COALESCE(first,0) - COALESCE(second, 0) - COALESCE(third, 0) WHERE Name = '$currentPlayer' AND turn = $maxTurn";
     mysqli_query($conn, $overallQuery);
 
     //increment dartIndex
