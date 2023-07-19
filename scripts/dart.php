@@ -43,13 +43,13 @@
     //update overall column
     switch($column) {
         case 'first':
-            $overallQuery = "UPDATE scores SET overall = COALESCE(overall,0) - COALESCE(first,0)";
+            $overallQuery = "UPDATE scores SET overall = COALESCE(overall,0) - COALESCE(first,0) WHERE Name = '$currentPlayer' AND turn = $maxTurn";
             break;
         case 'second':
-            $overallQuery = "UPDATE scores SET overall = COALESCE(overall,0) - COALESCE(second,0)";
+            $overallQuery = "UPDATE scores SET overall = COALESCE(overall,0) - COALESCE(second,0) WHERE Name = '$currentPlayer' AND turn = $maxTurn";
             break;
         case 'third':
-            $overallQuery = "UPDATE scores SET overall = COALESCE(overall,0) - COALESCE(third,0)";
+            $overallQuery = "UPDATE scores SET overall = COALESCE(overall,0) - COALESCE(third,0) WHERE Name = '$currentPlayer' AND turn = $maxTurn";
             break;
     }
     mysqli_query($conn, $overallQuery);
