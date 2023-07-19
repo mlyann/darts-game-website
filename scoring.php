@@ -2,53 +2,36 @@
 <html>
 <head>
 
-    <title>Darts</title>
+    <title>Darts Score Input</title>
     <link rel="stylesheet" type="text/css" href="styles/scoring.css">
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/getCurrentPlayer.js"></script>
+    <script type="text/javascript" src="scripts/updateTableCell.js"></script>
+    <script type="text/javascript" src="scripts/getScores.js"></script>
+    <script type="text/javascript" src="scripts/dart.js"></script>
+    <script type="text/javascript" src="scripts/multiplier.js"></script>
     <script>
-
-        <?php require 'scripts/getPlayers.php'; ?> //var allPlayers = ["[\name\"]"]
-        <?php require 'scripts/getGamemode.php'; ?>//var gamemode = 'Countdown';
+      //initialize multiplier settings
         multiplierValue = 1;
+        let multiplierActive = false; // Flag to track the active state of the multiplier
 
-        //get first player
-        </script><script type="text/javascript" src="scripts/getCurrentPlayer.js"></script><script>
-        </script><script type="text/javascript" src="scripts/updateTableCell.js"></script><script>
+        //populate info cells of table
         getCurrentPlayer();
-        
-        //populate score cells of table
-        </script><script type="text/javascript" src="scripts/getScores.js"></script><script>
         getScores();
-
-
-
-        //records the single dart score
-        </script><script type="text/javascript" src="scripts/dart.js"></script><script>
-
         
         //backspace functionality
-        function undo(){
+        function undo() {
+          $.ajax({
+            url: 'scripts/undoCD.php'
+          })
+        };
 
-          if(dartIndex > 0){
-
-            dartIndex--;
-
-            //update the number visualization
-          }
-        }
-
+        //submit turn functionality
         function submitTurnCD() {
           $.ajax({
             url: 'scripts/submitTurnCD.php'
           })
         };
-
-       // function quit(){}
-    
-       let multiplierActive = false; // Flag to track the active state of the multiplier
-       </script><script type="text/javascript" src="scripts/multiplier.js"></script><script>
-
-
 
   </script>
   <style>
