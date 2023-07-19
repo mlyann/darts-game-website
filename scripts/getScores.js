@@ -8,9 +8,9 @@ function getScores() {
         var first = response[0];
         var second = response[1];
         var third = response[2];
-        updateTableCell('firstCell', first);
-        updateTableCell('secondCell', second);
-        updateTableCell('thirdCell', third);
+        updateTableCell('firstCell', "First Dart: <br>" + first);
+        updateTableCell('secondCell', "Second Dart: <br>" + second);
+        updateTableCell('thirdCell', "Third Dart: <br>" + third);
   
         // Call the function again after 1 second
         setTimeout(getScores, 1000);
