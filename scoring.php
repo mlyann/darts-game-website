@@ -102,9 +102,6 @@
   <td colspan="3"><button class="button" onclick="submitTurnCD()">Enter Turn</button></td>
   <td><button class="button" name="missButton" onclick="dart(0, multiplierValue)">Miss</button></td>
 </tr>
-<tr>
-  <td colspan="5"><button class="button" id="quitButton" onclick="quit()">Quit</button></td>
-</tr>
 </table>
 
 
