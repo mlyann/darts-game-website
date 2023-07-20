@@ -6,7 +6,7 @@
 </head>
 <body>
     <img id = "logo" src = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png"></img>
-    <h1>Welcome to Coretechs Darts!</h1>
+    <h1>Welcome <br>to <br>Coretechs Darts!</h1>
     <ul>
         <li><a href="leaderboard_page.php">Leaderboard</a></li>
         <li><a href="register_page.php">Register/Deregister <br> A Player</a></li>

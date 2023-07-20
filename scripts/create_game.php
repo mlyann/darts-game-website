@@ -1,6 +1,7 @@
 <?php
 require 'connect.php';
 
+//clear out old data
 $clearGameData = "DELETE FROM game_data";
 $clearResult = mysqli_query($conn, $clearGameData);
 if($clearResult)
@@ -10,6 +11,15 @@ if($clearResult)
     echo "Failure ressetting gamedata\n";
 }
 
+$clearScores = "DELETE FROM scores";
+$clearResult = mysqli_query($conn, $clearScores);
+if($clearResult)
+{
+	echo "Success resetting scores";
+} else {
+    echo "Failure ressetting scores";
+}
+
 $game_type = $_POST['game_type'];
 
 if ($game_type == 'Countdown') {
@@ -17,6 +27,7 @@ if ($game_type == 'Countdown') {
 }
 elseif ($game_type == 'Highscore') {
     $number_of_rounds = $_POST['round_select'];
+    $starting_points = 0;
 }
 
 $player_count = $_POST['player_count'];
@@ -34,15 +45,16 @@ for ($i = 1; $i <= $player_count; $i++) {
 
 $players_json = json_encode($player_names);
 
+//set first currentPlayer
 $firstPlayer = $player_names[0];
 
 if ($game_type == 'Countdown') {
-    $sql = "INSERT INTO game_data (type,starting_points,player_count,players,time, currentPlayer) 
-        VALUES ('$game_type', '$starting_points', '$player_count', '$players_json', NOW(), '$firstPlayer')";
+    $sql = "INSERT INTO game_data (type,starting_points,player_count,players,time, currentPlayer, dartIndex) 
+        VALUES ('$game_type', '$starting_points', '$player_count', '$players_json', NOW(), '$firstPlayer', '0')";
 }
 elseif ($game_type == 'Highscore') {
-    $sql = "INSERT INTO game_data (type, starting_points, number_of_rounds,player_count,players,time, currentPlayer) 
-        VALUES ('$game_type', '$starting_points', '$number_of_rounds', '$player_count', '$players_json', NOW(), '$firstPlayer')";
+    $sql = "INSERT INTO game_data (type, starting_points, number_of_rounds,player_count,players,time, currentPlayer, dartIndex) 
+        VALUES ('$game_type', '$starting_points', '$number_of_rounds', '$player_count', '$players_json', NOW(), '$firstPlayer', '0')";
 }
 
 // insert into game_data 
@@ -60,26 +72,12 @@ foreach ($playersArray as $player) {
     mysqli_query($conn, $sql);
 }
 
-// insert in database 
-$rs = mysqli_query($conn, $sql);
 
-if($rs)
-{
-	echo "Success creating game";
-} else {
-    echo "Failure creating game";
-}
 
-$clearScores = "DELETE FROM scores";
-$clearResult = mysqli_query($conn, $clearScores);
-if($clearResult)
-{
-	echo "Success resetting scores";
-} else {
-    echo "Failure ressetting scores";
-}
+
+
 
 $conn->close();
-header("Location: /scoring.php");
+header("Location: /scoreDisplayPage.php");
 exit;
 ?>
