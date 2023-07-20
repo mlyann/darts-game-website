@@ -13,7 +13,6 @@ body {
     justify-content: center;
     min-height: 100vh; /* Ensure content takes up at least the full viewport height */
     overflow-x: hidden; /* Prevent horizontal scrolling */
-    overflow-y: hidden;
 }
 
 /* Style the header */
@@ -50,6 +49,23 @@ a {
 
 a:hover {
     background-color: #ddd;
+}
+
+div {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center the images horizontally */
+    align-items: center; /* Center the images vertically */
+    gap: 10px; /* Add some spacing between the images */
+    margin-top: 20px; /* Add top margin to create space between the list and images */
+}
+/* Add CSS rule for the images */
+img {
+    max-width: 100%; /* Make sure the images don't exceed their original size */
+    height: auto; /* Preserve the aspect ratio of the images */
+}
+#logo {
+    max-width: 20vh;
+    object-fit: contain;
 }
 
 /* Add responsive styles for mobile devices */

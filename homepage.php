@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="styles/homepage.css">
 </head>
 <body>
+    <img id = "logo" src = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png"></img>
     <h1>Welcome to Coretechs Darts!</h1>
     <ul>
         <li><a href="leaderboard_page.php">Leaderboard</a></li>
