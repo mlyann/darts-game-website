@@ -2,47 +2,39 @@
 <html>
 <head>
     <title>Display</title>
-    <meta http-equiv="refresh" content="2">
     <link rel="stylesheet" type="text/css" href="styles/scoreDisplayPage.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<?php
-// Assuming you have established a MySQL database connection
-require 'scripts/connect.php';
-// Query to retrieve the scores from the table
-$query = "SELECT Name, overall, turn, first, second, third FROM scores
-          WHERE turn = (SELECT MAX(turn) FROM scores)";
-$result = mysqli_query($conn, $query);
+    <table id="scoreTable">
+        <tr>
+            <th>Name</th>
+            <th>Overall</th>
+            <th>Turn</th>
+            <th>First</th>
+            <th>Second</th>
+            <th>Third</th>
+        </tr>
+    </table>
 
-// Check if the query was successful
-if ($result) {
-    // Start generating the HTML table
-    echo '<table>';
-    echo '<tr><th>Name</th><th>Overall</th><th>Turn</th><th>First</th><th>Second</th><th>Third</th></tr>';
+    <script>
+        // Function to update the table content with AJAX
+        function updateTableContent() {
+            $.ajax({
+                url: 'scripts/generateScoreDisplay.php', // Replace with the path to your PHP script
+                method: 'GET',
+                dataType: 'html',
+                success: function (data) {
+                    $('#scoreTable').html(data);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error updating scores:', status, error);
+                }
+            });
+        }
 
-    // Loop through the result set and display each row in the table
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo '<tr>';
-        echo '<td>' . $row['Name'] . '</td>';
-        echo '<td>' . $row['overall'] . '</td>';
-        echo '<td>' . $row['turn'] . '</td>';
-        echo '<td>' . $row['first'] . '</td>';
-        echo '<td>' . $row['second'] . '</td>';
-        echo '<td>' . $row['third'] . '</td>';
-        echo '</tr>';
-    }
-
-    // End the table
-    echo '</table>';
-} else {
-    // Handle the case when the query fails
-    echo 'Error retrieving scores: ' . mysqli_error($conn);
-}
-
-// Close the database connection
-mysqli_close($conn);
-?>
-
-
+        // Call the updateTableContent function every 1 second (1000 milliseconds)
+        setInterval(updateTableContent, 1000);
+    </script>
 </body>
 </html>
