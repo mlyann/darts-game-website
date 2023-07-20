@@ -22,6 +22,11 @@ if ($result) {
         $tableHTML .= '<td>' . $row['second'] . '</td>';
         $tableHTML .= '<td>' . $row['third'] . '</td>';
         $tableHTML .= '</tr>';
+
+        // Check if the player has an overall score of -353 and show the popup
+        if ($row['overall'] == -353) {
+            echo '<script>alert("' . $row['Name'] . ' wins!");</script>';
+        }
     }
 
     // Send the table HTML as a response
