@@ -1,0 +1,66 @@
+/* Reset default margin and padding */
+body, h1, h2, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set a background color and center the content */
+body {
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Ensure content takes up at least the full viewport height */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: hidden;
+}
+
+/* Style the header */
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Style the navigation list */
+ul {
+    list-style-type: none;
+    padding: 0;
+    width: 80%; /* Adjust the width of the navigation list to take up most of the screen */
+}
+
+/* Style the navigation links */
+li {
+    margin-bottom: 10px;
+}
+
+a {
+    display: block;
+    padding: 10px 20px;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+a:hover {
+    background-color: #ddd;
+}
+
+/* Add responsive styles for mobile devices */
+@media only screen and (max-width: 1000px) {
+    h1 {
+        font-size: 7vw;
+        margin-top: 20px;
+    }
+
+    a {
+        font-size: 6vw;
+        padding: 8px 16px;
+    }
+}

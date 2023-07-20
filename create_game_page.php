@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Create Game</title>
+    <link rel="stylesheet" type="text/css" href="styles/createGame.css">
     <script type="text/javascript" src="scripts/showConditionalCreateOption.js"></script>
     <script type="text/javascript">
         function showPlayerForm() {
