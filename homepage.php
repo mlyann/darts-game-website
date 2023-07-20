@@ -2,9 +2,10 @@
 <html>
 <head>
     <title>Homepage</title>
+    <link rel="stylesheet" type="text/css" href="styles/homepage.css">
 </head>
 <body>
-    <h1>Welcome to the Game Platform!</h1>
+    <h1>Welcome to Coretechs Darts!</h1>
     
     <h2>Navigation:</h2>
     <ul>
