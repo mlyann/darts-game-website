@@ -54,25 +54,26 @@
 <body>
 
 
-
-<table class="center">
-<tr>
-<td></td>
-<td></td>
-  <td id = "currentPlayerCell" width="100%" class = "infoCell">current</td>
-</tr>
-<tr>
-<td></td>
-  <td id ="firstCell" class = "infoCell">first</td>
-  <td id="secondCell" class = "infoCell">second</td>
-  <td id="thirdCell" class = "infoCell">third</td>
-</tr>
+<div>
+<table class="center info">
+  <tr>
+    <td class = "infoCell">Player</td>
+    <td class = "infoCell">Overall Score</td>
+    <td class = "infoCell">1st Dart</td>
+    <td class = "infoCell">2nd Dart</td>
+    <td class = "infoCell">3rd Dart</td>
+  </tr>
+<?php require 'scripts/fetch_names_scoring.php' ?>
+</table>
+<table class="center special">
 <tr>
   <td></td>
   <td><button class="button" name = "doubleButton" onclick="multiplier('double')">Double</button></td>
   <td><button class="button" name = "tripleButton" onclick="multiplier('triple')">Triple</button></td>
   <td><button class ="button" onclick="undo()">Undo</button></td>
 </tr>
+</table>
+<table class = "center inputs">
 <tr>
   <td><button class="button" name ="scoreButton" onclick="dart(20, multiplierValue)">20</button></td>
   <td><button class="button" name ="scoreButton" onclick="dart(19, multiplierValue)">19</button></td>
@@ -101,12 +102,15 @@
   <td><button class="button" name ="scoreButton" onclick="dart(2, multiplierValue)">2</button></td>
   <td><button class="button" name ="scoreButton" onclick="dart(1, multiplierValue)">1</button></td>
 </tr>
+</table>
+<table class = "center special">
 <tr>
   <td><button class="button" name="bullButton" onclick="dart(25, multiplierValue)">Bull</button></td>
   <td colspan="3"><button class="button" onclick="submitTurnCD()">Enter Turn</button></td>
   <td><button class="button" name="missButton" onclick="dart(0, multiplierValue)">Miss</button></td>
 </tr>
 </table>
+</div>
 
 
 </body>

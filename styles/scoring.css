@@ -1,78 +1,96 @@
 .center {
-    margin-left: auto;
-    margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.info {
+  height: 30%;
+}
+
+.special {
+  height: 10%;
+}
+
+.inputs {
+  height: 50%;
+}
+
+
+
+/* Styles for mobile devices */
+@media only screen and (max-width: 1000px) {
+  html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: hidden;
   }
-  
+
+  div {
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  table {
+    width: 100%;
+    margin: 0;
+    background-color: #fff;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 1px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+
+  th {
+    font-size: 24px;
+    font-weight: bold;
+    background-color: #f2f2f2;
+  }
+
+  .infoCell {
+    height: 5%;
+    font-size: 4vw;
+    background-color: #efefef;
+  }
+
   .button {
     display: block;
-    width: 100%;
+    width: 100%; /* Set width to 100% */
+    height: 100%; /* Set height to auto */
+    padding: 20px;
+    margin-bottom: 10px;
+    font-size: 5vw;
     text-align: center;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
   }
-  
-  /* Styles for mobile devices */
-  @media only screen and (max-width: 1000px) {
-    html, body {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden; /* Prevent horizontal scrolling */
-      overflow-y: hidden;
-    }
-  
-    table {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      background-color: #fff;
-      border-collapse: collapse;
-    }
-  
-    th,
-    td {
-      padding: 1px;
-      text-align: center;
-      border: 1px solid #ddd;
-    }
-  
-    th {
-      font-size: 24px;
-      font-weight: bold;
-      background-color: #f2f2f2;
-    }
 
-    .infoCell {
-        height: 5%;
-        font-size: 4vw;
-        background-color: #efefef;
-      }
-  
-    .button {
-      display: block;
-      width: 100%; /* Set width to 100% */
-      height: 100%; /* Set height to auto */
-      padding: 20px;
-      margin-bottom: 10px;
-      font-size: 5vw;
-      text-align: center;
-      color: black;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-  
-    .button:hover,
-    .button:active,
-    .button:focus {
-      background-color: darkgray;
-    }
-  
-    #quitButton {
-      background-color: #f44336;
-    }
-  
-    #quitButton:hover {
-      background-color: #d32f2f;
-    }
+  .button:hover,
+  .button:active,
+  .button:focus {
+    background-color: darkgray;
   }
-  
+
+  #quitButton {
+    background-color: #f44336;
+  }
+
+  #quitButton:hover {
+    background-color: #d32f2f;
+  }
+}
