@@ -11,6 +11,7 @@
     <script type="text/javascript" src="scripts/dart.js"></script>
     <script type="text/javascript" src="scripts/multiplier.js"></script>
     <script type="text/javascript" src="scripts/displayNames.js"></script>
+    <script type="text/javascript" src="scripts/displayScores.js"></script>
     <script>
       //initialize multiplier settings
         multiplierValue = 1;
@@ -19,6 +20,8 @@
         //populate info cells of table
         getCurrentPlayer();
         getScores();
+        displayNames();
+        displayScores();
         
         //backspace functionality
         function undo() {
