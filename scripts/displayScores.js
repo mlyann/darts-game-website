@@ -18,7 +18,7 @@ function displayScores() {
             playerIndex += 1;
         });
 
-        setTimeout(displayScores, 1000);
+        setTimeout(displayScores, 500);
       },
       error: function(xhr, status, error) {
         // Handle error

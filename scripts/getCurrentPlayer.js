@@ -33,14 +33,14 @@ function getCurrentPlayer() {
       }
       
       // Call the function again after 1 second
-      setTimeout(getCurrentPlayer, 1000);
+      setTimeout(getCurrentPlayer, 500);
     },
     error: function(xhr, status, error) {
       // Handle error
       console.error(error);
 
       // Call the function again after 1 second
-      setTimeout(getCurrentPlayer, 1000);
+      setTimeout(getCurrentPlayer, 500);
     }
   });
 }
