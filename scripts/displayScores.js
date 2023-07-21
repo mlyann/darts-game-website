@@ -5,7 +5,6 @@ function displayScores() {
       datatype: 'json',
       success: function(response) {
         playerIndex = 1;
-        console.log(response);
         response.forEach(player => {
             overallCell = playerIndex + 'overallCell';
             firstCell = playerIndex + 'firstCell';
@@ -19,7 +18,7 @@ function displayScores() {
             playerIndex += 1;
         });
 
-        setTimeout(getScores, 1000);
+        setTimeout(displayScores, 1000);
       },
       error: function(xhr, status, error) {
         // Handle error
