@@ -16,11 +16,11 @@
         $secondCell = $playerIndex . "secondCell";
         $thirdCell = $playerIndex . "thirdCell";
         echo '<tr>';
-        echo '<td id="' . $id . '"></td>';
-        echo '<td id="' . $overallCell . '"></td>';
-        echo '<td id="' . $firstCell . '"></td>';
-        echo '<td id="' . $secondCell . '"></td>';
-        echo '<td id="' . $thirdCell . '"></td>';
+        echo '<td class = "infoCell" id="' . $id . '"></td>';
+        echo '<td class = "infoCell" id="' . $overallCell . '"></td>';
+        echo '<td class = "infoCell" id="' . $firstCell . '"></td>';
+        echo '<td class = "infoCell" id="' . $secondCell . '"></td>';
+        echo '<td class = "infoCell" id="' . $thirdCell . '"></td>';
         echo '</tr>';
         $playerIndex += 1;
         

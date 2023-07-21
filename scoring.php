@@ -10,6 +10,7 @@
     <script type="text/javascript" src="scripts/getScores.js"></script>
     <script type="text/javascript" src="scripts/dart.js"></script>
     <script type="text/javascript" src="scripts/multiplier.js"></script>
+    <script type="text/javascript" src="scripts/displayNames.js"></script>
     <script>
       //initialize multiplier settings
         multiplierValue = 1;
