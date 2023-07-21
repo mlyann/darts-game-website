@@ -78,6 +78,6 @@ foreach ($playersArray as $player) {
 
 
 $conn->close();
-header("Location: /scoreDisplayPage.php");
+header("Location: /scoring.php");
 exit;
 ?>
