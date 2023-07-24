@@ -1,4 +1,5 @@
 function displayScores() {
+
     $.ajax({
       url: 'scripts/displayScores.php',
       method: 'GET',
@@ -6,6 +7,12 @@ function displayScores() {
       success: function(response) {
         playerIndex = 1;
         response.forEach(player => {
+            if (player.overall == '-353') {
+              alert(player.name + " wins!");
+              window.location.href = "https://darts.coretechs.com";
+            }
+
+
             overallCell = playerIndex + 'overallCell';
             firstCell = playerIndex + 'firstCell';
             secondCell = playerIndex + 'secondCell';
