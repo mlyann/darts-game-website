@@ -15,18 +15,10 @@ $playersJSON = $row['players'];
 $playersArray = json_decode($playersJSON, true);
 
 $allScores = [];
-//"SELECT overall, first, second, third  FROM scores WHERE Name = 'alexander volkanovski' AND turn = (SELECT MAX(turn) FROM scores WHERE Name = 'alexander volkanovski')
 foreach ($playersArray as $player) {
-    $query = "SELECT overall, first, second, third 
-              FROM scores
-              WHERE Name = '$player'
-              AND turn = (
-                SELECT COALESCE(MAX(turn), 0) 
-                FROM scores 
-                WHERE Name = '$player' AND first IS NOT NULL
-              )
-              ORDER BY first IS NOT NULL DESC
-              LIMIT 1";
+    $query = "SELECT overall, first, second, third  FROM scores
+    WHERE Name = '$player'
+    AND turn = (SELECT MAX(turn) FROM scores WHERE Name = '$player')";
 
     $result = mysqli_query($conn, $query);
 
