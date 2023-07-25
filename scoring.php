@@ -13,6 +13,22 @@
     <script type="text/javascript" src="scripts/displayNames.js"></script>
     <script type="text/javascript" src="scripts/displayScores.js"></script>
     <script>
+        //get the gamemode
+        <?php
+          require 'scripts/connect.php';
+
+          $query = "SELECT type FROM game_data";
+          $result = mysqli_query($conn, $query);
+
+          if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $mode = $row['type'];
+          }
+
+          echo "var gamemode = '$mode';";
+          $conn->close();
+        ?>
+
       //initialize multiplier settings
         multiplierValue = 1;
         let multiplierActive = false; // Flag to track the active state of the multiplier
@@ -62,6 +78,12 @@
     <td class = "infoCell">1st Dart</td>
     <td class = "infoCell">2nd Dart</td>
     <td class = "infoCell">3rd Dart</td>
+    <td class = "infoCell" id ="winsCell" style="display:none;">Wins</td>
+   <script> //choose whether or not to show round wins cell
+        if (gamemode == 'Highscore') {
+          winsCell = document.getElementById('winsCell');
+          winsCell.style.display='table-cell';
+        }</script>
   </tr>
 <?php require 'scripts/fetch_names_scoring.php' ?>
 </table>
