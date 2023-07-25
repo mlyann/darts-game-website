@@ -58,7 +58,7 @@
 <table class="center info">
   <tr>
     <td class = "infoCell">Player</td>
-    <td class = "infoCell">Overall Score</td>
+    <td class = "infoCell">Score</td>
     <td class = "infoCell">1st Dart</td>
     <td class = "infoCell">2nd Dart</td>
     <td class = "infoCell">3rd Dart</td>
