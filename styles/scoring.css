@@ -68,6 +68,11 @@
 
   .scoreCell {
     min-width: 40px;
+    max-width: 5vw;
+  }
+
+  .nameCell {
+    max-width: 15vw;
   }
 
   .button {
