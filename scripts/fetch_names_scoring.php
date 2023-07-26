@@ -18,7 +18,6 @@
     
     foreach ($playersArray as $player) {
         $nameCell = $playerIndex . "nameCell";
-        $overallCell = $playerIndex . "overallCell";
         $firstCell = $playerIndex . "firstCell";
         $secondCell = $playerIndex . "secondCell";
         $thirdCell = $playerIndex . "thirdCell";
@@ -30,7 +29,6 @@
         echo '<td class = "infoCell scoreCell" id="' . $secondCell . '"></td>';
         echo '<td class = "infoCell scoreCell" id="' . $thirdCell . '"></td>';
         echo '<td class = "infoCell scoreCell" id="' . $roundCell . '"></td>';
-        echo '<td class="infoCell scoreCell" id="' . $overallCell . '">' . $starting_points . '</td>';
         if ($gamemode == 'Highscore') {
             echo '<td class = "infoCell" id="' . $winsCell . '"></td>';
         }

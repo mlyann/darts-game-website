@@ -47,6 +47,13 @@
     border-collapse: collapse;
   }
 
+  p.overall {
+    font-weight: bold;
+    font-size: 3vh;
+    margin: 0;
+  }
+
+
   th,
   td {
     padding: 1px;
