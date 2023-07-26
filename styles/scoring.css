@@ -66,6 +66,10 @@
     background-color: #efefef;
   }
 
+  .scoreCell {
+    min-width: 40px;
+  }
+
   .button {
     display: block;
     width: 100%; /* Set width to 100% */

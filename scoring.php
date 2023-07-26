@@ -72,19 +72,6 @@
 
 <div>
 <table class="center info">
-  <tr>
-    <td class = "infoCell">Player</td>
-    <td class = "infoCell">Score</td>
-    <td class = "infoCell">1st Dart</td>
-    <td class = "infoCell">2nd Dart</td>
-    <td class = "infoCell">3rd Dart</td>
-    <td class = "infoCell" id ="winsCell" style="display:none;">Wins</td>
-   <script> //choose whether or not to show round wins cell
-        if (gamemode == 'Highscore') {
-          winsCell = document.getElementById('winsCell');
-          winsCell.style.display='table-cell';
-        }</script>
-  </tr>
 <?php require 'scripts/fetch_names_scoring.php' ?>
 </table>
 <table class="center special">

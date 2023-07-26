@@ -26,9 +26,9 @@
         echo '<tr>';
         echo '<td class = "infoCell" id="' . $nameCell . '"> </td>';
         echo '<td class="infoCell" id="' . $overallCell . '">' . $starting_points . '</td>';
-        echo '<td class = "infoCell" id="' . $firstCell . '"></td>';
-        echo '<td class = "infoCell" id="' . $secondCell . '"></td>';
-        echo '<td class = "infoCell" id="' . $thirdCell . '"></td>';
+        echo '<td class = "infoCell scoreCell" id="' . $firstCell . '"></td>';
+        echo '<td class = "infoCell scoreCell" id="' . $secondCell . '"></td>';
+        echo '<td class = "infoCell scoreCell" id="' . $thirdCell . '"></td>';
         if ($gamemode = 'Highscore') {
             echo '<td class = "infoCell" id="' . $winsCell . '"></td>';
         }
