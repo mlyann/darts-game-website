@@ -72,7 +72,7 @@
 
 <div>
 <table class="center info">
-<?php require 'scripts/fetch_names_scoring.php' ?>
+<?php require 'scripts/generateTable.php' ?>
 </table>
 <table class="center special">
 <tr>
