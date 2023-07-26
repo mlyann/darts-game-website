@@ -17,14 +17,16 @@ function displayScores() {
           firstCell = playerIndex + 'firstCell';
           secondCell = playerIndex + 'secondCell';
           thirdCell = playerIndex + 'thirdCell';
+          roundCell = playerIndex + 'roundCell';
 
-          const scores = player.overall + (player.avg ? '<br> (' + player.avg + ')' : '');
+          const scores = '<b>' + player.overall + '</b>' + (player.avg ? '<br> (' + player.avg + ')' : '');
 
           updateTableCell(overallCell, scores ?? "");
           updateTableCell(firstCell, player.first ?? "");
           updateTableCell(secondCell, player.second ?? "");
           updateTableCell(thirdCell, player.third ?? "");
-          //update round wins cell if it is a highscore game
+          updateTableCell(roundCell,' = ' + ((parseInt(player.first) || 0) + (parseInt(player.second) || 0) + (parseInt(player.third) || 0)));
+          //update round wins cell if it is a highscore game 
           if (player.wins) {
             winsCell = playerIndex + 'winsCell';
             updateTableCell(winsCell, player.wins);

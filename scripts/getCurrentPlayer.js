@@ -15,6 +15,7 @@ function getCurrentPlayer() {
       const currentPlayerFirstCell = document.getElementById(index + 'firstCell');
       const currentPlayerSecondCell = document.getElementById(index + 'secondCell');
       const currentPlayerThirdCell = document.getElementById(index + 'thirdCell');
+      const currentPlayerRoundCell = document.getElementById(index + 'roundCell');
 
       let currentPlayerWinsCell = null;
       if (gamemode == 'Highscore') {
@@ -26,6 +27,7 @@ function getCurrentPlayer() {
       currentPlayerFirstCell.style.backgroundColor = highlightColor;
       currentPlayerSecondCell.style.backgroundColor = highlightColor;
       currentPlayerThirdCell.style.backgroundColor = highlightColor;
+      currentPlayerRoundCell.style.backgroundColor = highlightColor;
       if (currentPlayerWinsCell) {
         currentPlayerWinsCell.style.backgroundColor = highlightColor;
       }
@@ -39,6 +41,7 @@ function getCurrentPlayer() {
             document.getElementById(i + 'firstCell').style.backgroundColor = defaultColor;
             document.getElementById(i + 'secondCell').style.backgroundColor = defaultColor;
             document.getElementById(i + 'thirdCell').style.backgroundColor = defaultColor;
+            document.getElementById(i + 'roundCell').style.backgroundColor = defaultColor;
             if (gamemode == 'Highscore') {
               document.getElementById(i + 'winsCell').style.backgroundColor = defaultColor;
             }
