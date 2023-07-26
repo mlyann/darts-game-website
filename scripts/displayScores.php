@@ -6,19 +6,31 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get players
-$sql = "SELECT players FROM game_data";
+// Get players and type
+$sql = "SELECT type, players FROM game_data";
 $players = mysqli_query($conn, $sql);
 $row = $players->fetch_assoc();
 $playersJSON = $row['players'];
+$gamemode = $row['type'];
 
 $playersArray = json_decode($playersJSON, true);
 
+
 $allScores = [];
 foreach ($playersArray as $player) {
-    $query = "SELECT overall, first, second, third  FROM scores
-    WHERE Name = '$player'
-    AND turn = (SELECT MAX(turn) FROM scores WHERE Name = '$player')";
+    if ($gamemode == 'Countdown') {
+        $query = "SELECT Name, overall, first, second, third  FROM scores
+        WHERE Name = '$player'
+        AND turn = (SELECT MAX(turn) FROM scores WHERE Name = '$player')";
+    }
+    else {
+        $query = "SELECT s.Name, s.overall, s.first, s.second, s.third, r.roundWins
+          FROM scores s
+          LEFT JOIN roundWins r ON s.Name = r.Name
+          WHERE s.Name = '$player'
+          AND s.turn = (SELECT MAX(turn) FROM scores WHERE Name = '$player')";
+    }
+
 
     $result = mysqli_query($conn, $query);
 
@@ -26,6 +38,7 @@ foreach ($playersArray as $player) {
     $scores = [];
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+            if ($gamemode == 'Countdown') {
             $scores[] = array(
                 'name' => $player,
                 'overall' => $row['overall'],
@@ -33,6 +46,18 @@ foreach ($playersArray as $player) {
                 'second' => $row['second'],
                 'third' => $row['third']
             );
+        }
+        else {
+            $scores[] = array(
+                'name' => $player,
+                'overall' => $row['overall'],
+                'first' => $row['first'],
+                'second' => $row['second'],
+                'third' => $row['third'],
+                'wins' => $row['roundWins']
+            );
+        }
+
         }
     }
     $allScores = array_merge($allScores, $scores);
