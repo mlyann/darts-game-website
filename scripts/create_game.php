@@ -43,6 +43,13 @@ for ($i = 1; $i <= $player_count; $i++) {
     $player_names[] = $player_name;
 }
 
+$originalCount = count($player_names);
+$uniqueCount = count(array_unique($player_names));
+if ($originalCount != $uniqueCount) {
+    echo "Failure: Duplicate players";
+    exit;
+}
+
 $players_json = json_encode($player_names);
 
 //set first currentPlayer
@@ -72,10 +79,9 @@ foreach ($playersArray as $player) {
     mysqli_query($conn, $sql);
 }
 
-
-
-
-
+if ($game_type == 'Highscore') {
+    require 'initializeRoundWins.php';
+}
 
 $conn->close();
 header("Location: /scoring.php");
