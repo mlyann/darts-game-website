@@ -8,7 +8,7 @@ function displayScores() {
       playerIndex = 1;
       response.forEach(player => {
         //check for a winner
-          if (player.overall == '-353') {
+          if (player.overall == '-353' || player.overall == '9999') {
             alert(player.name + " wins!");
             window.location.href = "https://darts.coretechs.com";
           }
