@@ -6,13 +6,14 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get players and type and currentplayer
-$sql = "SELECT type, players, currentPlayer FROM game_data";
+// Get players and type and currentplayer and dartIndex
+$sql = "SELECT type, players, currentPlayer, dartIndex FROM game_data";
 $players = mysqli_query($conn, $sql);
 $row = $players->fetch_assoc();
 $playersJSON = $row['players'];
 $gamemode = $row['type'];
 $currentPlayer = $row['currentPlayer'];
+$dartIndex = $row['dartIndex'];
 
 $playersArray = json_decode($playersJSON, true);
 
@@ -20,7 +21,7 @@ $playersArray = json_decode($playersJSON, true);
 $allScores = [];
 foreach ($playersArray as $player) {
     if ($gamemode == 'Countdown') {
-    $query = "SELECT Name, overall, first, second, third
+    $query = "SELECT Name, overall, first, second, third, turn
     FROM scores
     WHERE Name = '$player'
     AND turn = IF(Name = '$currentPlayer',
@@ -28,7 +29,7 @@ foreach ($playersArray as $player) {
         (SELECT MAX(turn) - 1 FROM scores WHERE Name = '$player'))";
     }
     else {
-        $query = "SELECT s.Name, s.overall, s.first, s.second, s.third, r.roundWins
+        $query = "SELECT s.Name, s.overall, s.first, s.second, s.third, s.turn, r.roundWins
         FROM scores s
         LEFT JOIN roundWins r ON s.Name = r.Name
         WHERE s.Name = '$player'
@@ -51,7 +52,8 @@ foreach ($playersArray as $player) {
                 'overall' => $row['overall'],
                 'first' => $row['first'],
                 'second' => $row['second'],
-                'third' => $row['third']
+                'third' => $row['third'],
+                'avg' => round($row['overall'] / ($row['turn'] * 3 + $dartIndex), 1)
             );
         }
         else {
@@ -61,7 +63,8 @@ foreach ($playersArray as $player) {
                 'first' => $row['first'],
                 'second' => $row['second'],
                 'third' => $row['third'],
-                'wins' => $row['roundWins']
+                'wins' => $row['roundWins'],
+                'avg' => $row['overall'] / ($row['turn'] * 3 + $dartIndex)
             );
         }
 

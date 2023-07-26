@@ -18,7 +18,9 @@ function displayScores() {
           secondCell = playerIndex + 'secondCell';
           thirdCell = playerIndex + 'thirdCell';
 
-          updateTableCell(overallCell, player.overall ?? "");
+          const scores = player.overall + (player.avg ? '<br> (' + player.avg + ')' : '');
+
+          updateTableCell(overallCell, scores ?? "");
           updateTableCell(firstCell, player.first ?? "");
           updateTableCell(secondCell, player.second ?? "");
           updateTableCell(thirdCell, player.third ?? "");
