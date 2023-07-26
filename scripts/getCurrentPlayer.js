@@ -37,7 +37,6 @@ function getCurrentPlayer() {
         if (i != index) {
           if (document.getElementById(i + 'nameCell').style.backgroundColor = defaultColor) {
             document.getElementById(i + 'nameCell').style.backgroundColor = defaultColor;
-            document.getElementById(i + 'overallCell').style.backgroundColor = defaultColor;
             document.getElementById(i + 'firstCell').style.backgroundColor = defaultColor;
             document.getElementById(i + 'secondCell').style.backgroundColor = defaultColor;
             document.getElementById(i + 'thirdCell').style.backgroundColor = defaultColor;
