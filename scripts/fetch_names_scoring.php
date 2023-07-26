@@ -24,12 +24,12 @@
         $thirdCell = $playerIndex . "thirdCell";
         $winsCell = $playerIndex . "winsCell";
         echo '<tr>';
-        echo '<td class = "infoCell" id="' . $nameCell . '"> </td>';
-        echo '<td class="infoCell" id="' . $overallCell . '">' . $starting_points . '</td>';
+        echo '<td class = "infoCell nameCell" id="' . $nameCell . '"> </td>';
+        echo '<td class="infoCell scoreCell" id="' . $overallCell . '">' . $starting_points . '</td>';
         echo '<td class = "infoCell scoreCell" id="' . $firstCell . '"></td>';
         echo '<td class = "infoCell scoreCell" id="' . $secondCell . '"></td>';
         echo '<td class = "infoCell scoreCell" id="' . $thirdCell . '"></td>';
-        if ($gamemode = 'Highscore') {
+        if ($gamemode == 'Highscore') {
             echo '<td class = "infoCell" id="' . $winsCell . '"></td>';
         }
         echo '</tr>';
