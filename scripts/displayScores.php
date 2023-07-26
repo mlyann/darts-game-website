@@ -6,12 +6,13 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get players and type
-$sql = "SELECT type, players FROM game_data";
+// Get players and type and currentplayer
+$sql = "SELECT type, players, currentPlayer FROM game_data";
 $players = mysqli_query($conn, $sql);
 $row = $players->fetch_assoc();
 $playersJSON = $row['players'];
 $gamemode = $row['type'];
+$currentPlayer = $row['currentPlayer'];
 
 $playersArray = json_decode($playersJSON, true);
 
@@ -19,16 +20,22 @@ $playersArray = json_decode($playersJSON, true);
 $allScores = [];
 foreach ($playersArray as $player) {
     if ($gamemode == 'Countdown') {
-        $query = "SELECT Name, overall, first, second, third  FROM scores
-        WHERE Name = '$player'
-        AND turn = (SELECT MAX(turn) FROM scores WHERE Name = '$player')";
+    $query = "SELECT Name, overall, first, second, third
+    FROM scores
+    WHERE Name = '$player'
+    AND turn = IF(Name = '$currentPlayer',
+        (SELECT MAX(turn) FROM scores WHERE Name = '$currentPlayer'),
+        (SELECT MAX(turn) - 1 FROM scores WHERE Name = '$player'))";
     }
     else {
         $query = "SELECT s.Name, s.overall, s.first, s.second, s.third, r.roundWins
-          FROM scores s
-          LEFT JOIN roundWins r ON s.Name = r.Name
-          WHERE s.Name = '$player'
-          AND s.turn = (SELECT MAX(turn) FROM scores WHERE Name = '$player')";
+        FROM scores s
+        LEFT JOIN roundWins r ON s.Name = r.Name
+        WHERE s.Name = '$player'
+        AND s.turn = IF(s.Name = '$currentPlayer',
+                        (SELECT MAX(turn) FROM scores WHERE Name = '$currentPlayer'),
+                        (SELECT MAX(turn) - 1 FROM scores WHERE Name = '$player' AND Name <> '$currentPlayer')
+                       )";
     }
 
 
