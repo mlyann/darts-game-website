@@ -80,6 +80,25 @@
 
         //submit turn functionality
         function submitTurn() {
+
+          //reset multiplier buttons
+          multiplierActive = false;
+
+          let doubleButton = document.getElementById('doubleButton');
+          doubleButton.style.backgroundColor = '';
+          let tripleButton = document.getElementById('tripleButton');
+          tripleButton.style.backgroundColor = '';
+
+          const buttons = document.getElementsByName('scoreButton');
+          //reset colors
+          for (let i = 0; i < buttons.length; i++) {
+            buttons[i].style.backgroundColor = '';
+          }
+
+          multiplierValue = 1;
+          let bullButton = document.getElementById('bullButton');
+          bullButton.style.backgroundColor = '';
+
           let url = "scripts/submitTurn";
 
           if(gamemode == 'Countdown')
