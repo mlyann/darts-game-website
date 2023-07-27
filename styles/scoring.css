@@ -14,7 +14,7 @@
 }
 
 .special {
-  height:7.5%;
+  height: 6.2%;
 }
 
 .inputs {
@@ -55,6 +55,10 @@
     font-weight: bold;
     font-size: 3vh;
     margin: 0;
+  }
+
+  p.scoreText {
+    font-size: 2.5vh;
   }
 
 

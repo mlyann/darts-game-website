@@ -22,9 +22,9 @@ function displayInfo() {
           const nameContent = document.getElementById(nameCell).innerHTML.split('<br>')[0] + ' <br> ' + '<p class = "overall">' + player.overall + '</p>';
           updateTableCell(nameCell, nameContent);
 
-          updateTableCell(firstCell, player.first ?? "");
-          updateTableCell(secondCell, player.second ?? "");
-          updateTableCell(thirdCell, player.third ?? "");
+          updateTableCell(firstCell,'<p class = scoreText>' + player.first + '</p>' ?? "");
+          updateTableCell(secondCell,'<p class = scoreText>' + player.second + '</p>' ?? "");
+          updateTableCell(thirdCell,'<p class = scoreText>' + player.third + '</p>' ?? "");
           updateTableCell(roundCell,
             ' = ' + ((parseInt(player.first) || 0) + (parseInt(player.second) || 0) + (parseInt(player.third) || 0)) + ' <br> (' + (player.avg  ?? "0") + ')'
             );
