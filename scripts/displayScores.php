@@ -22,12 +22,17 @@ $playersArray = json_decode($playersJSON, true);
 $allScores = [];
 foreach ($playersArray as $player) {
     if ($gamemode == 'Countdown') {
-    $query = "SELECT Name, overall, first, second, third, turn
-    FROM scores
-    WHERE Name = '$player'
-    AND turn = IF(Name = '$currentPlayer',
-        (SELECT MAX(turn) FROM scores WHERE Name = '$currentPlayer'),
-        (SELECT MAX(turn) - 1 FROM scores WHERE Name = '$player'))";
+        $query = "SELECT Name, overall, first, second, third, turn
+        FROM scores
+        WHERE Name = '$player'
+        AND turn = IF(Name = '$currentPlayer',
+                       (SELECT MAX(turn) FROM scores WHERE Name = '$currentPlayer'),
+                       CASE
+                         WHEN (SELECT MAX(turn) FROM scores WHERE Name = '$player') > 1
+                         THEN (SELECT MAX(turn) - 1 FROM scores WHERE Name = '$player')
+                         ELSE (SELECT MAX(turn) FROM scores WHERE Name = '$player')
+                       END)";
+
     }
     else {
         $query = "SELECT s.Name, s.overall, s.first, s.second, s.third, s.turn, r.roundWins
@@ -58,14 +63,17 @@ foreach ($playersArray as $player) {
                 // Check if the denominator is not zero before calculating 'avg'
                 $avg = $denominator !== 0 ? round(($starting_points - $row['overall']) / $denominator, 1) : null;
 
-            $scores[] = array(
-                'name' => $player,
-                'overall' => $row['overall'],
-                'first' => $row['first'],
-                'second' => $row['second'],
-                'third' => $row['third'],
-                'avg' => $avg
-            );
+                //make starting overall correct instead of null
+                //$overall = ($row['overall'] === null) ? $starting_points : $row['overall'];
+
+                $scores[] = array(
+                    'name' => $player,
+                    'overall' => $row['overall'],
+                    'first' => $row['first'],
+                    'second' => $row['second'],
+                    'third' => $row['third'],
+                    'avg' => $avg
+                );
         }
         else {
             $scores[] = array(
