@@ -43,7 +43,7 @@ function displayInfo() {
           playerIndex += 1;
       });
 
-      setTimeout(displayInfo, 250);
+      setTimeout(displayInfo, 50);
     },
     error: function(xhr, status, error) {
       // Handle error
