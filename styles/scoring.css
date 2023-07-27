@@ -14,11 +14,15 @@
 }
 
 .special {
-  height: 10%;
+  height:7.5%;
 }
 
 .inputs {
   height: 30%;
+}
+
+.gameInfo {
+  height: 5%
 }
 
 

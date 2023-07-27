@@ -74,6 +74,12 @@
 <table class="center info">
 <?php require 'scripts/generateTable.php' ?>
 </table>
+<table class = "center gameInfo">
+  <tr>
+    <td class = "infoCell" id ="turnCell">Turn: 1</td>
+    <td class = "infoCell" id ="checkoutCell">D20 + D20 + D20</td>
+  </tr>
+</table>
 <table class="center special">
 <tr>
   <td></td>

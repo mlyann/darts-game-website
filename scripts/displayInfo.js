@@ -21,10 +21,16 @@ function displayInfo() {
 
           const nameContent = document.getElementById(nameCell).innerHTML.split('<br>')[0] + ' <br> ' + '<p class = "overall">' + player.overall + '</p>';
           updateTableCell(nameCell, nameContent);
+
           updateTableCell(firstCell, player.first ?? "");
           updateTableCell(secondCell, player.second ?? "");
           updateTableCell(thirdCell, player.third ?? "");
-          updateTableCell(roundCell,' = ' + ((parseInt(player.first) || 0) + (parseInt(player.second) || 0) + (parseInt(player.third) || 0)) + ' <br> (' + player.avg + ')');
+          updateTableCell(roundCell,
+            ' = ' + ((parseInt(player.first) || 0) + (parseInt(player.second) || 0) + (parseInt(player.third) || 0)) + ' <br> (' + (player.avg  ?? "0") + ')'
+            );
+
+          updateTableCell('turnCell', 'Turn: ' + player.turn);
+
           //update round wins cell if it is a highscore game 
           if (player.wins) {
             winsCell = playerIndex + 'winsCell';

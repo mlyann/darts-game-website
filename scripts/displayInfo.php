@@ -72,7 +72,8 @@ foreach ($playersArray as $player) {
                     'first' => $row['first'],
                     'second' => $row['second'],
                     'third' => $row['third'],
-                    'avg' => $avg
+                    'avg' => $avg,
+                    'turn' => $row['turn']
                 );
         }
         else {
@@ -82,7 +83,8 @@ foreach ($playersArray as $player) {
                 'first' => $row['first'],
                 'second' => $row['second'],
                 'third' => $row['third'],
-                'wins' => $row['roundWins']
+                'wins' => $row['roundWins'],
+                'turn' => $row['turn']
                 //'avg' => $row['overall'] / ($row['turn'] * 3 + $dartIndex)
             );
         }
