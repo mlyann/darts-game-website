@@ -17,7 +17,7 @@ Within a particular ecosystem, there may be a common way of installing things, s
 
 ## Authors and acknowledgment
 Thanks go out to:  
-Johnathon Bannick  
+Jonathan Bannick  
 James Bloomer  
 Dipin Krishna  
 Raymond Phan  
