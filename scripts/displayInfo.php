@@ -69,6 +69,15 @@ foreach ($playersArray as $player) {
                 //make starting overall correct instead of null
                 //$overall = ($row['overall'] === null) ? $starting_points : $row['overall'];
 
+                //calculate possible checkout
+                $checkout = generateCheckout($row['overall']);
+                if ($checkout != 'No outs possible') {
+                    $plusCount = substr_count($checkout, '+');
+                    if (($plusCount == 1 && $dartIndex > 1) || ($plusCount == 2 && $dartIndex > 0)) {
+                        $checkout = 'No outs possible';
+                    }
+                }
+
                 $scores[] = array(
                     'name' => $player,
                     'overall' => $row['overall'],
@@ -77,7 +86,7 @@ foreach ($playersArray as $player) {
                     'third' => $row['third'],
                     'avg' => $avg,
                     'turn' => $row['turn'],
-                    'checkout' => generateCheckout($row['overall']),
+                    'checkout' => $checkout,
                     'isCurrent' => $isCurrent
                 );
         }
