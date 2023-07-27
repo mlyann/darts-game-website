@@ -28,8 +28,11 @@ function displayInfo() {
           updateTableCell(roundCell,
             ' = ' + ((parseInt(player.first) || 0) + (parseInt(player.second) || 0) + (parseInt(player.third) || 0)) + ' <br> (' + (player.avg  ?? "0") + ')'
             );
-
+          
+          if (player.isCurrent) {
           updateTableCell('turnCell', 'Turn: ' + player.turn);
+          updateTableCell('checkoutCell',player.checkout);
+          }
 
           //update round wins cell if it is a highscore game 
           if (player.wins) {

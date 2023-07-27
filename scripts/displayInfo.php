@@ -1,6 +1,7 @@
 <?php
 // Connect to the MySQL database
 require 'connect.php';
+require 'checkout.php';
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -55,8 +56,10 @@ foreach ($playersArray as $player) {
             if ($gamemode == 'Countdown') {
                 if ($player == $currentPlayer) {
                     $playerDartIndex = $dartIndex;
+                    $isCurrent = true;
                 } else {
                     $playerDartIndex = 3;
+                    $isCurrent = false;
                 }
                 $denominator = (($row['turn'] * 3 - 3) + $playerDartIndex);
             
@@ -73,7 +76,9 @@ foreach ($playersArray as $player) {
                     'second' => $row['second'],
                     'third' => $row['third'],
                     'avg' => $avg,
-                    'turn' => $row['turn']
+                    'turn' => $row['turn'],
+                    'checkout' => generateCheckout($row['overall']),
+                    'isCurrent' => $isCurrent
                 );
         }
         else {
