@@ -1,18 +1,13 @@
 <?php
     require 'connect.php';
 
-    //get players in the game
+    //get info from game_data
     $sql = "SELECT starting_points, players from game_data";
     $players = mysqli_query($conn, $sql);
     $row = $players->fetch_assoc();
     $playersArray = json_decode($row['players'], true);
     $starting_points = $row['starting_points'];
-
-    $gamemodeQuery = "SELECT type from game_data";
-    $gamemodeResult = mysqli_query($conn, $gamemodeQuery);
-    $row = $gamemodeResult->fetch_assoc();
     $gamemode = $row['type'];
-
 
     $playerIndex = 1;
     
