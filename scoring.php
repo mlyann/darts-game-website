@@ -11,7 +11,7 @@
     <script type="text/javascript" src="scripts/dart.js"></script>
     <script type="text/javascript" src="scripts/multiplier.js"></script>
     <script type="text/javascript" src="scripts/displayNames.js"></script>
-    <script type="text/javascript" src="scripts/displayScores.js"></script>
+    <script type="text/javascript" src="scripts/displayInfo.js"></script>
     <script>
         //get the gamemode
         <?php
@@ -37,7 +37,7 @@
         getCurrentPlayer();
         getScores();
         displayNames();
-        displayScores();
+        displayInfo();
         
         //backspace functionality
         function undo() {

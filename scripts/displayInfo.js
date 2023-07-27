@@ -1,7 +1,7 @@
-function displayScores() {
+function displayInfo() {
 
   $.ajax({
-    url: 'scripts/displayScores.php',
+    url: 'scripts/displayInfo.php',
     method: 'GET',
     datatype: 'json',
     success: function(response) {
@@ -34,7 +34,7 @@ function displayScores() {
           playerIndex += 1;
       });
 
-      setTimeout(displayScores, 250);
+      setTimeout(displayInfo, 250);
     },
     error: function(xhr, status, error) {
       // Handle error
