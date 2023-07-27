@@ -5,11 +5,11 @@ function multiplier(value) {
     multiplierActive = true;
     if (value === 'double') {
       multiplierValue = 2;
-      let doubleButton = document.getElementsByName('doubleButton')[0];
+      let doubleButton = document.getElementById('doubleButton');
       doubleButton.style.backgroundColor = 'red';
     } else {
       multiplierValue = 3;
-      let tripleButton = document.getElementsByName('tripleButton')[0];
+      let tripleButton = document.getElementById('tripleButton');
       tripleButton.style.backgroundColor = 'green';
     }
     const buttons = document.getElementsByName('scoreButton');
@@ -28,7 +28,7 @@ function multiplier(value) {
 
     //deal with bullseye
     if (multiplierValue === 2) {
-      let bullButton = document.getElementsByName('bullButton')[0];
+      let bullButton = document.getElementById('bullButton');
       bullButton.style.backgroundColor = 'red';
     }
 
@@ -36,9 +36,9 @@ function multiplier(value) {
   else { //toggle off
     multiplierActive = false;
 
-    let doubleButton = document.getElementsByName('doubleButton')[0];
+    let doubleButton = document.getElementById('doubleButton');
     doubleButton.style.backgroundColor = '';
-    let tripleButton = document.getElementsByName('tripleButton')[0];
+    let tripleButton = document.getElementById('tripleButton');
     tripleButton.style.backgroundColor = '';
     
     const buttons = document.getElementsByName('scoreButton');
@@ -48,7 +48,7 @@ function multiplier(value) {
     }
 
     multiplierValue = 1;
-    let bullButton = document.getElementsByName('bullButton')[0];
+    let bullButton = document.getElementById('bullButton');
     bullButton.style.backgroundColor = '';
   }
 }

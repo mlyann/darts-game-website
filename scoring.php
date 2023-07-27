@@ -123,8 +123,8 @@
 <table class="center special">
 <tr>
   <td></td>
-  <td><button class="button" name = "doubleButton" onclick="multiplier('double')">Double</button></td>
-  <td><button class="button" name = "tripleButton" onclick="multiplier('triple')">Triple</button></td>
+  <td><button class="button" id = "doubleButton" onclick="multiplier('double')">Double</button></td>
+  <td><button class="button" id = "tripleButton" onclick="multiplier('triple')">Triple</button></td>
   <td><button class ="button" onclick="undo()">Undo</button></td>
 </tr>
 </table>
@@ -160,7 +160,7 @@
 </table>
 <table class = "center special">
 <tr>
-  <td><button class="button" name="bullButton" onclick="dart(25)">Bull</button></td>
+  <td><button class="button" id="bullButton" onclick="dart(25)">Bull</button></td>
   <td colspan="3"><button class="button" onclick="submitTurn()">Enter Turn</button></td>
   <td><button class="button" name="missButton" onclick="dart(0)">Miss</button></td>
 </tr>
