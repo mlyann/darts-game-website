@@ -17,12 +17,12 @@ Within a particular ecosystem, there may be a common way of installing things, s
 
 ## Authors and acknowledgment
 Thanks go out to:
-James Bloomer
-Raymond Phan
-Johnathon Bannick
-Dipin Krishna
-Uzoma Uwanamodo
-ChatGPT
+James Bloomer \n
+Raymond Phan \n
+Johnathon Bannick \n
+Dipin Krishna \n
+Uzoma Uwanamodo \n
+ChatGPT \n
 
 ## License
 For open source projects, say how it is licensed.
