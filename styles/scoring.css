@@ -82,7 +82,7 @@
   }
 
   .scoreCell {
-    min-width: 40px;
+    min-width: 5vw;
     max-width: 5vw;
     font-size: 5vw;
   }
