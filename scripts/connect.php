@@ -1,6 +1,6 @@
 <?php
 //connect
-$servername = "darts-database.co4398xc5nn7.us-east-1.rds.amazonaws.com";
+$servername = "darts-dev.co4398xc5nn7.us-east-1.rds.amazonaws.com";
 $username = "admin";
 $password = "QFSFKOOj1pE3VPwu7KFm";
 $database = "darts";
