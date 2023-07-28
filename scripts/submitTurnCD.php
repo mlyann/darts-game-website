@@ -1,7 +1,7 @@
 <?php
   require 'connect.php';
 
-  function newTurn () { //helper function to update game_data
+  function newTurn ($type) { //helper function to update game_data
     global $conn;
     global $currentPlayer;
     $query = "SELECT players FROM game_data";
@@ -21,6 +21,7 @@
             $playerNames = array_merge($playerNames, $namesArray);
         }
     }
+    
     $currentPlayerIndex = array_search($currentPlayer, $playerNames);
     if ($currentPlayerIndex == (count($playerNames) - 1)) {
       $nextPlayer = $playerNames[0];
@@ -29,6 +30,11 @@
       $nextPlayer = $playerNames[$currentPlayerIndex + 1];
     }
     $sql = "UPDATE game_data SET dartIndex = '0', currentPlayer ='$nextPlayer'";
+
+    if ($type == 'bust') {
+      
+    }
+
     mysqli_query($conn, $sql);
   }
 
@@ -51,7 +57,6 @@
   $overall = $row['overall'];
   $lastMult = $row['lastMult'];
 
-
   //winner
   //check win conditions
   if ($overall == 0 && $lastMult == 2) {
@@ -61,7 +66,7 @@
     mysqli_query($conn, $sql);
     //TODO end the game
   }//bust
-  else if ($overall <= 0) {
+  else if ($overall <= 1) {
     $oldOverallQuery = "SELECT SUM(COALESCE(overall,0) + COALESCE(first,0) + COALESCE(second,0) + COALESCE(third,0)) AS oldOverall
     FROM scores WHERE Name = '$currentPlayer' AND turn = $maxTurn";
     $oldOverallResult = mysqli_query($conn, $oldOverallQuery);
@@ -69,12 +74,12 @@
     $oldOverall = $row['oldOverall'];
     $sql = "INSERT INTO scores (name, overall, turn) VALUES ('$currentPlayer', $oldOverall, $maxTurn + 1)";
     mysqli_query($conn, $sql);
-    newTurn();
+    newTurn('bust');
   }
   else {
-    $sql = "INSERT INTO scores (name, overall, turn) VALUES ('$currentPlayer', $overall, $maxTurn +1)";
+    $sql = "INSERT INTO scores (name, overall, turn) VALUES ('$currentPlayer', $overall, $maxTurn + 1)";
     mysqli_query($conn, $sql);
-    newTurn();
+    newTurn('standard');
   }
 
 
