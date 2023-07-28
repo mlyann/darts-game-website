@@ -6,6 +6,7 @@ function displayInfo() {
     datatype: 'json',
     success: function(response) {
       playerIndex = 1;
+      console.log(response);
       response.forEach(player => {
         //check for a winner
           if (player.overall == '-353' || player.overall == '9999') {
@@ -22,9 +23,10 @@ function displayInfo() {
           const nameContent = document.getElementById(nameCell).innerHTML.split('<br>')[0] + ' <br> ' + '<p class = "overall">' + player.overall + '</p>';
           updateTableCell(nameCell, nameContent);
 
-          updateTableCell(firstCell,'<p class = scoreText>' + player.first + '</p>' ?? "");
-          updateTableCell(secondCell,'<p class = scoreText>' + player.second + '</p>' ?? "");
-          updateTableCell(thirdCell,'<p class = scoreText>' + player.third + '</p>' ?? "");
+          updateTableCell(firstCell, player.first ?? '');
+          updateTableCell(secondCell,player.second ?? '');
+          updateTableCell(thirdCell, player.third ?? '');
+
           updateTableCell(roundCell,
             ' = ' + ((parseInt(player.first) || 0) + (parseInt(player.second) || 0) + (parseInt(player.third) || 0)) + ' <br> (' + (player.avg  ?? "0") + ')'
             );

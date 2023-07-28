@@ -10,7 +10,7 @@
 }
 
 .info {
-  height: 50%;
+  height: 53%;
 }
 
 .special {
@@ -77,13 +77,14 @@
 
   .infoCell {
     height: 5%;
-    font-size: 4vw;
+    font-size: 5vw;
     background-color: #efefef;
   }
 
   .scoreCell {
     min-width: 40px;
     max-width: 5vw;
+    font-size: 5vw;
   }
 
   .nameCell {
