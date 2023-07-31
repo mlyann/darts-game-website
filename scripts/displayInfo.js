@@ -6,7 +6,7 @@ function displayInfo() {
     datatype: 'json',
     success: function(response) {
       playerIndex = 1;
-      console.log(response);
+
       response.forEach(player => {
         //check for a winner
           if (player.overall == '-353' || player.overall == '9999') {
@@ -44,8 +44,7 @@ function displayInfo() {
 
           playerIndex += 1;
       });
-
-      setTimeout(displayInfo, 50);
+      
     },
     error: function(xhr, status, error) {
       // Handle error
