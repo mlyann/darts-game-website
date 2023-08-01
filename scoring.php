@@ -172,7 +172,11 @@
 //   });
 // }
 
-// updateInfo();
+function updateInfo(){
+displayInfo();
+setTimeout(updateInfo, 50);
+}
+updateInfo();
 
   </script>
   <style>
