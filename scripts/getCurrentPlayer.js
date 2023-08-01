@@ -7,11 +7,13 @@ function getCurrentPlayer() {
       index = response;
       index++;
 
+      highlightColor = 'red';
+      defaultColor = '#efefef';
+
       const currentPlayerNameCell = document.getElementById(index + 'nameCell');
       if (currentPlayerNameCell.style.backgroundColor != highlightColor) {
       
-      highlightColor = 'red';
-      defaultColor = '#efefef';
+
 
 
       const currentPlayerFirstCell = document.getElementById(index + 'firstCell');
