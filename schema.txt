@@ -1,0 +1,39 @@
+CREATE TABLE `users` (
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`name`)
+)
+
+CREATE TABLE `wins` (
+  `name` varchar(50) NOT NULL,
+  `time` timestamp NOT NULL,
+  PRIMARY KEY (`name`,`time`),
+  CONSTRAINT `FK_wins_user` FOREIGN KEY (`name`) REFERENCES `users` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
+)
+
+CREATE TABLE `scores` (
+  `Name` varchar(50) NOT NULL,
+  `overall` smallint DEFAULT NULL,
+  `turn` smallint DEFAULT NULL,
+  `first` smallint DEFAULT NULL,
+  `second` smallint DEFAULT NULL,
+  `third` smallint DEFAULT NULL,
+  `lastMult` tinyint DEFAULT NULL
+)
+
+CREATE TABLE `roundWins` (
+  `Name` varchar(50) NOT NULL,
+  `roundWins` tinyint DEFAULT NULL
+)
+
+CREATE TABLE `game_data` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `type` enum('Countdown','Highscore') NOT NULL,
+  `starting_points` smallint DEFAULT NULL,
+  `number_of_rounds` tinyint DEFAULT NULL,
+  `player_count` tinyint DEFAULT NULL,
+  `players` json NOT NULL,
+  `time` timestamp NOT NULL,
+  `currentPlayer` varchar(50) DEFAULT NULL,
+  `dartIndex` tinyint DEFAULT NULL,
+  PRIMARY KEY (`id`)
+)
