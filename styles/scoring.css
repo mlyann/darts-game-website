@@ -25,7 +25,13 @@
   height: 5%
 }
 
+.numInput.double {
+  background-color: red
+}
 
+.numInput.triple {
+  background-color: green
+}
 
 /* Styles for mobile devices */
 @media only screen and (max-width: 1000px) {

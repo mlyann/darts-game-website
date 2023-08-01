@@ -198,7 +198,7 @@
   <td><button id = "input_undo" class ="button" name ="inputButton">Undo</button></td>
 </tr>
 </table>
-<table class = "center inputs">
+<table class = "center inputs" id = "numInputTable">
 <tr>
   <td><button id = "input_20" class="button numInput" name ="inputButton" >20</button></td>
   <td><button id = "input_19" class="button numInput" name ="inputButton">19</button></td>
