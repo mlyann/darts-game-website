@@ -182,7 +182,6 @@
 </table>
 <table class="center special">
 <tr>
-  <td></td>
   <td><button class="button" id = "doubleButton" onclick="multiplier('double')">Double</button></td>
   <td><button class="button" id = "tripleButton" onclick="multiplier('triple')">Triple</button></td>
 </tr>
