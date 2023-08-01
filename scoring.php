@@ -218,7 +218,7 @@
 </table>
 <table class = "center special">
 <tr>
-  <td><button id = "input_25" class="button">Bull</button></td>
+  <td><button id = "input_25" class="button" name ="inputButton">Bull</button></td>
   <td colspan="3"><button class="button" onclick="submitTurn()">Enter Turn</button></td>
   <td><button id = "input_undo" class ="button" name ="inputButton">Undo</button></td>
 </tr>
