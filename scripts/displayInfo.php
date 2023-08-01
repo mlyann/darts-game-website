@@ -61,10 +61,8 @@ foreach ($playersArray as $player) {
                     $playerDartIndex = 3;
                     $isCurrent = false;
                 }
-                $denominator = (($row['turn'] * 3 - 3) + $playerDartIndex);
-            
-                // Check if the denominator is not zero before calculating 'avg'
-                $avg = $denominator !== 0 ? round(($starting_points - $row['overall']) / $denominator, 1) : null;
+
+                $avg = round(($starting_points - $row['overall']) / $row['turn'], 1);
 
                 //make starting overall correct instead of null
                 //$overall = ($row['overall'] === null) ? $starting_points : $row['overall'];
