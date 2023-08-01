@@ -11,7 +11,6 @@ function getCurrentPlayer() {
       defaultColor = '#efefef';
 
       const currentPlayerNameCell = document.getElementById(index + 'nameCell');
-      const currentPlayerOverallCell = document.getElementById(index + 'overallCell');
       const currentPlayerFirstCell = document.getElementById(index + 'firstCell');
       const currentPlayerSecondCell = document.getElementById(index + 'secondCell');
       const currentPlayerThirdCell = document.getElementById(index + 'thirdCell');
@@ -23,7 +22,6 @@ function getCurrentPlayer() {
       }
 
       currentPlayerNameCell.style.backgroundColor = highlightColor;
-      currentPlayerOverallCell.style.backgroundColor = highlightColor;
       currentPlayerFirstCell.style.backgroundColor = highlightColor;
       currentPlayerSecondCell.style.backgroundColor = highlightColor;
       currentPlayerThirdCell.style.backgroundColor = highlightColor;
