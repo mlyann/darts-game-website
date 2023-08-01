@@ -38,61 +38,81 @@
         displayNames();
         displayInfo();
 
-        function handleButtonClick(buttonId) {
+        async function handleButtonClick(buttonId) {
           let buttonType = buttonId.split('_')[1];
           console.log(buttonType);
-          switch(buttonType) {
+          switch (buttonType) {
             case 'undo':
-              undo();
+              await undo();
               break;
             default:
-              dart(buttonType);
+              await dart(buttonType);
               break;
           }
-         displayInfo();
+          await displayInfo(); // Wait until the functions are done before calling displayInfo()
         }
 
-        function dart(score){
-          let path = "scripts/dart";
 
-          if(gamemode == 'Countdown')
-            path += 'CD.php';
-          else if(gamemode == 'Highscore')
-            path += 'HS.php';
+        function dart(score) {
+          return new Promise((resolve, reject) => {
+            let path = "scripts/dart";
 
-          score = score * multiplierValue;
-          if (score == 75) {
-            score = 25;
-          }
-          
-          $.ajax({
-            url: path,
-            type: "POST",
-            data: {
-              score: score,
-              multiplierValue: multiplierValue
-            },
-            error: function(xhr, status, error){
-              console.log("Error sending data to "+path +": "+error);
+            if (gamemode === 'Countdown')
+              path += 'CD.php';
+            else if (gamemode === 'Highscore')
+              path += 'HS.php';
+
+            score = score * multiplierValue;
+            if (score === 75) {
+              score = 25;
             }
+
+            $.ajax({
+              url: path,
+              type: "POST",
+              data: {
+                score: score,
+                multiplierValue: multiplierValue
+              },
+              success: function(response) {
+                // Process the response if needed
+                resolve(response); // Resolve the Promise with the response data
+              },
+              error: function(xhr, status, error) {
+                // Handle error
+                console.error("Error sending data to " + path + ": " + error);
+                reject(error); // Reject the Promise with the error information
+              }
+            });
           });
-          displayInfo();
-        };
+        }
+
 
         //backspace functionality
         function undo() {
-          let url = "scripts/undo";
+          return new Promise((resolve, reject) => {
+            let url = "scripts/undo";
 
-          if(gamemode == 'Countdown')
-            url += 'CD.php';
-          else if(gamemode == 'Highscore')
-            url += 'HS.php';
+            if (gamemode === 'Countdown')
+              url += 'CD.php';
+            else if (gamemode === 'Highscore')
+              url += 'HS.php';
 
-          $.ajax({
-            url: url
-          })
-          displayInfo();
-        };
+            $.ajax({
+              url: url,
+              success: function(response) {
+                // Process the response if needed
+                resolve(response); // Resolve the Promise with the response data
+              },
+              error: function(xhr, status, error) {
+                // Handle error
+                console.error(error);
+                reject(error); // Reject the Promise with the error information
+              }
+            });
+          });
+        }
+
 
         //submit turn functionality
         async function submitTurn() {
