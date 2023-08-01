@@ -173,6 +173,7 @@
 // }
 
 function updateInfo(){
+getCurrentPlayer();
 displayInfo();
 setTimeout(updateInfo, 50);
 }
