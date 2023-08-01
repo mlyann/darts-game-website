@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<meta name="viewport" content="user-scalable=no">
     <title>Darts Score Input</title>
     <link rel="stylesheet" type="text/css" href="styles/scoring.css">
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
