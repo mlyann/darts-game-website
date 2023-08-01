@@ -8,9 +8,10 @@
     <script type="text/javascript" src="scripts/getCurrentPlayer.js"></script>
     <script type="text/javascript" src="scripts/updateTableCell.js"></script>
     <script type="text/javascript" src="scripts/getScores.js"></script>
-    <script type="text/javascript" src="scripts/multiplier.js"></script>
     <script type="text/javascript" src="scripts/displayNames.js"></script>
     <script type="text/javascript" src="scripts/displayInfo.js"></script>
+    <script type="text/javascript" src="scripts/resetMultipliers.js"></script>
+    <script type="text/javascript" src="scripts/multiplier.js"></script>
     <script>
         //get the gamemode
         <?php
@@ -46,8 +47,9 @@
               await undo();
               break;
             default:
-              await dart(buttonType);
-              break;
+            await dart(buttonType).then(() => {
+              resetMultipliers(); // Call resetMultipliers() after dart() is finished
+            });
           }
           await displayInfo(); // Wait until the functions are done before calling displayInfo()
         }
@@ -117,22 +119,7 @@
         //submit turn functionality
         async function submitTurn() {
           // Reset multiplier buttons
-          multiplierActive = false;
-
-          let doubleButton = document.getElementById('doubleButton');
-          doubleButton.style.backgroundColor = '';
-          let tripleButton = document.getElementById('tripleButton');
-          tripleButton.style.backgroundColor = '';
-
-          const buttons = document.getElementsByName('inputButton');
-          // Reset colors
-          for (let i = 0; i < buttons.length; i++) {
-            buttons[i].style.backgroundColor = '';
-          }
-
-          multiplierValue = 1;
-          let bullButton = document.getElementById('input_25');
-          bullButton.style.backgroundColor = '';
+          resetMultipliers();
 
           let url = "scripts/submitTurn";
 
@@ -244,8 +231,11 @@
         handleButtonClick(this.id);
     });
   });
-  document.getElement
-</script>
+  buttons = document.getElementsByClassName('numInput');
+  tripleButton = document.getElementById('tripleButton');
+  doubleButton = document.getElementById('doubleButton');
+  bullButton = document.getElementById('input_25');
+  </script>
 </div>
 
 

@@ -6,16 +6,13 @@ function multiplier(value) {
     //change color of multiplier button
     if (value === 'double') {
       multiplierValue = 2;
-      let doubleButton = document.getElementById('doubleButton');
-      doubleButton.style.backgroundColor = 'red';
+      doubleButton.classList.add('double');
     } else {
       multiplierValue = 3;
-      let tripleButton = document.getElementById('tripleButton');
-      tripleButton.style.backgroundColor = 'green';
+      tripleButton.classList.add('triple');
     }
 
     //change colors of input buttons
-    const buttons = document.getElementsByClassName('numInput');
     if (multiplierValue === 2) {
       for (let i = 0; i < buttons.length; i++) {
         buttons[i].classList.add('double');
@@ -29,34 +26,11 @@ function multiplier(value) {
 
     //deal with bullseye
     if (multiplierValue === 2) {
-      let bullButton = document.getElementById('input_25');
-      bullButton.style.backgroundColor = 'red';
+      bullButton.classList.add('double');
     }
 
   }
   else { //toggle off
-    multiplierActive = false;
-    const buttons = document.getElementsByClassName('numInput');
-    if (multiplierValue == 2) {
-      let doubleButton = document.getElementById('doubleButton');
-      doubleButton.style.backgroundColor = '';
-
-      let bullButton = document.getElementById('input_25');
-      bullButton.style.backgroundColor = '';
-
-      for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove('double');
-      }
-    }
-    else {
-      let tripleButton = document.getElementById('tripleButton');
-      tripleButton.style.backgroundColor = '';
-
-      for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove('triple');
-      }
-    }
-
-    multiplierValue = 1;
+    resetMultipliers();
   }
 }
