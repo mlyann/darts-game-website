@@ -6,11 +6,14 @@ function getCurrentPlayer() {
       //set index to index of currentplayer, increment index to id cells 
       index = response;
       index++;
+
+      const currentPlayerNameCell = document.getElementById(index + 'nameCell');
+      if (currentPlayerNameCell.style.backgroundColor != highlightColor) {
       
       highlightColor = 'red';
       defaultColor = '#efefef';
 
-      const currentPlayerNameCell = document.getElementById(index + 'nameCell');
+
       const currentPlayerFirstCell = document.getElementById(index + 'firstCell');
       const currentPlayerSecondCell = document.getElementById(index + 'secondCell');
       const currentPlayerThirdCell = document.getElementById(index + 'thirdCell');
@@ -45,6 +48,7 @@ function getCurrentPlayer() {
           }
         }
       }
+    }
     },
     error: function(xhr, status, error) {
       // Handle error
