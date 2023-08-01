@@ -38,9 +38,36 @@
         displayNames();
         displayInfo();
 
+        /*
         async function handleButtonClick(buttonId) {
           let buttonType = buttonId.split('_')[1];
           console.log(buttonType);
+          switch (buttonType) {
+            case 'undo':
+              await undo();
+              break;
+            default:
+              await dart(buttonType);
+              break;
+          }
+          await displayInfo(); // Wait until the functions are done before calling displayInfo()
+        }
+        */
+
+        async function handleButtonClick(buttonId) {
+          let pressed = buttonId.split('_')[1];
+          
+          
+
+          if(pressed != 'undo'){
+
+            
+          }
+          else{
+
+
+          }
+
           switch (buttonType) {
             case 'undo':
               await undo();
@@ -62,7 +89,7 @@
             else if (gamemode === 'Highscore')
               path += 'HS.php';
 
-            score = score * multiplierValue;
+            score *= multiplierValue;
             if (score === 75) {
               score = 25;
             }
@@ -210,7 +237,7 @@
   <td><button id = "input_15" class="button numInput" name ="inputButton">15</button></td>
   <td><button id = "input_14" class="button numInput" name ="inputButton">14</button></td>
   <td><button id = "input_13" class="button numInput" name ="inputButton">13</button></td>
-  <td><button id = "input_12" class="button numInput" name ="inputButton"">12</button></td>
+  <td><button id = "input_12" class="button numInput" name ="inputButton">12</button></td>
   <td><button id = "input_11" class="button numInput" name ="inputButton">11</button></td>
 </tr>
 <tr>

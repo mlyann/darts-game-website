@@ -42,7 +42,7 @@ function displayInfo() {
             updateTableCell(winsCell, player.wins);
           }
 
-          playerIndex += 1;
+          playerIndex++;
       });
       
     },
