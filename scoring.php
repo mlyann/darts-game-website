@@ -7,7 +7,6 @@
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="scripts/getCurrentPlayer.js"></script>
     <script type="text/javascript" src="scripts/updateTableCell.js"></script>
-    <script type="text/javascript" src="scripts/getScores.js"></script>
     <script type="text/javascript" src="scripts/displayNames.js"></script>
     <script type="text/javascript" src="scripts/displayInfo.js"></script>
     <script type="text/javascript" src="scripts/resetMultipliers.js"></script>
@@ -29,13 +28,13 @@
           $conn->close();
         ?>
 
-      //initialize multiplier settings
+      //initialize global vars
         multiplierValue = 1;
         let multiplierActive = false; // Flag to track the active state of the multiplier
 
+
         //populate info cells of table
         getCurrentPlayer();
-        getScores();
         displayNames();
         displayInfo();
 
@@ -47,15 +46,16 @@
               await undo();
               break;
             default:
-            await dart(buttonType).then(() => {
-              resetMultipliers(); // Call resetMultipliers() after dart() is finished
-            });
+              await dart(buttonType).then(() => {
+                resetMultipliers(); // Call resetMultipliers() after dart() is finished
+              });
           }
           await displayInfo(); // Wait until the functions are done before calling displayInfo()
         }
 
 
         function dart(score) {
+
           return new Promise((resolve, reject) => {
             let path = "scripts/dart";
 
@@ -68,7 +68,7 @@
             if (score === 75) {
               score = 25;
             }
-
+            updateTableCell('1firstCell', 61);
             $.ajax({
               url: path,
               type: "POST",
