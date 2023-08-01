@@ -8,19 +8,19 @@ function generateCheckout($score) {
         case 168:
             return 'T20 + T20 + D24';
         case 167:
-            return 'T20 + T19 + D25';
+            return 'T20 + T19 + DBull';
         case 166:
-            return 'T20 + T18 + D25';
+            return 'T20 + T18 + DBull';
         case 165:
             return 'T20 + T19 + D24';
         case 164:
-            return 'T20 + T18 + D25';
+            return 'T20 + T18 + DBull';
         case 163:
-            return 'T20 + T17 + D25';
+            return 'T20 + T17 + DBull';
         case 162:
             return 'T20 + T18 + D24';
         case 161:
-            return 'T20 + T17 + D25';
+            return 'T20 + T17 + DBull';
         case 160:
             return 'T20 + T20 + D20';
         case 159:
@@ -92,7 +92,7 @@ function generateCheckout($score) {
         case 126:
             return 'T19 + T19 + D6';
         case 125:
-            return '25 + T20 + D20';
+            return 'Bull + T20 + D20';
         case 124:
             return 'T20 + T16 + D8';
         case 123:
