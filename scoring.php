@@ -32,7 +32,6 @@
         multiplierValue = 1;
         let multiplierActive = false; // Flag to track the active state of the multiplier
 
-
         //populate info cells of table
         getCurrentPlayer();
         displayNames();
@@ -68,7 +67,7 @@
             if (score === 75) {
               score = 25;
             }
-            updateTableCell('1firstCell', 61);
+
             $.ajax({
               url: path,
               type: "POST",
@@ -141,6 +140,39 @@
           await getCurrentPlayer(); // Wait for getCurrentPlayer to complete before proceeding
         };
 
+//         let mostRecentUpdate = 0; // Initialize mostRecentUpdate with a default value
+// let requestInProgress = false; // Flag to check if a request is already in progress
+
+// function updateInfo() {
+//   if (requestInProgress) {
+//     // If a request is already in progress, return to avoid multiple simultaneous requests
+//     return;
+//   }
+
+//   requestInProgress = true; // Set the flag to true since we are starting a new request
+
+//   console.log('updateinfo called');
+//   $.ajax({
+//     url: 'scripts/updateInfo.php',
+//     success: function(response) {
+//       requestInProgress = false; // Reset the flag since the request is completed
+
+//       if (Date.parse(response) > mostRecentUpdate) {
+//         console.log("updating " + mostRecentUpdate);
+//         mostRecentUpdate = Date.parse(response);
+//         getCurrentPlayer();
+//       }
+//       setTimeout(updateInfo, 50);
+//     },
+//     error: function(xhr, status, error) {
+//       requestInProgress = false; // Reset the flag in case of an error
+//       console.error(error);
+//       // Consider adding a retry mechanism here if needed
+//     }
+//   });
+// }
+
+// updateInfo();
 
   </script>
   <style>
