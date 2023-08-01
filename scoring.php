@@ -49,7 +49,7 @@
               dart(buttonType);
               break;
           }
-          displayInfo();
+         displayInfo();
         }
 
         function dart(score){
@@ -203,7 +203,7 @@
 <tr>
   <td><button id = "input_25" class="button">Bull</button></td>
   <td colspan="3"><button class="button" onclick="submitTurn()">Enter Turn</button></td>
-  <td><button id = "input_0" class="button" name="missButton">Miss</button></td>
+  <td><button id = "input_0" class="button numInput" name="inputButton">Miss</button></td>
 </tr>
 </table>
 <script>
