@@ -95,8 +95,8 @@
         };
 
         //submit turn functionality
-        function submitTurn() {
-          //reset multiplier buttons
+        async function submitTurn() {
+          // Reset multiplier buttons
           multiplierActive = false;
 
           let doubleButton = document.getElementById('doubleButton');
@@ -105,7 +105,7 @@
           tripleButton.style.backgroundColor = '';
 
           const buttons = document.getElementsByName('inputButton');
-          //reset colors
+          // Reset colors
           for (let i = 0; i < buttons.length; i++) {
             buttons[i].style.backgroundColor = '';
           }
@@ -116,15 +116,24 @@
 
           let url = "scripts/submitTurn";
 
-          if(gamemode == 'Countdown')
+          if (gamemode == 'Countdown')
             url += 'CD.php';
-          else if(gamemode == 'Highscore')
+          else if (gamemode == 'Highscore')
             url += 'HS.php';
 
-          $.ajax({
-            url: url
-          })
+          try {
+            await $.ajax({ // Use async/await to wait for the $.ajax call to complete
+              url: url
+            });
+          } catch (error) {
+            // Handle errors if necessary
+            console.error(error);
+          }
+
+          displayInfo();
+          await getCurrentPlayer(); // Wait for getCurrentPlayer to complete before proceeding
         };
+
 
   </script>
   <style>
