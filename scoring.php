@@ -7,7 +7,6 @@
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="scripts/getCurrentPlayer.js"></script>
     <script type="text/javascript" src="scripts/updateTableCell.js"></script>
-    <script type="text/javascript" src="scripts/getScores.js"></script>
     <script type="text/javascript" src="scripts/displayNames.js"></script>
     <script type="text/javascript" src="scripts/displayInfo.js"></script>
     <script type="text/javascript" src="scripts/resetMultipliers.js"></script>
@@ -29,13 +28,12 @@
           $conn->close();
         ?>
 
-      //initialize multiplier settings
+      //initialize global vars
         multiplierValue = 1;
         let multiplierActive = false; // Flag to track the active state of the multiplier
 
         //populate info cells of table
         getCurrentPlayer();
-        getScores();
         displayNames();
         displayInfo();
 
@@ -47,15 +45,16 @@
               await undo();
               break;
             default:
-            await dart(buttonType).then(() => {
-              resetMultipliers(); // Call resetMultipliers() after dart() is finished
-            });
+              await dart(buttonType).then(() => {
+                resetMultipliers(); // Call resetMultipliers() after dart() is finished
+              });
           }
           await displayInfo(); // Wait until the functions are done before calling displayInfo()
         }
 
 
         function dart(score) {
+
           return new Promise((resolve, reject) => {
             let path = "scripts/dart";
 
@@ -141,6 +140,39 @@
           await getCurrentPlayer(); // Wait for getCurrentPlayer to complete before proceeding
         };
 
+//         let mostRecentUpdate = 0; // Initialize mostRecentUpdate with a default value
+// let requestInProgress = false; // Flag to check if a request is already in progress
+
+// function updateInfo() {
+//   if (requestInProgress) {
+//     // If a request is already in progress, return to avoid multiple simultaneous requests
+//     return;
+//   }
+
+//   requestInProgress = true; // Set the flag to true since we are starting a new request
+
+//   console.log('updateinfo called');
+//   $.ajax({
+//     url: 'scripts/updateInfo.php',
+//     success: function(response) {
+//       requestInProgress = false; // Reset the flag since the request is completed
+
+//       if (Date.parse(response) > mostRecentUpdate) {
+//         console.log("updating " + mostRecentUpdate);
+//         mostRecentUpdate = Date.parse(response);
+//         getCurrentPlayer();
+//       }
+//       setTimeout(updateInfo, 50);
+//     },
+//     error: function(xhr, status, error) {
+//       requestInProgress = false; // Reset the flag in case of an error
+//       console.error(error);
+//       // Consider adding a retry mechanism here if needed
+//     }
+//   });
+// }
+
+// updateInfo();
 
   </script>
   <style>
