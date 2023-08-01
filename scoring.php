@@ -195,7 +195,6 @@
   <td></td>
   <td><button class="button" id = "doubleButton" onclick="multiplier('double')">Double</button></td>
   <td><button class="button" id = "tripleButton" onclick="multiplier('triple')">Triple</button></td>
-  <td><button id = "input_undo" class ="button" name ="inputButton">Undo</button></td>
 </tr>
 </table>
 <table class = "center inputs" id = "numInputTable">
@@ -232,7 +231,7 @@
 <tr>
   <td><button id = "input_25" class="button">Bull</button></td>
   <td colspan="3"><button class="button" onclick="submitTurn()">Enter Turn</button></td>
-  <td><button id = "input_0" class="button numInput" name="inputButton">Miss</button></td>
+  <td><button id = "input_undo" class ="button" name ="inputButton">Undo</button></td>
 </tr>
 </table>
 <script>
