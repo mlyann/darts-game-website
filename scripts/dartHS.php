@@ -40,6 +40,9 @@
     $overallQuery = "UPDATE scores SET overall = COALESCE(overall, 0) + COALESCE($column, 0) WHERE Name = '$currentPlayer' AND turn = $maxTurn";
     mysqli_query($conn, $overallQuery);
 
+    $timeQuery = "UPDATE scores SET time = NOW() WHERE Name = '$currentPlayer' AND turn = $maxTurn";
+    mysqli_query($conn, $timeQuery);
+
     //increment dartIndex
     $indexQuery = "UPDATE game_data SET dartIndex = dartIndex + 1";
     mysqli_query($conn, $indexQuery);

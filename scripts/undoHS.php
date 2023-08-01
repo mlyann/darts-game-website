@@ -33,6 +33,8 @@
         $dartQuery = "UPDATE scores SET $column = NULL WHERE Name = '$currentPlayer' AND turn = $maxTurn";
         mysqli_query($conn, $dartQuery);
 
+        $timeQuery = "UPDATE scores SET time = NOW() WHERE Name = '$currentPlayer' AND turn = $maxTurn";
+        mysqli_query($conn, $timeQuery);
 
         //decrement dartIndex
         $indexQuery = "UPDATE game_data SET dartIndex = dartIndex - 1";
