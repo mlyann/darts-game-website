@@ -25,11 +25,11 @@
   height: 5%
 }
 
-.numInput.double {
+.double {
   background-color: red
 }
 
-.numInput.triple {
+.triple {
   background-color: green
 }
 

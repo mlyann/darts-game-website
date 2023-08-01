@@ -8,7 +8,6 @@
     <script type="text/javascript" src="scripts/getCurrentPlayer.js"></script>
     <script type="text/javascript" src="scripts/updateTableCell.js"></script>
     <script type="text/javascript" src="scripts/getScores.js"></script>
-    <script type="text/javascript" src="scripts/multiplier.js"></script>
     <script type="text/javascript" src="scripts/displayNames.js"></script>
     <script type="text/javascript" src="scripts/displayInfo.js"></script>
     <script>
@@ -244,8 +243,11 @@
         handleButtonClick(this.id);
     });
   });
-  document.getElement
-</script>
+  buttons = document.getElementsByClassName('numInput');
+  tripleButton = document.getElementById('tripleButton');
+  doubleButton = document.getElementById('doubleButton');
+  bullButton = document.getElementById('input_25'); </script>
+  <script type="text/javascript" src="scripts/multiplier.js"></script>
 </div>
 
 
