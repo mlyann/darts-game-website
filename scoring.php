@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<meta name="viewport" content="user-scalable=no">
     <title>Darts Score Input</title>
     <link rel="stylesheet" type="text/css" href="styles/scoring.css">
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -182,7 +182,6 @@
 </table>
 <table class="center special">
 <tr>
-  <td></td>
   <td><button class="button" id = "doubleButton" onclick="multiplier('double')">Double</button></td>
   <td><button class="button" id = "tripleButton" onclick="multiplier('triple')">Triple</button></td>
 </tr>
