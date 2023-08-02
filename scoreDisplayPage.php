@@ -21,7 +21,7 @@
         // Function to update the table content with AJAX
         function updateTableContent() {
             $.ajax({
-                url: 'scripts/generateScoreDisplay.php', // Replace with the path to your PHP script
+                url: 'scripts/generateScoreDisplay.php',
                 method: 'GET',
                 dataType: 'html',
                 success: function (data) {
