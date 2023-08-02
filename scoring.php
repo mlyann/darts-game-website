@@ -172,7 +172,12 @@
 //   });
 // }
 
-// updateInfo();
+function updateInfo(){
+getCurrentPlayer();
+displayInfo();
+setTimeout(updateInfo, 50);
+}
+updateInfo();
 
   </script>
   <style>
