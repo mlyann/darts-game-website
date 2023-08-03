@@ -23,7 +23,7 @@ $playersArray = json_decode($playersJSON, true);
 $allScores = [];
 foreach ($playersArray as $player) {
     if ($gamemode == 'Countdown') {
-        $query = "SELECT Name, overall, first, second, third, turn
+        $query = "SELECT Name, overall, first, second, third, turn, average
         FROM scores
         WHERE Name = '$player'
         AND turn = IF(Name = '$currentPlayer',
@@ -36,7 +36,7 @@ foreach ($playersArray as $player) {
 
     }
     else {
-        $query = "SELECT s.Name, s.overall, s.first, s.second, s.third, s.turn, r.roundWins
+        $query = "SELECT s.Name, s.overall, s.first, s.second, s.third, s.turn, r.roundWins, average
         FROM scores s
         LEFT JOIN roundWins r ON s.Name = r.Name
         WHERE s.Name = '$player'
@@ -62,11 +62,6 @@ foreach ($playersArray as $player) {
                     $isCurrent = false;
                 }
 
-                $avg = round(($starting_points - $row['overall']) / $row['turn'], 1);
-
-                //make starting overall correct instead of null
-                //$overall = ($row['overall'] === null) ? $starting_points : $row['overall'];
-
                 //calculate possible checkout
                 $checkout = generateCheckout($row['overall']);
                 if ($checkout != 'No outs possible') {
@@ -82,7 +77,7 @@ foreach ($playersArray as $player) {
                     'first' => $row['first'],
                     'second' => $row['second'],
                     'third' => $row['third'],
-                    'avg' => $avg,
+                    'avg' => $row['average'],
                     'turn' => $row['turn'],
                     'checkout' => $checkout,
                     'isCurrent' => $isCurrent
