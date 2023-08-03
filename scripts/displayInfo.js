@@ -36,7 +36,7 @@ function displayInfo() {
             );
           
           if (player.isCurrent) {
-          updateTableCell('turnCell', 'Turn: ' + player.turn);
+          //updateTableCell('turnCell', 'Turn: ' + player.turn);
           updateTableCell('checkoutCell',player.checkout);
           }
 
