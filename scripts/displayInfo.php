@@ -70,12 +70,21 @@ foreach ($playersArray as $player) {
                 //$overall = ($row['overall'] === null) ? $starting_points : $row['overall'];
 
                 //calculate possible checkout
-                $checkout = generateCheckout($row['overall']);
-                if ($checkout != 'No outs possible') {
-                    $plusCount = substr_count($checkout, '+');
-                    if (($plusCount == 1 && $dartIndex > 1) || ($plusCount == 2 && $dartIndex > 0)) {
-                        $checkout = 'No outs possible';
+                if($row['overall'] != 0){
+                    $checkout = generateCheckout($row['overall']);
+
+                    if ($checkout != 'No outs possible') {
+
+                        $plusCount = substr_count($checkout, '+');
+
+                        if (($plusCount == 1 && $dartIndex > 1) || ($plusCount == 2 && $dartIndex > 0)) {
+                            $checkout = 'No outs possible';
+                        }
                     }
+                }
+                else{
+
+                    $checkout = "You win!";
                 }
 
                 $scores[] = array(
