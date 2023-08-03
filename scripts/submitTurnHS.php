@@ -25,27 +25,25 @@ function newTurn(){
     mysqli_query($conn, $resetQuery);
 }
 
-//get currentPlayer
-$query = "SELECT currentPlayer FROM game_data";
-$playerResult = mysqli_query($conn, $query);
-$row = mysqli_fetch_assoc($playerResult);
-$currentPlayer = $row['currentPlayer'];
-
-//gets player names
-$query = "SELECT players FROM game_data";
+//get current and other players
+$query = "SELECT currentPlayer, players FROM game_data";
 $result = mysqli_query($conn, $query);
-if (!$result) {
-    echo "Error getting players: " . mysqli_error($conn);
-}
-$playerNames = [];
-while ($row = $result->fetch_assoc()) {
-    $jsonNames = $row['players'];
-    $namesArray = json_decode($jsonNames, true);
 
-    if (is_array($namesArray)) {
-        $playerNames = array_merge($playerNames, $namesArray);
-    }
+if (!$result) {
+    echo "Error getting data: " . mysqli_error($conn);
 }
+
+$row = mysqli_fetch_assoc($result);
+$currentPlayer = $row['currentPlayer'];
+$jsonNames = $row['players'];
+
+$playerNames = [];
+$namesArray = json_decode($jsonNames, true);
+
+if (is_array($namesArray)) {
+    $playerNames = $namesArray;
+}
+
 
 //gets current player index
 $currentPlayerIndex = array_search($currentPlayer, $playerNames);
@@ -107,6 +105,7 @@ if ($currentPlayerIndex == (count($playerNames) - 1)) {
 
         //winner
         if ($mostWins == $numRounds) {
+
             $sql = "INSERT INTO wins (name, time) VALUES ('$bestPlayer', NOW())";
             mysqli_query($conn, $sql);
             $sql = "INSERT INTO scores (name, overall, turn) VALUES ('$bestPlayer', 9999, 999)";
