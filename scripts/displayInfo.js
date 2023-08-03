@@ -21,7 +21,7 @@ function displayInfo() {
           thirdCell = playerIndex + 'thirdCell';
           roundCell = playerIndex + 'roundCell';
 
-          if (gamemode == 'Countdown' && player.overall <= 1) {
+          if (gamemode == 'Countdown' && player.overall <= 1 && player.overall != 0) {
             player.overall = 'Bust!';
           } 
 
