@@ -67,15 +67,7 @@ updateInfo();
 </table>
 <table class = "center gameInfo">
   <tr>
-    <td class = "infoCell" id ="turnCell" style="display:none;">Turn: 1</td>
     <td class = "infoCell" id ="checkoutCell">D20 + D20 + D20</td>
-    <script>
-        if (gamemode == 'Highscore') {
-
-          turnCell = document.getElementById('turnCell');
-          turnCell.style.display = 'table-cell';
-        }
-     </script>
   </tr>
 </table>
 

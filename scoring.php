@@ -199,15 +199,7 @@ updateInfo();
 </table>
 <table class = "center gameInfo">
   <tr>
-    <td class = "infoCell" id ="turnCell" style="display:none;">Turn: </td>
-    <td class = "infoCell" id ="checkoutCell"></td>
-    <script>
-        if (gamemode == 'Highscore') {
-        
-          turnCell = document.getElementById('turnCell');
-          turnCell.style.display = 'table-cell';
-        }
-     </script>
+    <td class = "infoCell" id ="helpCell"></td>
   </tr>
 </table>
 <table class="center special">

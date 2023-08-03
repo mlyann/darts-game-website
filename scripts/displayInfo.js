@@ -36,7 +36,6 @@ function displayInfo() {
             );
           
           if (player.isCurrent) {
-            updateTableCell('turnCell', 'Turn: ' + player.turn);
 
             if(gamemode == 'Countdown')
               updateTableCell('helpCell',player.checkout);
