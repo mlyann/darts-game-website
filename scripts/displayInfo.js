@@ -32,15 +32,22 @@ function displayInfo() {
             );
           
           if (player.isCurrent) {
-          updateTableCell('turnCell', 'Turn: ' + player.turn);
-          updateTableCell('checkoutCell',player.checkout);
+            updateTableCell('turnCell', 'Turn: ' + player.turn);
+
+            if(gamemode == 'Countdown')
+              updateTableCell('helpCell',player.checkout);
           }
 
           //update round wins cell if it is a highscore game 
+
+          
+
+          /*
           if (player.wins) {
             winsCell = playerIndex + 'winsCell';
             updateTableCell(winsCell, player.wins);
           }
+          */
 
           playerIndex++;
       });

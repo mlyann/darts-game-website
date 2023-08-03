@@ -28,17 +28,16 @@
           $conn->close();
         ?>
 
-      //initialize multiplier settings
+        //initialize multiplier settings
         multiplierValue = 1;
         let multiplierActive = false; // Flag to track the active state of the multiplier
 
         //populate info cells of table
         getCurrentPlayer();
-        getScores();
         displayNames();
         displayInfo();
 
-        /*
+        
         async function handleButtonClick(buttonId) {
           let buttonType = buttonId.split('_')[1];
           console.log(buttonType);
@@ -52,34 +51,8 @@
           }
           await displayInfo(); // Wait until the functions are done before calling displayInfo()
         }
-        */
-
-        async function handleButtonClick(buttonId) {
-          let pressed = buttonId.split('_')[1];
-          
-          
-
-          if(pressed != 'undo'){
-
-            
-          }
-          else{
-
-
-          }
-
-          switch (buttonType) {
-            case 'undo':
-              await undo();
-              break;
-            default:
-              await dart(buttonType);
-              break;
-          }
-          await displayInfo(); // Wait until the functions are done before calling displayInfo()
-        }
-
-
+        
+        
         function dart(score) {
           return new Promise((resolve, reject) => {
             let path = "scripts/dart";
@@ -90,9 +63,8 @@
               path += 'HS.php';
 
             score *= multiplierValue;
-            if (score === 75) {
+            if(score == 75)
               score = 25;
-            }
 
             $.ajax({
               url: path,
@@ -102,13 +74,11 @@
                 multiplierValue: multiplierValue
               },
               success: function(response) {
-                // Process the response if needed
-                resolve(response); // Resolve the Promise with the response data
+                resolve(response);
               },
               error: function(xhr, status, error) {
-                // Handle error
                 console.error("Error sending data to " + path + ": " + error);
-                reject(error); // Reject the Promise with the error information
+                reject(error);
               }
             });
           });
@@ -198,7 +168,6 @@
 </head>
 <body>
 
-
 <div>
 <table class="center info">
 
@@ -206,15 +175,8 @@
 </table>
 <table class = "center gameInfo">
   <tr>
-    <td class = "infoCell" id ="turnCell">Turn: 1</td>
-    <td class = "infoCell" id ="checkoutCell">D20 + D20 + D20</td>
-    <td class = "infoCell" id ="winsCell" style="display:none;">Wins</td>
-    <script>
-        if (gamemode == 'Highscore') {
-          winsCell = document.getElementById('winsCell');
-          winsCell.style.display = 'table-cell';
-        }
-     </script>
+    <td class = "infoCell" id ="turnCell"></td>
+    <td class = "infoCell" id ="helpCell"></td>
   </tr>
 </table>
 <table class="center special">
