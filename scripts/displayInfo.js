@@ -22,14 +22,14 @@ function displayInfo() {
 
           playerTotal = ((parseInt(player.first) || 0) + (parseInt(player.second) || 0) + (parseInt(player.third) || 0));
 
+          //display bust
           if (gamemode == 'Countdown') {
-
-          startingOverall = player.overall + playerTotal
-          if (startingOverall - playerTotal <= 1) {
-            if (player.isCurrent) {
-              player.overall = 'Bust!';
-            }
-          } 
+            startingOverall = parseInt(player.overall) + playerTotal;
+            if (startingOverall - playerTotal <= 1) {
+              if (player.isCurrent) {
+                player.overall = 'Bust!';
+              }
+            } 
         }
 
           const nameContent = document.getElementById(nameCell).innerHTML.split('<br>')[0] + ' <br> ' + '<p class = "overall">' + player.overall + '</p>';
