@@ -6,6 +6,7 @@
     $indexResult = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($indexResult);
     $dartIndex = $row['dartIndex'];
+    $currentPlayer = $row['currentPlayer'];
 
     if ($dartIndex >= 3) {
         $conn->close();
