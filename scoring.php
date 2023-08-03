@@ -199,13 +199,10 @@ updateInfo();
 </table>
 <table class = "center gameInfo">
   <tr>
-    <td class = "infoCell" id ="turnCell">Turn: 1</td>
-    <td class = "infoCell" id ="checkoutCell">D20 + D20 + D20</td>
-    <td class = "infoCell" id ="winsCell" style="display:none;">Wins</td>
+    <td class = "infoCell" id ="turnCell" style="display:none;">Turn: </td>
+    <td class = "infoCell" id ="checkoutCell"></td>
     <script>
         if (gamemode == 'Highscore') {
-          winsCell = document.getElementById('winsCell');
-          winsCell.style.display = 'table-cell';
         
           turnCell = document.getElementById('turnCell');
           turnCell.style.display = 'table-cell';

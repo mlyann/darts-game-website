@@ -44,15 +44,6 @@ function displayInfo() {
 
           //update round wins cell if it is a highscore game 
 
-          
-
-          /*
-          if (player.wins) {
-            winsCell = playerIndex + 'winsCell';
-            updateTableCell(winsCell, player.wins);
-          }
-          */
-
           playerIndex++;
       });
       
