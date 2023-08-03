@@ -8,6 +8,7 @@ function displayInfo() {
       playerIndex = 1;
 
       response.forEach(player => {
+
         //check for a winner
           if (player.overall == '-353' || player.overall == '9999') {
             alert(player.name + " wins!");
@@ -24,7 +25,12 @@ function displayInfo() {
             player.overall = 'Bust!';
           } 
 
-          const nameContent = document.getElementById(nameCell).innerHTML.split('<br>')[0] + ' <br> ' + '<p class = "overall">' + player.overall + '</p>';
+          //if(gamemode == 'Countdown')
+            //const nameContent = document.getElementById(nameCell).innerHTML.split('<br>')[0] + ' <br> ' + '<p class = "overall">' + player.overall + '</p>' + ' <br> ' + '<p class = "round_wins">' + player.rWins + '</p>';
+          //else if (gamemode == 'Highscore')
+            //nameContent = document.getElementById(nameCell).innerHTML.split()
+            const nameContent = document.getElementById(nameCell).innerHTML.split('<br>')[0] + ' <br> ' + '<p class = "overall">' + player.overall + '</p>'
+          
           updateTableCell(nameCell, nameContent);
 
           updateTableCell(firstCell, player.first ?? '');

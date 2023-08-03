@@ -22,7 +22,7 @@ $playersArray = json_decode($playersJSON, true);
 
 $allScores = [];
 foreach ($playersArray as $player) {
-    if ($gamemode == 'Countdown') {
+    //if ($gamemode == 'Countdown') {
         $query = "SELECT Name, overall, first, second, third, turn
         FROM scores
         WHERE Name = '$player'
@@ -34,8 +34,9 @@ foreach ($playersArray as $player) {
                          ELSE (SELECT MAX(turn) FROM scores WHERE Name = '$player')
                        END)";
 
-    }
-    else{
+    //}
+   /// else{
+    /*
         $query = "SELECT s.Name, s.overall, s.first, s.second, s.third, s.turn, r.roundWins
         FROM scores s
         LEFT JOIN roundWins r ON s.Name = r.Name
@@ -44,7 +45,8 @@ foreach ($playersArray as $player) {
                         (SELECT MAX(turn) FROM scores WHERE Name = '$currentPlayer'),
                         (SELECT MAX(turn) - 1 FROM scores WHERE Name = '$player' AND Name <> '$currentPlayer')
                        )";
-    }
+    */
+   // }
 
 
     $result = mysqli_query($conn, $query);
@@ -87,20 +89,18 @@ foreach ($playersArray as $player) {
                     'checkout' => $checkout,
                     'isCurrent' => $isCurrent
                 );
-        }
-        else {
-            $scores[] = array(
-                'name' => $player,
-                'overall' => $row['overall'],
-                'first' => $row['first'],
-                'second' => $row['second'],
-                'third' => $row['third'],
-                'wins' => $row['roundWins'],
-                'turn' => $row['turn']
-                
-            );
-        }
-
+            }
+            else {
+                $scores[] = array(
+                    'name' => $player,
+                    'overall' => $row['overall'],
+                    'first' => $row['first'],
+                    'second' => $row['second'],
+                    'third' => $row['third'],
+                    'wins' => $row['roundWins'],
+                    'turn' => $row['turn']
+                );
+            }
         }
     }
     $allScores = array_merge($allScores, $scores);
