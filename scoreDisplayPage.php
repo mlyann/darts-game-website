@@ -1,40 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Display</title>
+<meta name="viewport" content="user-scalable=no">
+    <title>Score Display Page</title>
     <link rel="stylesheet" type="text/css" href="styles/scoreDisplayPage.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-    <table id="scoreTable">
-        <tr>
-            <th>Name</th>
-            <th>Overall</th>
-            <th>Turn</th>
-            <th>First</th>
-            <th>Second</th>
-            <th>Third</th>
-        </tr>
-    </table>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/getCurrentPlayer.js"></script>
+    <script type="text/javascript" src="scripts/updateTableCell.js"></script>
+    <script type="text/javascript" src="scripts/displayNames.js"></script>
+    <script type="text/javascript" src="scripts/displayInfo.js"></script>
 
     <script>
-        // Function to update the table content with AJAX
-        function updateTableContent() {
-            $.ajax({
-                url: 'scripts/generateScoreDisplay.php',
-                method: 'GET',
-                dataType: 'html',
-                success: function (data) {
-                    $('#scoreTable').html(data);
-                },
-                error: function (xhr, status, error) {
-                    console.error('Error updating scores:', status, error);
-                }
-            });
-        }
+        //get the gamemode
+        <?php
+          require 'scripts/connect.php';
 
-        // Call the updateTableContent function every 1 second (1000 milliseconds)
-        setInterval(updateTableContent, 1000);
-    </script>
+          $query = "SELECT type FROM game_data";
+          $result = mysqli_query($conn, $query);
+
+          if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $mode = $row['type'];
+          }
+
+          echo "var gamemode = '$mode';";
+          $conn->close();
+        ?>
+
+
+        //populate info cells of table
+        getCurrentPlayer();
+        displayNames();
+        displayInfo();
+
+
+
+
+function updateInfo(){
+getCurrentPlayer();
+displayInfo();
+setTimeout(updateInfo, 100);
+}
+updateInfo();
+
+  </script>
+  <style>
+.center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .button {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+
+<div>
+<table class="center info">
+
+<?php require 'scripts/generateTable.php' ?>
+</table>
+<table class = "center gameInfo">
+  <tr>
+    <td class = "infoCell" id ="turnCell" style="display:none;">Turn: 1</td>
+    <td class = "infoCell" id ="checkoutCell">D20 + D20 + D20</td>
+    <td class = "infoCell" id ="winsCell" style="display:none;">Wins</td>
+    <script>
+        if (gamemode == 'Highscore') {
+          winsCell = document.getElementById('winsCell');
+          winsCell.style.display = 'table-cell';
+
+          turnCell = document.getElementById('turnCell');
+          turnCell.style.display = 'table-cell';
+        }
+     </script>
+  </tr>
+</table>
+
+
+</div>
+
+
 </body>
 </html>

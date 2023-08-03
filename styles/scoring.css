@@ -14,7 +14,7 @@
 }
 
 .special {
-  height: 6.2%;
+  height: 6%;
 }
 
 .inputs {
@@ -25,7 +25,13 @@
   height: 5%
 }
 
+.double {
+  background-color: red
+}
 
+.triple {
+  background-color: green
+}
 
 /* Styles for mobile devices */
 @media only screen and (max-width: 1000px) {

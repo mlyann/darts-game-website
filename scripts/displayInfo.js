@@ -20,6 +20,10 @@ function displayInfo() {
           thirdCell = playerIndex + 'thirdCell';
           roundCell = playerIndex + 'roundCell';
 
+          if (player.overall <= 1) {
+            player.overall = 'Bust!';
+          } 
+
           const nameContent = document.getElementById(nameCell).innerHTML.split('<br>')[0] + ' <br> ' + '<p class = "overall">' + player.overall + '</p>';
           updateTableCell(nameCell, nameContent);
 

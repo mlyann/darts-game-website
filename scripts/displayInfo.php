@@ -35,7 +35,7 @@ foreach ($playersArray as $player) {
                        END)";
 
     }
-    else {
+    else{
         $query = "SELECT s.Name, s.overall, s.first, s.second, s.third, s.turn, r.roundWins
         FROM scores s
         LEFT JOIN roundWins r ON s.Name = r.Name
@@ -97,7 +97,7 @@ foreach ($playersArray as $player) {
                 'third' => $row['third'],
                 'wins' => $row['roundWins'],
                 'turn' => $row['turn']
-                //'avg' => $row['overall'] / ($row['turn'] * 3 + $dartIndex)
+                
             );
         }
 
