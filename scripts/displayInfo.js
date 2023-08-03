@@ -20,9 +20,17 @@ function displayInfo() {
           thirdCell = playerIndex + 'thirdCell';
           roundCell = playerIndex + 'roundCell';
 
-          if (player.overall <= 1) {
-            player.overall = 'Bust!';
+          playerTotal = ((parseInt(player.first) || 0) + (parseInt(player.second) || 0) + (parseInt(player.third) || 0));
+
+          if (gamemode == 'Countdown') {
+
+          startingOverall = player.overall + playerTotal
+          if (startingOverall - playerTotal <= 1) {
+            if (player.isCurrent) {
+              player.overall = 'Bust!';
+            }
           } 
+        }
 
           const nameContent = document.getElementById(nameCell).innerHTML.split('<br>')[0] + ' <br> ' + '<p class = "overall">' + player.overall + '</p>';
           updateTableCell(nameCell, nameContent);
@@ -32,7 +40,7 @@ function displayInfo() {
           updateTableCell(thirdCell, player.third ?? '');
 
           updateTableCell(roundCell,
-            ' = ' + ((parseInt(player.first) || 0) + (parseInt(player.second) || 0) + (parseInt(player.third) || 0)) + ' <br> (' + (player.avg  ?? "0") + ')'
+            ' = ' + playerTotal + ' <br> (' + (player.avg  ?? "0") + ')'
             );
           
           if (player.isCurrent) {

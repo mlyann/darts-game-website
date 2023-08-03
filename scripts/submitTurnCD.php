@@ -91,7 +91,10 @@
     $oldOverallResult = mysqli_query($conn, $oldOverallQuery);
     $row = mysqli_fetch_assoc($oldOverallResult);
     $oldOverall = $row['oldOverall'];
-    $sql = "INSERT INTO scores (name, overall, turn) VALUES ('$currentPlayer', $oldOverall, $maxTurn + 1)";
+    $sql = "INSERT INTO scores (name, overall, turn) VALUES ('$currentPlayer', $oldOverall, $maxTurn + 1);";
+    mysqli_query($conn, $sql);
+
+    $sql = "UPDATE scores SET overall = $oldOverall WHERE name = '$currentPlayer' AND turn = $maxTurn;";
     mysqli_query($conn, $sql);
     newTurn('bust');
   }
