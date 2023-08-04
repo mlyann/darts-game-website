@@ -1,7 +1,7 @@
 <?php
 require 'connect.php';
 
-
+/*
 //create a new turn for the next player
 function newTurn(){
     global $conn, $currentPlayer, $playerNames, $currentPlayerIndex, $maxTurn, $overall;
@@ -20,39 +20,25 @@ function newTurn(){
     //reset player scores for highscore
     $resetQuery = "UPDATE scores AS s1
     JOIN (SELECT MAX(turn) AS max_turn FROM scores) AS s2
-    SET s1.overall = 0
+    SET s1.overall = 0`
     WHERE s1.turn = s2.max_turn;
     ";
     mysqli_query($conn, $resetQuery);
 }
+*/
 
 
 function newTurns(){
 
     global $conn, $playerNames, $maxTurn;
 
-    $sql = "INSERT INTO scores (name, overall, turn) VALUES ('Daniel', 0, 88)";  
-   // mysqli_query($conn, $sql);
-
-    if(!mysqli_query($conn, $sql)){
-        echo "Error: " . mysqli_error($conn);
-    }
-    /*
-    for ($i = 0; $i < count($playerNames); $i++) {
-       
-        $p = $playerNames[$i];
+    foreach($playerNames as $p){
 
         $sql = "INSERT INTO scores (name, overall, turn) VALUES ('$p', 0, $maxTurn + 1)";  
-        mysqli_query($conn, $sql);
-    }
-    */
-
-
-
-    //foreach($playerNames as $p){
-
-        
-    //}
+        if(!mysqli_query($conn, $sql)){
+            echo "Error: " . mysqli_error($conn);
+        }
+    }   
 }
 
 //get currentPlayer
@@ -98,8 +84,8 @@ if ($currentPlayerIndex == (count($playerNames) - 1)) {
     //gets the highest scoring player and check for ties
     $query = "SELECT name, overall
     FROM scores
-    WHERE turn = (SELECT MAX(turn) FROM scores) - 1
-    AND overall = (SELECT MAX(overall) FROM scores WHERE turn = (SELECT MAX(turn) FROM scores) - 1)
+    WHERE turn = (SELECT MAX(turn) FROM scores)
+    AND overall = (SELECT MAX(overall) FROM scores WHERE turn = (SELECT MAX(turn) FROM scores))
     ORDER BY overall DESC";
     $result = $conn->query($query);
     if (!$result) {
@@ -147,8 +133,9 @@ if ($currentPlayerIndex == (count($playerNames) - 1)) {
             exit();
         }
 
-        newTurns();
+        //newTurns();
     }
+    newTurns();
 }
 
 //newTurn();
