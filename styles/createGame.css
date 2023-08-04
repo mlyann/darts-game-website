@@ -4,6 +4,10 @@ body, h1, label, select, button {
     padding: 0;
 }
 
+html {
+    touch-action: manipulation;
+}
+
 /* Set a background color and center the content */
 body {
     background-color: #f2f2f2;
