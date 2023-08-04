@@ -35,12 +35,14 @@ foreach ($playersArray as $player) {
                          ELSE (SELECT MAX(turn) FROM scores WHERE Name = '$player')
                        END)";
     }
-    else if ($gamemode == 'Highscore' ){
+    else if ($gamemode == 'Highscore' ){//not working
 
-        $query = "SELECT Name, overall, first, second, third, turn
-        FROM scores
-        WHERE Name = '$player'
-        AND turn = (SELECT MAX(turn) FROM scores)";
+        $query = "SELECT s.Name, s.overall, s.first, s.second, s.third, s.turn, rw.roundWins AS rWins
+          FROM scores s
+          JOIN roundWins rw ON s.Name = rw.PlayerName
+          WHERE s.Name = '$player' AND s.turn = (SELECT MAX(turn) FROM scores s)";
+
+
     }
 
     $result = mysqli_query($conn, $query);
@@ -100,7 +102,7 @@ foreach ($playersArray as $player) {
                     'first' => $row['first'],
                     'second' => $row['second'],
                     'third' => $row['third'],
-                    'rWins' => $row['rWins']
+                    //'rWins' => $row['rWins']
                 );
             }
         }
