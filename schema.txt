@@ -1,29 +1,31 @@
-CREATE TABLE `users` (
+users | CREATE TABLE `users` (
   `name` varchar(50) NOT NULL,
+  `image_url` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`name`)
-)
+);
 
 CREATE TABLE `wins` (
   `name` varchar(50) NOT NULL,
   `time` timestamp NOT NULL,
   PRIMARY KEY (`name`,`time`),
   CONSTRAINT `FK_wins_user` FOREIGN KEY (`name`) REFERENCES `users` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
-)
+);
 
 CREATE TABLE `scores` (
-  `Name` varchar(50) NOT NULL,
-  `overall` smallint DEFAULT NULL,
-  `turn` smallint DEFAULT NULL,
-  `first` smallint DEFAULT NULL,
-  `second` smallint DEFAULT NULL,
-  `third` smallint DEFAULT NULL,
-  `lastMult` tinyint DEFAULT NULL
-)
+  `Name` varchar(50) DEFAULT NULL,
+  `overall` int DEFAULT NULL,
+  `turn` int DEFAULT NULL,
+  `first` int DEFAULT NULL,
+  `second` int DEFAULT NULL,
+  `third` int DEFAULT NULL,
+  `lastMult` tinyint DEFAULT NULL,
+  `average` tinyint unsigned DEFAULT NULL
+);
 
 CREATE TABLE `roundWins` (
   `Name` varchar(50) NOT NULL,
   `roundWins` tinyint DEFAULT NULL
-)
+);
 
 CREATE TABLE `game_data` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -36,4 +38,4 @@ CREATE TABLE `game_data` (
   `currentPlayer` varchar(50) DEFAULT NULL,
   `dartIndex` tinyint DEFAULT NULL,
   PRIMARY KEY (`id`)
-)
+);
