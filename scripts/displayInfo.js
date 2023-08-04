@@ -25,11 +25,12 @@ function displayInfo() {
             player.overall = 'Bust!';
           } 
 
-          const nameContent = document.getElementById(nameCell).innerHTML.split('<br>')[0] + ' <br> ' + '<p class = "overall">' + player.overall + '</p>';
+          var nameContent = document.getElementById(nameCell).innerHTML.split('<br>')[0] + ' <br> ' + '<p class = "overall">' + player.overall + '</p>';
       
 
-         // if (gamemode == 'Highscore')
-            //nameContent = document.getElementById(nameCell).innerHTML.split('<br>')[0] + ' <br> ' + '<p class = "overall">' + player.overall + '</p>'+ ' <br> ' + '<p class = "round_wins">' + player.rWins + '</p>';
+         if (gamemode == 'Highscore')
+            nameContent = document.getElementById(nameCell).innerHTML.split('<br>')[0] + ' <br> ' + '<p class = "overall">' + player.overall + '</p>'+ ' <br> ' + '<p class = "round_wins">Wins: ' + player.rWins + '</p>';
+            //nameContent = document.getElementById(nameCell).innerHTML.split('<br>')[0] + ' <br> ' + '<p class = "overall">' + player.rWins + '</p>';
             
           
           updateTableCell(nameCell, nameContent);
