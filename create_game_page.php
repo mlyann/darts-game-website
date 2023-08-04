@@ -103,10 +103,9 @@
             echo "var type = '$type';";
             echo "var player_count = '$player_count';";
             echo "var playersArray = '$playersArray';";
-
         }
 
-
+        $conn->close();
         ?>
         document.getElementById("game_type").value = type;
         showConditionalCreateOption();
