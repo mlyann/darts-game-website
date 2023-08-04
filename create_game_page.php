@@ -23,8 +23,6 @@
                     select.name = "player_name_" + i;
                     <?php require 'scripts/fetch_names.php'; ?>
 
-                    
-
                     // Append the label, select, and line break to the form
                     playerForm.appendChild(label);
                     playerForm.appendChild(select);
@@ -84,7 +82,47 @@
     </div>
     <button type="submit">Launch Game</button>
     </form>
-    
+    <script>
+        <?php //autofill form with setup of most recent game
+        require "scripts/connect.php";
+
+        $gameQuery = "SELECT type, starting_points, number_of_rounds, player_count, players FROM game_data;";
+        $gameResult = mysqli_query($conn, $gameQuery);
+        if ($gameResult) {
+            $gameRows = mysqli_fetch_assoc($gameResult);
+            $type = $gameRows['type'];
+            if ($type == 'Countdown') {
+                $starting_points = $gameRows['starting_points'];
+                echo "var starting_points = '$starting_points';";
+            } else {
+                $number_of_rounds = $gameRows['number_of_rounds'];
+                echo "var number_of_rounds = '$number_of_rounds';";
+            }
+            $player_count = $gameRows['player_count'];
+            $playersArray = $gameRows['players'];
+            echo "var type = '$type';";
+            echo "var player_count = '$player_count';";
+            echo "var playersArray = '$playersArray';";
+
+        }
+
+
+        ?>
+        document.getElementById("game_type").value = type;
+        showConditionalCreateOption();
+        if (type == 'Countdown') {
+            document.getElementById("count_select").value = starting_points;
+        }
+        else {
+            document.getElementById('round_select').value = number_of_rounds;
+        }
+        document.getElementById("player_count").value = player_count;
+        showPlayerForm();
+        playersArray = JSON.parse(playersArray)
+        for (let i = 1; i <= player_count; i++) {
+            document.getElementById('player_name_' + i).value = playersArray[i-1];
+        }
+    </script>
    
 </body>
 </html>
