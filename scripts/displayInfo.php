@@ -22,7 +22,8 @@ $playersArray = json_decode($playersJSON, true);
 
 $allScores = [];
 foreach ($playersArray as $player) {
-    //if ($gamemode == 'Countdown') {
+
+    if($gamemode == 'Countdown'){
         $query = "SELECT Name, overall, first, second, third, turn
         FROM scores
         WHERE Name = '$player'
@@ -33,21 +34,44 @@ foreach ($playersArray as $player) {
                          THEN (SELECT MAX(turn) - 1 FROM scores WHERE Name = '$player')
                          ELSE (SELECT MAX(turn) FROM scores WHERE Name = '$player')
                        END)";
+    }
+    else if ($gamemode == 'Highscore' ){
 
-    //}
-   /// else{
-    /*
-        $query = "SELECT s.Name, s.overall, s.first, s.second, s.third, s.turn, r.roundWins
-        FROM scores s
-        LEFT JOIN roundWins r ON s.Name = r.Name
-        WHERE s.Name = '$player'
-        AND s.turn = IF(s.Name = '$currentPlayer',
-                        (SELECT MAX(turn) FROM scores WHERE Name = '$currentPlayer'),
-                        (SELECT MAX(turn) - 1 FROM scores WHERE Name = '$player' AND Name <> '$currentPlayer')
-                       )";
-    */
-   // }
+        $query = "SELECT Name, overall, first, second, third, turn
+        FROM scores
+        WHERE Name = '$player'
+        AND turn = IF(Name = '$currentPlayer',
+                       (SELECT MAX(turn) FROM scores WHERE Name = '$currentPlayer'),
+                       CASE
+                         WHEN (SELECT MAX(turn) FROM scores WHERE Name = '$player') > 1
+                         THEN (SELECT MAX(turn) - 1 FROM scores WHERE Name = '$player')
+                         ELSE (SELECT MAX(turn) FROM scores WHERE Name = '$player')
+                       END)";
+    }
+/*
+        //returns if there is a winner in high score
+        if($gamemode == 'Highscore'){
 
+            $winQuery = "SELECT MAX(roundWins) FROM roundWins";
+            $result = $conn->query($winQuery);
+            if ($result && $result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $wins = $row['roundWins'];
+            }
+
+            $roundQuery = "SELECT number_of_rounds FROM game_data";
+            $result = mysqli_query($conn, $roundQuery);
+            if ($result) {
+                $row = mysqli_fetch_assoc($result);
+                $numRounds = $row['number_of_rounds'];
+            }
+
+            if($wins == $numRounds){
+
+                $won = true;
+            }
+        }
+*/
 
     $result = mysqli_query($conn, $query);
 
@@ -94,7 +118,6 @@ foreach ($playersArray as $player) {
                     'second' => $row['second'],
                     'third' => $row['third'],
                     'avg' => $avg,
-                    'turn' => $row['turn'],
                     'checkout' => $checkout,
                     'isCurrent' => $isCurrent
                 );
@@ -106,8 +129,7 @@ foreach ($playersArray as $player) {
                     'first' => $row['first'],
                     'second' => $row['second'],
                     'third' => $row['third'],
-                    'wins' => $row['roundWins'],
-                    'turn' => $row['turn']
+                    'won' => $won
                 );
             }
         }

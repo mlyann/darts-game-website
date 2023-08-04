@@ -9,8 +9,8 @@ function displayInfo() {
 
       response.forEach(player => {
 
-        //check for a winner
-          if (player.overall == '-353' || player.overall == '9999') {
+        //check for a winner (CD or HS)
+          if (player.overall == '-353' || player.won) {
             alert(player.name + " wins!");
             window.location.href = "https://darts.coretechs.com";
           }
@@ -21,7 +21,7 @@ function displayInfo() {
           thirdCell = playerIndex + 'thirdCell';
           roundCell = playerIndex + 'roundCell';
 
-          if (gamemode == 'Countdown' && player.overall <= 1 && player.overall != 0) {
+          if (gamemode == 'Countdown' && player.overall < 0 && player.overall == 1) {
             player.overall = 'Bust!';
           } 
 

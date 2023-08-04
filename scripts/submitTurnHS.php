@@ -1,6 +1,7 @@
 <?php
 require 'connect.php';
 
+
 //create a new turn for the next player
 function newTurn(){
     global $conn, $currentPlayer, $playerNames, $currentPlayerIndex, $maxTurn, $overall;
@@ -25,25 +26,56 @@ function newTurn(){
     mysqli_query($conn, $resetQuery);
 }
 
-//get current and other players
-$query = "SELECT currentPlayer, players FROM game_data";
-$result = mysqli_query($conn, $query);
 
-if (!$result) {
-    echo "Error getting data: " . mysqli_error($conn);
+function newTurns(){
+
+    global $conn, $playerNames, $maxTurn;
+
+    $sql = "INSERT INTO scores (name, overall, turn) VALUES ('Daniel', 0, 88)";  
+   // mysqli_query($conn, $sql);
+
+    if(!mysqli_query($conn, $sql)){
+        echo "Error: " . mysqli_error($conn);
+    }
+    /*
+    for ($i = 0; $i < count($playerNames); $i++) {
+       
+        $p = $playerNames[$i];
+
+        $sql = "INSERT INTO scores (name, overall, turn) VALUES ('$p', 0, $maxTurn + 1)";  
+        mysqli_query($conn, $sql);
+    }
+    */
+
+
+
+    //foreach($playerNames as $p){
+
+        
+    //}
 }
 
-$row = mysqli_fetch_assoc($result);
+//get currentPlayer
+$query = "SELECT currentPlayer FROM game_data";
+$playerResult = mysqli_query($conn, $query);
+$row = mysqli_fetch_assoc($playerResult);
 $currentPlayer = $row['currentPlayer'];
-$jsonNames = $row['players'];
 
-$playerNames = [];
-$namesArray = json_decode($jsonNames, true);
-
-if (is_array($namesArray)) {
-    $playerNames = $namesArray;
+//gets player names
+$query = "SELECT players FROM game_data";
+$result = mysqli_query($conn, $query);
+if (!$result) {
+    echo "Error getting players: " . mysqli_error($conn);
 }
+$playerNames = [];
+while ($row = $result->fetch_assoc()) {
+    $jsonNames = $row['players'];
+    $namesArray = json_decode($jsonNames, true);
 
+    if (is_array($namesArray)) {
+        $playerNames = array_merge($playerNames, $namesArray);
+    }
+}
 
 //gets current player index
 $currentPlayerIndex = array_search($currentPlayer, $playerNames);
@@ -108,15 +140,24 @@ if ($currentPlayerIndex == (count($playerNames) - 1)) {
 
             $sql = "INSERT INTO wins (name, time) VALUES ('$bestPlayer', NOW())";
             mysqli_query($conn, $sql);
-            $sql = "INSERT INTO scores (name, overall, turn) VALUES ('$bestPlayer', 9999, 999)";
+            $sql = "UPDATE scores SET overall = 9999, turn = 999 WHERE turn = '$maxTurn' AND Name = '$bestPlayer'";
             mysqli_query($conn, $sql);
 
             $conn->close();
             exit();
         }
+
+        newTurns();
     }
 }
-newTurn();
+
+//newTurn();
+
+//updates game_data after player turn
+$nextPlayer = $playerNames[($currentPlayerIndex + 1) % count($playerNames)];
+$sql = "UPDATE game_data SET dartIndex = '0', currentPlayer ='$nextPlayer'";
+mysqli_query($conn, $sql);
+
 
 $conn->close();
 ?>
