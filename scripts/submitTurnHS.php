@@ -1,35 +1,8 @@
 <?php
 require 'connect.php';
 
-/*
-//create a new turn for the next player
-function newTurn(){
-    global $conn, $currentPlayer, $playerNames, $currentPlayerIndex, $maxTurn, $overall;
-
-    $sql = "INSERT INTO scores (name, overall, turn) VALUES ('$currentPlayer', $overall, $maxTurn + 1)";
-    mysqli_query($conn, $sql);
-        
-    //updates game_data to create a new turn
-    if ($currentPlayerIndex == (count($playerNames) - 1)) {
-        $nextPlayer = $playerNames[0];
-    } else {
-        $nextPlayer = $playerNames[$currentPlayerIndex + 1];
-    }
-    $sql = "UPDATE game_data SET dartIndex = '0', currentPlayer ='$nextPlayer'";
-    mysqli_query($conn, $sql);
-    //reset player scores for highscore
-    $resetQuery = "UPDATE scores AS s1
-    JOIN (SELECT MAX(turn) AS max_turn FROM scores) AS s2
-    SET s1.overall = 0`
-    WHERE s1.turn = s2.max_turn;
-    ";
-    mysqli_query($conn, $resetQuery);
-}
-*/
-
-
+//adds new turn rows for each player
 function newTurns(){
-
     global $conn, $playerNames, $maxTurn;
 
     foreach($playerNames as $p){
@@ -132,13 +105,10 @@ if ($currentPlayerIndex == (count($playerNames) - 1)) {
             $conn->close();
             exit();
         }
-
-        //newTurns();
     }
     newTurns();
 }
 
-//newTurn();
 
 //updates game_data after player turn
 $nextPlayer = $playerNames[($currentPlayerIndex + 1) % count($playerNames)];

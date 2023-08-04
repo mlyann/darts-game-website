@@ -10,7 +10,7 @@ function displayInfo() {
       response.forEach(player => {
 
         //check for a winner (CD or HS)
-          if (player.overall == '-353' || player.won) {
+          if (player.overall == '-353' || player.overall == '9999') {
             alert(player.name + " wins!");
             window.location.href = "https://darts.coretechs.com";
           }

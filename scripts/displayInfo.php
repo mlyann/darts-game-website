@@ -40,38 +40,8 @@ foreach ($playersArray as $player) {
         $query = "SELECT Name, overall, first, second, third, turn
         FROM scores
         WHERE Name = '$player'
-        AND turn = IF(Name = '$currentPlayer',
-                       (SELECT MAX(turn) FROM scores WHERE Name = '$currentPlayer'),
-                       CASE
-                         WHEN (SELECT MAX(turn) FROM scores WHERE Name = '$player') > 1
-                         THEN (SELECT MAX(turn) - 1 FROM scores WHERE Name = '$player')
-                         ELSE (SELECT MAX(turn) FROM scores WHERE Name = '$player')
-                       END)";
+        AND turn = (SELECT MAX(turn) FROM scores)";
     }
-/*
-        //returns if there is a winner in high score
-        if($gamemode == 'Highscore'){
-
-            $winQuery = "SELECT MAX(roundWins) FROM roundWins";
-            $result = $conn->query($winQuery);
-            if ($result && $result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                $wins = $row['roundWins'];
-            }
-
-            $roundQuery = "SELECT number_of_rounds FROM game_data";
-            $result = mysqli_query($conn, $roundQuery);
-            if ($result) {
-                $row = mysqli_fetch_assoc($result);
-                $numRounds = $row['number_of_rounds'];
-            }
-
-            if($wins == $numRounds){
-
-                $won = true;
-            }
-        }
-*/
 
     $result = mysqli_query($conn, $query);
 
@@ -79,19 +49,20 @@ foreach ($playersArray as $player) {
     $scores = [];
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+
             if ($gamemode == 'Countdown') {
+
                 if ($player == $currentPlayer) {
+
                     $playerDartIndex = $dartIndex;
                     $isCurrent = true;
                 } else {
+                    
                     $playerDartIndex = 3;
                     $isCurrent = false;
                 }
 
                 $avg = round(($starting_points - $row['overall']) / $row['turn'], 1);
-
-                //make starting overall correct instead of null
-                //$overall = ($row['overall'] === null) ? $starting_points : $row['overall'];
 
                 //calculate possible checkout
                 if($row['overall'] != 0){
@@ -129,7 +100,7 @@ foreach ($playersArray as $player) {
                     'first' => $row['first'],
                     'second' => $row['second'],
                     'third' => $row['third'],
-                    'won' => $won
+                    'rWins' => $row['rWins']
                 );
             }
         }
