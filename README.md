@@ -19,7 +19,9 @@ Within a particular ecosystem, there may be a common way of installing things, s
 Thanks go out to:  
 Jonathan Bannick  
 James Bloomer  
+Hariz Hameed  
 Dipin Krishna  
+Jawad Madanat  
 Raymond Phan  
 Uzoma Uwanamodo  
 ChatGPT  
