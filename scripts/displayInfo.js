@@ -26,7 +26,7 @@ function displayInfo() {
           //display bust
           if (gamemode == 'Countdown') {
             startingOverall = parseInt(player.overall) + playerTotal;
-            if (startingOverall - playerTotal <= 1) {
+            if (startingOverall - playerTotal <= 1 && startingOverall - playerTotal != 0) {
               if (player.isCurrent) {
                 player.overall = 'Bust!';
               }
