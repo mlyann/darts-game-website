@@ -181,6 +181,7 @@
     font-size: 6vw;
     vertical-align: middle;
     flex: 1;
+    color: yellow;
   }
 .topRow {
   display: flex;
