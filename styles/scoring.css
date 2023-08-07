@@ -23,8 +23,13 @@
 }
 
 .gameInfo {
-  height: auto;
   background-color: transparent;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  align-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .double {
@@ -67,6 +72,8 @@
     border-collapse: collapse;
   }
 
+
+
   p.overall {
     font-weight: bold;
     font-size: 3vh;
@@ -79,23 +86,16 @@
   }
 
 
-  th,
   td {
-    padding: 0px;
     text-align: center;
   }
 
-  th {
-    font-size: 24px;
-    font-weight: bold;
-    background-color: #f2f2f2;
-  }
 
   .infoCell {
     font-size: 5vw;
     background-color: #efefef;
     height: 10vw;
-    border-collapse: collapse;
+    border-collapse: separate;
     border-right: 10px solid #24292E;
   }
 
@@ -152,11 +152,10 @@
 
   #tableWrapper {
     margin: 5vw;
-    height: 90vh;
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
+    height: 90%;
   }
 
   .playerDiv {
@@ -184,7 +183,9 @@
   #checkoutCell {
     background-color: transparent;
     font-size: 6vw;
-
+    vertical-align: middle;
+    display: flex;
+    flex: 1;
   }
 .topRow {
   display: flex;
