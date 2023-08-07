@@ -179,7 +179,6 @@
     background-color: transparent;
     font-size: 6vw;
     vertical-align: middle;
-    display: flex;
     flex: 1;
   }
 .topRow {
