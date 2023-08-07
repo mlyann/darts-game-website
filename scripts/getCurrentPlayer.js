@@ -8,7 +8,7 @@ function getCurrentPlayer() {
       index++;
 
       highlightBorder = '3px solid gold';
-      defaultBorder = '';
+      defaultBorder = '3px solid transparent';
 
       const currentPlayerDiv = document.getElementById(index + 'playerDiv');
       if (currentPlayerDiv.style.border != highlightBorder) {
@@ -21,10 +21,7 @@ function getCurrentPlayer() {
         }
       }
     }
-    },
-    error: function(xhr, status, error) {
-      // Handle error
-      console.error(error);
-    }
+  }
+
   });
 }

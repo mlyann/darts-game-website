@@ -30,28 +30,18 @@
             $img = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png";
         }
 
-        // echo '<tr>';
-        // echo '<td class = "infoCell nameCell" id="' . $nameCell . '"> </td>';
-        // echo '<td class = "infoCell scoreCell" id="' . $firstCell . '"></td>';
-        // echo '<td class = "infoCell scoreCell" id="' . $secondCell . '"></td>';
-        // echo '<td class = "infoCell scoreCell" id="' . $thirdCell . '"></td>';
-        // echo '<td class = "infoCell scoreCell" id="' . $roundCell . '"></td>';
-        // if ($gamemode == 'Highscore') {
-        //     echo '<td class = "infoCell" id="' . $winsCell . '"></td>';
-        // }
-        // echo '</tr>';
         echo 
-        '<div id = "' . $playerDiv . '">
+        '<div class = "playerDiv" id = "' . $playerDiv . '">
             <div class = "topRow">
             <img class = "profile" src="' . $img . '">
                 <p class = "name" id="' . $nameCell . '"></p>
                 <p class = "overall" id="' . $overallCell . '"></p>
             </div>
-            <table>
+            <table class = "bottomRow">
                 <td class = "infoCell scoreCell" id="' . $firstCell . '"></td>
                 <td class = "infoCell scoreCell" id="' . $secondCell . '"></td>
                 <td class = "infoCell scoreCell" id="' . $thirdCell . '"></td>
-                <td class = "infoCell scoreCell" id="' . $roundCell . '"></td>
+                <td class = "infoCell bigCell " id="' . $roundCell . '"></td>
             </table>
         </div>';
         $playerIndex += 1;

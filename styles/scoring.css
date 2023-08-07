@@ -13,16 +13,17 @@
   height: 50%;
 }
 
-.special {
-  height: 6%;
+.inputs {
+  height: auto;
+  border: none;
 }
 
-.inputs {
-  height: 30%;
+.inputs td {
+  border:  10px solid #24292E;
 }
 
 .gameInfo {
-  height: 5%;
+  height: auto;
   background-color: transparent;
 }
 
@@ -82,7 +83,6 @@
   td {
     padding: 0px;
     text-align: center;
-    border: 10px solid #24292E;
   }
 
   th {
@@ -92,9 +92,11 @@
   }
 
   .infoCell {
-    height: 5%;
     font-size: 5vw;
     background-color: #efefef;
+    height: 10vw;
+    border-collapse: collapse;
+    border-right: 10px solid #24292E;
   }
 
   .scoreCell {
@@ -104,6 +106,16 @@
     background-color: #3C4045;
     color: white;
   }
+
+  .bigCell {
+    color: black;
+    background-color: #FDFDFD;
+    max-width: 10vw;
+    border-left: 30px solid #24292E;
+    border-right: none;
+  }
+
+
 
   .nameCell {
     max-width: 15vw;
@@ -138,16 +150,27 @@
     background-color: darkgray;
   }
 
-  #quitButton {
-    background-color: #f44336;
-  }
-
-  #quitButton:hover {
-    background-color: #d32f2f;
-  }
-
   #tableWrapper {
     margin: 5vw;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .playerDiv {
+    width: 90vw;
+    flex: content;
+    padding: 4%;
+  }
+
+  #infoContainer {
+    display:flex;
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+    flex: 1;
   }
 
   #doubleButton, #tripleButton {
@@ -160,6 +183,8 @@
 
   #checkoutCell {
     background-color: transparent;
+    font-size: 6vw;
+
   }
 .topRow {
   display: flex;
