@@ -47,10 +47,7 @@ function displayInfo() {
           if (player.isCurrent) {
           //updateTableCell('turnCell', 'Turn: ' + player.turn);
           if (player.checkout == 'No outs possible') {
-            document.getElementById('checkoutCell').style.color = 'red';
-          } else {
-            document.getElementById('checkoutCell').style.color= 'white';
-          }
+            player.checkout = ''}
           updateTableCell('checkoutCell',player.checkout);
           }
 
