@@ -76,7 +76,8 @@
 
   p.overall {
     font-weight: bold;
-    font-size: 3vh;
+    font-size: 6vw;
+    transform: scale(1.5);
     margin-left: auto;
     color: white;
   }
@@ -117,7 +118,7 @@
 
   .name {
     color: white;
-    font-size: 4vw;
+    font-size: 6vw;
     background-color: transparent;
     margin-left: 3vw;
   }
