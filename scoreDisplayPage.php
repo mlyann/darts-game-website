@@ -67,7 +67,7 @@ updateInfo();
 </table>
 <table class = "center gameInfo">
   <tr>
-    <td class = "infoCell" id ="checkoutCell">D20 + D20 + D20</td>
+    <td class = "infoCell" id ="helpCell">D20 + D20 + D20</td>
   </tr>
 </table>
 

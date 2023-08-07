@@ -28,10 +28,9 @@ function displayInfo() {
           var nameContent = document.getElementById(nameCell).innerHTML.split('<br>')[0] + ' <br> ' + '<p class = "overall">' + player.overall + '</p>';
       
 
+        //update round wins cell if it is a highscore game 
          if (gamemode == 'Highscore')
             nameContent = document.getElementById(nameCell).innerHTML.split('<br>')[0] + ' <br> ' + '<p class = "overall">' + player.overall + '</p>'+ ' <br> ' + '<p class = "round_wins">Wins: ' + player.rWins + '</p>';
-            //nameContent = document.getElementById(nameCell).innerHTML.split('<br>')[0] + ' <br> ' + '<p class = "overall">' + player.rWins + '</p>';
-            
           
           updateTableCell(nameCell, nameContent);
 
@@ -43,22 +42,17 @@ function displayInfo() {
             ' = ' + ((parseInt(player.first) || 0) + (parseInt(player.second) || 0) + (parseInt(player.third) || 0)) + ' <br> (' + (player.avg  ?? "0") + ')'
             );
           
-          if (player.isCurrent) {
+          if ((gamemode == 'Highscore') || (gamemode == 'Countdown' && player.isCurrent)) {
 
-            if(gamemode == 'Countdown')
-              updateTableCell('helpCell',player.checkout);
+            updateTableCell('helpCell',player.help);
           }
-
-          //update round wins cell if it is a highscore game 
 
           playerIndex++;
       });
       
     },
     error: function(xhr, status, error) {
-      // Handle error
       console.error(error);
-
     }
   });
 }

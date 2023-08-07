@@ -1,7 +1,6 @@
 <?php
 // Connect to the MySQL database
 require 'connect.php';
-require 'checkout.php';
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -19,6 +18,8 @@ $starting_points = $row['starting_points'];
 
 $playersArray = json_decode($playersJSON, true);
 
+if($gamemode == 'Countdown')
+    require 'checkout.php';
 
 $allScores = [];
 foreach ($playersArray as $player) {
@@ -63,6 +64,7 @@ foreach ($playersArray as $player) {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
 
+            
             if ($gamemode == 'Countdown') {
 
                 if ($player == $currentPlayer) {
@@ -79,20 +81,20 @@ foreach ($playersArray as $player) {
 
                 //calculate possible checkout
                 if($row['overall'] != 0){
-                    $checkout = generateCheckout($row['overall']);
+                    $help = generateCheckout($row['overall']);
 
-                    if ($checkout != 'No outs possible') {
+                    if ($help != 'No outs possible') {
 
-                        $plusCount = substr_count($checkout, '+');
+                        $plusCount = substr_count($help, '+');
 
                         if (($plusCount == 1 && $dartIndex > 1) || ($plusCount == 2 && $dartIndex > 0)) {
-                            $checkout = 'No outs possible';
+                            $help = 'No outs possible';
                         }
                     }
                 }
                 else{
 
-                    $checkout = "You win!";
+                    $help = "You win!";
                 }
 
                 $scores[] = array(
@@ -102,17 +104,44 @@ foreach ($playersArray as $player) {
                     'second' => $row['second'],
                     'third' => $row['third'],
                     'avg' => $avg,
-                    'checkout' => $checkout,
+                    'help' => $help,
                     'isCurrent' => $isCurrent
                 );
             }
-            else {
+            
+
+            else if ($gamemode == 'Highscore'){
+
+                if($player == $currentPlayer){/// can maybe be the entire file's condition
+                    //gets the highest score and highest scoring player
+                    $bestQuery = "SELECT name, overall
+                    FROM scores
+                    WHERE turn = (SELECT MAX(turn) FROM scores)
+                    AND overall = (SELECT MAX(overall) FROM scores WHERE turn = (SELECT MAX(turn) FROM scores))
+                    ORDER BY overall DESC";
+                    $bestResult = $conn->query($bestQuery);
+                    if (!$bestResult) {
+                        echo "Error getting the highest score: " . mysqli_error($conn);
+                    }
+
+                    $bestRow = $bestResult->fetch_assoc();
+
+                    if($bestRow['name'] == $player){
+
+                        $help = "You are the score leader";
+                    }
+                    else{
+                        $help = "Need " . $bestRow['overall'] + 1 - $row['overall']. " to win"; 
+                    }
+                }
+
                 $scores[] = array(
                     'name' => $player,
                     'overall' => $row['overall'],
                     'first' => $row['first'],
                     'second' => $row['second'],
                     'third' => $row['third'],
+                    'help' => $help,
                     'rWins' => $rWins
                 );
             }
