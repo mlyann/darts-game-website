@@ -10,7 +10,7 @@
     <ul>
         <li><a href="leaderboard_page.php">Leaderboard</a></li>
         <li><a href="register_page.php">Player Management</a></li>
-        <li><a href="create_game_page.php">Create a Game!</a></li>
+        <li><a href="create_game_page.php">Game Creator</a></li>
         <li><a href="scoreDisplayPage.php">Scoreboard (iPad)</a></li>
         <li><a href="scoring.php">Participate In <br> Current Game</a></li>
 </body>

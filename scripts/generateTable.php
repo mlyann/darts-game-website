@@ -18,16 +18,32 @@
         $thirdCell = $playerIndex . "thirdCell";
         $winsCell = $playerIndex . "winsCell";
         $roundCell = $playerIndex . "roundCell";
-        echo '<tr>';
-        echo '<td class = "infoCell nameCell" id="' . $nameCell . '"> </td>';
-        echo '<td class = "infoCell scoreCell" id="' . $firstCell . '"></td>';
-        echo '<td class = "infoCell scoreCell" id="' . $secondCell . '"></td>';
-        echo '<td class = "infoCell scoreCell" id="' . $thirdCell . '"></td>';
-        echo '<td class = "infoCell scoreCell" id="' . $roundCell . '"></td>';
-        if ($gamemode == 'Highscore') {
-            echo '<td class = "infoCell" id="' . $winsCell . '"></td>';
+        $overallCell = $playerIndex . "overallCell";
+        $playerDiv = $playerIndex . "playerDiv";
+
+        //get image
+        $imgQuery = "SELECT image_url FROM users WHERE name = '$player';";
+        $imgResult = mysqli_query($conn, $imgQuery);
+        $imgRow = mysqli_fetch_assoc($imgResult);
+        $img = $imgRow['image_url'];
+        if ($img == '') {
+            $img = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png";
         }
-        echo '</tr>';
+
+        echo 
+        '<div class = "playerDiv" id = "' . $playerDiv . '">
+            <div class = "topRow">
+            <img class = "profile" src="' . $img . '">
+                <p class = "name" id="' . $nameCell . '"></p>
+                <p class = "overall" id="' . $overallCell . '"></p>
+            </div>
+            <table class = "bottomRow">
+                <td class = "infoCell scoreCell" id="' . $firstCell . '"></td>
+                <td class = "infoCell scoreCell" id="' . $secondCell . '"></td>
+                <td class = "infoCell scoreCell" id="' . $thirdCell . '"></td>
+                <td class = "infoCell bigCell " id="' . $roundCell . '"></td>
+            </table>
+        </div>';
         $playerIndex += 1;
         
     }

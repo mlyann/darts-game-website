@@ -19,6 +19,7 @@ function displayInfo() {
           secondCell = playerIndex + 'secondCell';
           thirdCell = playerIndex + 'thirdCell';
           roundCell = playerIndex + 'roundCell';
+          overallCell = playerIndex + 'overallCell';
 
           playerTotal = ((parseInt(player.first) || 0) + (parseInt(player.second) || 0) + (parseInt(player.third) || 0));
 
@@ -32,19 +33,24 @@ function displayInfo() {
             } 
         }
 
-          const nameContent = document.getElementById(nameCell).innerHTML.split('<br>')[0] + ' <br> ' + '<p class = "overall">' + player.overall + '</p>';
-          updateTableCell(nameCell, nameContent);
+          updateTableCell(nameCell, player.name);
 
+          updateTableCell(overallCell, player.overall);
           updateTableCell(firstCell, player.first ?? '');
           updateTableCell(secondCell,player.second ?? '');
           updateTableCell(thirdCell, player.third ?? '');
 
           updateTableCell(roundCell,
-            ' = ' + playerTotal + ' <br> (' + (player.avg  ?? "0") + ')'
+            ' = ' + playerTotal + ' (' + (player.avg  ?? "0") + ')'
             );
           
           if (player.isCurrent) {
           //updateTableCell('turnCell', 'Turn: ' + player.turn);
+          if (player.checkout == 'No outs possible') {
+            document.getElementById('checkoutCell').style.color = 'red';
+          } else {
+            document.getElementById('checkoutCell').style.color= 'white';
+          }
           updateTableCell('checkoutCell',player.checkout);
           }
 

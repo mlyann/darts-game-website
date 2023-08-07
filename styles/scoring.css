@@ -10,19 +10,26 @@
 }
 
 .info {
-  height: 53%;
-}
-
-.special {
-  height: 6%;
+  height: 50%;
 }
 
 .inputs {
-  height: 30%;
+  height: auto;
+  border: none;
+}
+
+.inputs td {
+  border:  10px solid #24292E;
 }
 
 .gameInfo {
-  height: 5%
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  align-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .double {
@@ -43,13 +50,20 @@
     overflow-x: hidden; /* Prevent horizontal scrolling */
     overflow-y: hidden;
     touch-action: manipulation;
+    background-color: #24292E;
   }
 
   div {
-    height: 100%;
     justify-content: center;
     align-items: center;
   }
+
+.profile {
+  border-radius: 50%;
+  max-width: 10vw;
+  height: auto;
+  flex: 0 0 auto;
+}
 
   table {
     width: 100%;
@@ -58,10 +72,13 @@
     border-collapse: collapse;
   }
 
+
+
   p.overall {
     font-weight: bold;
     font-size: 3vh;
-    margin: 0;
+    margin-left: auto;
+    color: white;
   }
 
   p.scoreText {
@@ -69,33 +86,45 @@
   }
 
 
-  th,
   td {
-    padding: 1px;
     text-align: center;
-    border: 1px solid black;
   }
 
-  th {
-    font-size: 24px;
-    font-weight: bold;
-    background-color: #f2f2f2;
-  }
 
   .infoCell {
-    height: 5%;
     font-size: 5vw;
     background-color: #efefef;
+    height: 10vw;
+    border-collapse: separate;
+    border-right: 10px solid #24292E;
   }
 
   .scoreCell {
     min-width: 5vw;
     max-width: 5vw;
     font-size: 5vw;
+    background-color: #3C4045;
+    color: white;
   }
+
+  .bigCell {
+    color: black;
+    background-color: #FDFDFD;
+    max-width: 10vw;
+    border-left: 30px solid #24292E;
+    border-right: none;
+  }
+
+
 
   .nameCell {
     max-width: 15vw;
+  }
+
+  .name {
+    color: white;
+    font-size: 4vw;
+    background-color: transparent;
   }
 
   .button {
@@ -103,12 +132,16 @@
     width: 100%; /* Set width to 100% */
     height: 100%; /* Set height to auto */
     padding: 20px;
-    font-size: 5vw;
     text-align: center;
     color: black;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 6vw;
+  }
+
+  .overallCell {
+    margin-left: auto;
   }
 
   .button:hover,
@@ -117,15 +150,48 @@
     background-color: darkgray;
   }
 
-  #quitButton {
-    background-color: #f44336;
+  #tableWrapper {
+    margin: 5vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 90%;
   }
 
-  #quitButton:hover {
-    background-color: #d32f2f;
+  .playerDiv {
+    width: 90vw;
+    flex: content;
+    padding: 4%;
   }
 
-  .numInput:active:hover{
-    background-color: green;
+  #infoContainer {
+    display:flex;
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+    flex: 1;
   }
+
+  #doubleButton, #tripleButton {
+    background-color: #D3D4D5;
+  }
+
+  #input_25 {
+    background-color: #FAFF1B;
+  }
+
+  #checkoutCell {
+    background-color: transparent;
+    font-size: 6vw;
+    vertical-align: middle;
+    display: flex;
+    flex: 1;
+  }
+.topRow {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+  /* .numInput:active:hover{
+  } */
 }
