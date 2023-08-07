@@ -40,8 +40,6 @@
   background-color: green
 }
 
-/* Styles for mobile devices */
-@media only screen and (max-width: 1000px) {
   html, body {
     width: 100%;
     height: 100%;
@@ -191,4 +189,4 @@
 }
   /* .numInput:active:hover{
   } */
-}
+
