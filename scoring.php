@@ -222,7 +222,7 @@ updateInfo();
       </div>
 <table class="center inputs">
 <tr colspan = "15">
-  <td colspan = "5" style = "border-top: none; border-left: none"  id = "undoCell"><button id = "input_undo" class ="button" name ="inputButton">Undo</button></td>
+  <td colspan="5" style = "border-left: none; border-top: none;"><button id = "input_25" class="button" name ="inputButton">Bull</button></td>
   <td colspan = "5" style = "border-top: none;"><button class="button" id = "doubleButton" onclick="multiplier('double')">Double</button></td>
   <td colspan = "5" style = "border-top: none; border-right: none" ><button class="button" id = "tripleButton" onclick="multiplier('triple')">Triple</button></td>
 </tr>
@@ -255,7 +255,7 @@ updateInfo();
   <td colspan ="3" style = "border-right: none;"><button id = "input_1" class="button numInput" name ="inputButton">1</button></td>
 </tr>
 <tr>
-  <td colspan="6" style = "border-left: none; border-bottom: none;"><button id = "input_25" class="button" name ="inputButton">Bull</button></td>
+  <td colspan = "6" style = "border-bottom: none; border-left: none"  id = "undoCell"><button id = "input_undo" class ="button" name ="inputButton">Undo</button></td>
   <td colspan="9" style = "border-right: none; border-bottom: none;"><button class="button" onclick="submitTurn()">Enter Turn</button></td>
 </tr>
 </table>

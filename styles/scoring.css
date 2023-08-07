@@ -168,13 +168,10 @@
     flex: 1;
   }
 
-  #doubleButton, #tripleButton {
+  #doubleButton, #tripleButton, #input_25 {
     background-color: #D3D4D5;
   }
 
-  #input_25 {
-    background-color: #FAFF1B;
-  }
 
   #checkoutCell {
     background-color: transparent;
