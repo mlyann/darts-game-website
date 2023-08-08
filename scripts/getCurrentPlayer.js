@@ -7,40 +7,21 @@ function getCurrentPlayer() {
       index = response;
       index++;
 
-      highlightColor = 'red';
-      defaultColor = '#efefef';
+      highlightBorder = '3px solid gold';
+      defaultBorder = '3px solid transparent';
 
-      const currentPlayerNameCell = document.getElementById(index + 'nameCell');
-      if (currentPlayerNameCell.style.backgroundColor != highlightColor) {
-
-      const currentPlayerFirstCell = document.getElementById(index + 'firstCell');
-      const currentPlayerSecondCell = document.getElementById(index + 'secondCell');
-      const currentPlayerThirdCell = document.getElementById(index + 'thirdCell');
-      const currentPlayerRoundCell = document.getElementById(index + 'roundCell');
-
-      currentPlayerNameCell.style.backgroundColor = highlightColor;
-      currentPlayerFirstCell.style.backgroundColor = highlightColor;
-      currentPlayerSecondCell.style.backgroundColor = highlightColor;
-      currentPlayerThirdCell.style.backgroundColor = highlightColor;
-      currentPlayerRoundCell.style.backgroundColor = highlightColor;
+      const currentPlayerDiv = document.getElementById(index + 'playerDiv');
+      if (currentPlayerDiv.style.border != highlightBorder) {
+        currentPlayerDiv.style.border = highlightBorder;
 
       for (let i = 1; i <= 6 ; i++) {
-        if (document.getElementById(i + 'nameCell') === null) { break; }
+        if (document.getElementById(i + 'playerDiv') === null) { break; }
         if (i != index) {
-          if (document.getElementById(i + 'nameCell').style.backgroundColor = defaultColor) {
-            document.getElementById(i + 'nameCell').style.backgroundColor = defaultColor;
-            document.getElementById(i + 'firstCell').style.backgroundColor = defaultColor;
-            document.getElementById(i + 'secondCell').style.backgroundColor = defaultColor;
-            document.getElementById(i + 'thirdCell').style.backgroundColor = defaultColor;
-            document.getElementById(i + 'roundCell').style.backgroundColor = defaultColor;
-          }
+          document.getElementById(i + 'playerDiv').style.border = defaultBorder;
         }
       }
     }
-    },
-    error: function(xhr, status, error) {
-      // Handle error
-      console.error(error);
-    }
+  }
+
   });
 }

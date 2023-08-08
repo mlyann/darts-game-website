@@ -51,8 +51,12 @@
           }
           await displayInfo(); // Wait until the functions are done before calling displayInfo()
         }
-        
-        
+
+        function handleHover(buttonId) {
+          console.log(buttonId);
+        }
+
+
         function dart(score) {
 
           return new Promise((resolve, reject) => {
@@ -136,9 +140,9 @@
         };
 
 function updateInfo(){
-  getCurrentPlayer();
-  displayInfo();
-  setTimeout(updateInfo, 50);
+getCurrentPlayer();
+displayInfo();
+setTimeout(updateInfo, 100);
 }
 updateInfo();
 
@@ -158,57 +162,56 @@ updateInfo();
 </head>
 <body>
 
-<div>
-<table class="center info">
 
+<div class = "center" id = "tableWrapper"> 
+  <div class = "center" id = "infoContainer">
 <?php require 'scripts/generateTable.php' ?>
-</table>
 <table class = "center gameInfo">
   <tr>
     <td class = "infoCell" id ="helpCell"></td>
   </tr>
 </table>
-<table class="center special">
-<tr>
-  <td><button class="button" id = "doubleButton" onclick="multiplier('double')">Double</button></td>
-  <td><button class="button" id = "tripleButton" onclick="multiplier('triple')">Triple</button></td>
-</tr>
+      </div>
+
+<table class="center inputs">
+  <tr>
+  <td width = "33%" style = "border-left: none; border-top: none; border-bottom: none;"><button id = "input_25" class="button" name ="inputButton">Bull</button></td>
+  <td width = "33%" style = "border-top: none; border-bottom:none;"><button class="button" id = "doubleButton" onclick="multiplier('double')">Double</button></td>
+  <td width = "33%" style = "border-top: none; border-right: none; border-bottom: none;" ><button class="button" id = "tripleButton" onclick="multiplier('triple')">Triple</button></td>
+      </tr>
 </table>
-<table class = "center inputs" id = "numInputTable">
+<table class="center inputs">
 <tr>
-  <td><button id = "input_20" class="button numInput" name ="inputButton" >20</button></td>
+  <td style = "border-left: none;"><button id = "input_20" class="button numInput" name ="inputButton" >20</button></td>
   <td><button id = "input_19" class="button numInput" name ="inputButton">19</button></td>
   <td><button id = "input_18" class="button numInput" name ="inputButton">18</button></td>
   <td><button id = "input_17" class="button numInput" name ="inputButton">17</button></td>
-  <td><button id = "input_16" class="button numInput" name ="inputButton">16</button></td>
+  <td style = "border-right: none;"><button id = "input_16" class="button numInput" name ="inputButton">16</button></td>
 </tr>
 <tr>
-  <td><button id = "input_15" class="button numInput" name ="inputButton">15</button></td>
+  <td style = "border-left: none;"><button id = "input_15" class="button numInput" name ="inputButton">15</button></td>
   <td><button id = "input_14" class="button numInput" name ="inputButton">14</button></td>
   <td><button id = "input_13" class="button numInput" name ="inputButton">13</button></td>
-  <td><button id = "input_12" class="button numInput" name ="inputButton">12</button></td>
-  <td><button id = "input_11" class="button numInput" name ="inputButton">11</button></td>
+  <td><button id = "input_12" class="button numInput" name ="inputButton"">12</button></td>
+  <td style = "border-right: none;"><button id = "input_11" class="button numInput" name ="inputButton">11</button></td>
 </tr>
 <tr>
-  <td><button id = "input_10" class="button numInput" name ="inputButton">10</button></td>
+  <td style = "border-left: none;"><button id = "input_10" class="button numInput" name ="inputButton">10</button></td>
   <td><button id = "input_9" class="button numInput" name ="inputButton">9</button></td>
   <td><button id = "input_8" class="button numInput" name ="inputButton">8</button></td>
   <td><button id = "input_7" class="button numInput" name ="inputButton">7</button></td>
-  <td><button id = "input_6" class="button numInput" name ="inputButton">6</button></td>
+  <td style = "border-right: none;"><button id = "input_6" class="button numInput" name ="inputButton">6</button></td>
 </tr>
 <tr>
-  <td><button id = "input_5" class="button numInput" name ="inputButton">5</button></td>
+  <td style = "border-left: none;"><button id = "input_5" class="button numInput" name ="inputButton">5</button></td>
   <td><button id = "input_4" class="button numInput" name ="inputButton">4</button></td>
   <td><button id = "input_3" class="button numInput" name ="inputButton">3</button></td>
   <td><button id = "input_2" class="button numInput" name ="inputButton">2</button></td>
-  <td><button id = "input_1" class="button numInput" name ="inputButton">1</button></td>
+  <td style = "border-right: none;"><button id = "input_1" class="button numInput" name ="inputButton">1</button></td>
 </tr>
-</table>
-<table class = "center special">
 <tr>
-  <td><button id = "input_25" class="button" name ="inputButton">Bull</button></td>
-  <td colspan="3"><button class="button" onclick="submitTurn()">Enter Turn</button></td>
-  <td><button id = "input_undo" class ="button" name ="inputButton">Undo</button></td>
+  <td colspan = "2" style = "border-bottom: none; border-left: none"  id = "undoCell"><button id = "input_undo" class ="button" name ="inputButton">Undo</button></td>
+  <td colspan="3" style = "border-right: none; border-bottom: none;"><button class="button" onclick="submitTurn()">Enter Turn</button></td>
 </tr>
 </table>
 <script>
@@ -216,7 +219,10 @@ updateInfo();
   inputButtons.forEach(button => {
     button.addEventListener('click', function() {
         handleButtonClick(this.id);
-    });
+    }), 
+    button.addEventListener('active:hover', function() {
+      handlerHover(this.id);
+    })
   });
   buttons = document.getElementsByClassName('numInput');
   tripleButton = document.getElementById('tripleButton');

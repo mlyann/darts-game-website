@@ -12,16 +12,40 @@
     $playerIndex = 1;
     
     foreach ($playersArray as $player) {
+        $nameCell = $playerIndex . "nameCell";
+        $firstCell = $playerIndex . "firstCell";
+        $secondCell = $playerIndex . "secondCell";
+        $thirdCell = $playerIndex . "thirdCell";
+        $winsCell = $playerIndex . "winsCell";
+        $roundCell = $playerIndex . "roundCell";
+        $overallCell = $playerIndex . "overallCell";
+        $playerDiv = $playerIndex . "playerDiv";
 
-        echo '<tr>';
-        echo '<td class = "infoCell nameCell" id="' . $playerIndex . "nameCell" . '"> </td>';
-        echo '<td class = "infoCell scoreCell" id="' . $playerIndex . "firstCell" . '"></td>';
-        echo '<td class = "infoCell scoreCell" id="' . $playerIndex . "secondCell" . '"></td>';
-        echo '<td class = "infoCell scoreCell" id="' . $playerIndex . "thirdCell" . '"></td>';
-        echo '<td class = "infoCell scoreCell" id="' . $playerIndex . "roundCell" . '"></td>';
-        echo '</tr>';
+        //get image
+        $imgQuery = "SELECT image_url FROM users WHERE name = '$player';";
+        $imgResult = mysqli_query($conn, $imgQuery);
+        $imgRow = mysqli_fetch_assoc($imgResult);
+        $img = $imgRow['image_url'];
+        if ($img == '') {
+            $img = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png";
+        }
 
-        $playerIndex++;
+        echo 
+        '<div class = "playerDiv" id = "' . $playerDiv . '">
+            <div class = "topRow">
+            <img class = "profile" src="' . $img . '">
+                <p class = "name" id="' . $nameCell . '"></p>
+                <p class = "overall" id="' . $overallCell . '"></p>
+            </div>
+            <table class = "bottomRow">
+                <td class = "infoCell scoreCell" id="' . $firstCell . '"></td>
+                <td class = "infoCell scoreCell" id="' . $secondCell . '"></td>
+                <td class = "infoCell scoreCell" id="' . $thirdCell . '"></td>
+                <td class = "infoCell bigCell " id="' . $roundCell . '"></td>
+            </table>
+        </div>';
+        $playerIndex += 1;
+        
     }
 
     $conn->close();

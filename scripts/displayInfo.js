@@ -20,29 +20,29 @@ function displayInfo() {
           secondCell = playerIndex + 'secondCell';
           thirdCell = playerIndex + 'thirdCell';
           roundCell = playerIndex + 'roundCell';
+          overallCell = playerIndex + 'overallCell';
+
+          playerTotal = ((parseInt(player.first) || 0) + (parseInt(player.second) || 0) + (parseInt(player.third) || 0));
 
           if (gamemode == 'Countdown' && player.overall < 0 && player.overall == 1) {
             player.overall = 'Bust!';
           } 
 
-          var nameContent = document.getElementById(nameCell).innerHTML.split('<br>')[0] + ' <br> ' + '<p class = "overall">' + player.overall + '</p>';
-      
+          updateTableCell(nameCell, player.name);
 
-        //update round wins cell if it is a highscore game 
-         if (gamemode == 'Highscore')
-            nameContent = document.getElementById(nameCell).innerHTML.split('<br>')[0] + ' <br> ' + '<p class = "overall">' + player.overall + '</p>'+ ' <br> ' + '<p class = "round_wins">Wins: ' + player.rWins + '</p>';
-          
-          updateTableCell(nameCell, nameContent);
-
+          updateTableCell(overallCell, player.overall);
           updateTableCell(firstCell, player.first ?? '');
           updateTableCell(secondCell,player.second ?? '');
           updateTableCell(thirdCell, player.third ?? '');
 
           updateTableCell(roundCell,
-            ' = ' + ((parseInt(player.first) || 0) + (parseInt(player.second) || 0) + (parseInt(player.third) || 0)) + ' <br> (' + (player.avg  ?? "0") + ')'
+            ' = ' + playerTotal + ' (' + (player.avg  ?? "0") + ')'
             );
           
           if ((gamemode == 'Highscore') || (gamemode == 'Countdown' && player.isCurrent)) {
+
+            if (player.help == 'No outs possible') {
+              player.help = ''}
 
             updateTableCell('helpCell',player.help);
           }

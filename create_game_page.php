@@ -107,6 +107,7 @@
 
         $conn->close();
         ?>
+        if (type == 'Countdown' || type == 'Highscore') {
         document.getElementById("game_type").value = type;
         showConditionalCreateOption();
         if (type == 'Countdown') {
@@ -121,6 +122,7 @@
         for (let i = 1; i <= player_count; i++) {
             document.getElementById('player_name_' + i).value = playersArray[i-1];
         }
+    }
     </script>
    
 </body>

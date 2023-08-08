@@ -60,19 +60,15 @@ updateInfo();
 <body>
 
 
-<div>
-<table class="center info">
-
+<div class = "center" id = "tableWrapper"> 
+  <div class = "center" id = "infoContainer">
 <?php require 'scripts/generateTable.php' ?>
-</table>
 <table class = "center gameInfo">
   <tr>
     <td class = "infoCell" id ="helpCell">D20 + D20 + D20</td>
   </tr>
 </table>
-
-
-</div>
+      </div>
 
 
 </body>
