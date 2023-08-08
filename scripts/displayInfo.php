@@ -106,7 +106,6 @@ foreach ($playersArray as $player) {
                     'isCurrent' => $isCurrent
                 );
             }
-            
 
             else if ($gamemode == 'Highscore'){
 
@@ -124,12 +123,18 @@ foreach ($playersArray as $player) {
 
                     $bestRow = $bestResult->fetch_assoc();
 
+                    //updates help guide (Highscore)
                     if($bestRow['name'] == $player){
 
                         $help = "You are the score leader";
                     }
                     else{
-                        $help = "Need " . $bestRow['overall'] + 1 - $row['overall']. " to win"; 
+                        $help = $bestRow['overall'] + 1 - $row['overall'] . " to win"; 
+
+                        if($dartIndex != 3)
+                            $help = "Need " . $help; 
+                        else
+                            $help = "Needed " . $help;
                     }
                 }
 
