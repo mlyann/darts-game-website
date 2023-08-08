@@ -63,6 +63,7 @@ foreach ($playersArray as $player) {
                 }
 
                 //calculate possible checkout
+                if ($dartIndex < 3) {
                 $checkout = generateCheckout($row['overall']);
                 if ($checkout != 'No outs possible') {
                     $plusCount = substr_count($checkout, '+');
@@ -70,6 +71,9 @@ foreach ($playersArray as $player) {
                         $checkout = 'No outs possible';
                     }
                 }
+            } else {
+                $checkout = 'No outs possible';
+            }
 
                 $scores[] = array(
                     'name' => $player,
