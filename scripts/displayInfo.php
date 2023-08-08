@@ -101,8 +101,7 @@ foreach ($playersArray as $player) {
                     'second' => $row['second'],
                     'third' => $row['third'],
                     'avg' => $row['average'],
-                    'turn' => $row['turn'],
-                    'checkout' => $checkout,
+                    'checkout' => $help,
                     'isCurrent' => $isCurrent
                 );
             }
