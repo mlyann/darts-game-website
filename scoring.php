@@ -220,12 +220,15 @@ updateInfo();
   </tr>
 </table>
       </div>
+      
 <table class="center inputs">
-<tr colspan = "15">
-  <td colspan="5" style = "border-left: none; border-top: none;"><button id = "input_25" class="button" name ="inputButton">Bull</button></td>
-  <td colspan = "5" style = "border-top: none;"><button class="button" id = "doubleButton" onclick="multiplier('double')">Double</button></td>
-  <td colspan = "5" style = "border-top: none; border-right: none" ><button class="button" id = "tripleButton" onclick="multiplier('triple')">Triple</button></td>
-</tr>
+  <tr>
+  <td width = "33%" style = "border-left: none; border-top: none; border-bottom: none;"><button id = "input_25" class="button" name ="inputButton">Bull</button></td>
+  <td width = "33%" style = "border-top: none; border-bottom:none;"><button class="button" id = "doubleButton" onclick="multiplier('double')">Double</button></td>
+  <td width = "33%" style = "border-top: none; border-right: none; border-bottom: none;" ><button class="button" id = "tripleButton" onclick="multiplier('triple')">Triple</button></td>
+      </tr>
+</table>
+<table class="center inputs">
 <tr colspan ="15">
   <td colspan ="3" style = "border-left: none;"><button id = "input_20" class="button numInput" name ="inputButton" >20</button></td>
   <td colspan ="3"><button id = "input_19" class="button numInput" name ="inputButton">19</button></td>
