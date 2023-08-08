@@ -33,11 +33,13 @@
 }
 
 .double {
-  background-color: red
+  background-color :  #32BD50 !important;
+  color: #fff !important;
 }
 
 .triple {
-  background-color: green
+  background-color: #bd3932 !important;
+  color: #fff !important;
 }
 
 /* Styles for mobile devices */
@@ -170,6 +172,11 @@
 
   #doubleButton, #tripleButton, #input_25 {
     background-color: #D3D4D5;
+  }
+
+  #doubleButton, #tripleButton {
+    background-color: rgba(100, 106, 133, 0.1);
+    color: rgba(161, 161, 161, 1);
   }
 
 
