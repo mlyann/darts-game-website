@@ -23,9 +23,8 @@ if($gamemode == 'Countdown')
 
 $allScores = [];
 foreach ($playersArray as $player) {
-
-    if($gamemode == 'Countdown'){
-        $query = "SELECT Name, overall, first, second, third, turn
+    if ($gamemode == 'Countdown') {
+        $query = "SELECT Name, overall, first, second, third, turn, average
         FROM scores
         WHERE Name = '$player'
         AND turn = IF(Name = '$currentPlayer',
@@ -38,7 +37,7 @@ foreach ($playersArray as $player) {
     }
     else if ($gamemode == 'Highscore' ){
 
-        $query = "SELECT Name, overall, first, second, third, turn
+        $query = "SELECT Name, overall, first, second, third, turn, average
           FROM scores
           WHERE Name = '$player'
           AND turn = (SELECT MAX(turn) FROM scores)";
@@ -77,8 +76,6 @@ foreach ($playersArray as $player) {
                     $isCurrent = false;
                 }
 
-                $avg = round(($starting_points - $row['overall']) / $row['turn'], 1);
-
                 //calculate possible checkout
                 if($row['overall'] != 0){
                     $help = generateCheckout($row['overall']);
@@ -103,8 +100,9 @@ foreach ($playersArray as $player) {
                     'first' => $row['first'],
                     'second' => $row['second'],
                     'third' => $row['third'],
-                    'avg' => $avg,
-                    'help' => $help,
+                    'avg' => $row['average'],
+                    'turn' => $row['turn'],
+                    'checkout' => $checkout,
                     'isCurrent' => $isCurrent
                 );
             }

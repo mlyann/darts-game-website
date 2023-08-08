@@ -6,17 +6,12 @@
 </head>
 <body>
     <img id = "logo" src = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png"></img>
-    <h1>Welcome <br>to <br>Coretechs Darts!</h1>
+    <h1>Welcome To <br>Coretechs Darts!</h1>
     <ul>
         <li><a href="leaderboard_page.php">Leaderboard</a></li>
-        <li><a href="register_page.php">Register/Deregister <br> A Player</a></li>
+        <li><a href="register_page.php">Player Management</a></li>
         <li><a href="create_game_page.php">Create a Game!</a></li>
-        <li><a href="scoreDisplayPage.php">View Live Game Score</a></li>
-        <li><a href="scoring.php">Participate In <br> The Current Game</a></li>
-    </ul>
-    <div>
-        <img src = "https://www.coretechs.com/wp-content/uploads/2023/05/Samuel2.jpg"></img>
-        <img src = "https://www.coretechs.com/wp-content/uploads/2023/05/Daniel.jpg"></img>
-    </div>
+        <li><a href="scoreDisplayPage.php">Scoreboard (iPad)</a></li>
+        <li><a href="scoring.php">Participate In <br> Current Game</a></li>
 </body>
 </html>

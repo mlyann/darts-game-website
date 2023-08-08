@@ -4,6 +4,9 @@
   function newTurn ($type) { //helper function to update game_data
     global $conn;
     global $currentPlayer;
+
+    updatePlayerAverage($currentPlayer);
+
     $query = "SELECT players FROM game_data";
     $result = mysqli_query($conn, $query);
 
@@ -33,6 +36,26 @@
     $sql = "UPDATE game_data SET dartIndex = '0', currentPlayer ='$nextPlayer'";
 
     mysqli_query($conn, $sql);
+  }
+
+  function updatePlayerAverage($player) {
+    global $conn;
+
+    $startingQuery = "SELECT starting_points FROM game_data";
+    $startingResult = mysqli_query($conn, $startingQuery);
+    $startingRow = mysqli_fetch_assoc($startingResult);
+    $starting_points = $startingRow['starting_points'];
+
+    $scoresQuery = "SELECT overall, turn FROM scores WHERE Name = '$player' AND turn = (SELECT MAX(turn) FROM scores WHERE Name = '$player');";
+    $scoresResult = mysqli_query($conn, $scoresQuery);
+    $scoresRow = mysqli_fetch_assoc($scoresResult);
+    $turn = $scoresRow['turn'];
+    $overall = $scoresRow['overall'];
+
+    $avg = round(($starting_points - $overall) / ($turn - 1), 1);
+//TODO THIS UPDATES EVERY COLUMN IT IS INEFFICIENT
+    $avgQuery = "UPDATE scores SET average = $avg WHERE Name = '$player';";
+    mysqli_query($conn, $avgQuery);
   }
 
   //get currentPlayer
@@ -74,10 +97,13 @@
     $row = mysqli_fetch_assoc($oldOverallResult);
 
     $oldOverall = $row['oldOverall'];
-
     $sql = "INSERT INTO scores (name, overall, turn) VALUES ('$currentPlayer', $oldOverall, $maxTurn + 1)";
     mysqli_query($conn, $sql);
 
+    $sql = "UPDATE scores SET overall = $oldOverall WHERE name = '$currentPlayer' AND turn = $maxTurn;";
+    mysqli_query($conn, $sql);
+
+  
     newTurn('bust');
   }
   else {
@@ -87,7 +113,6 @@
 
     newTurn('standard');
   }
-
 
   $conn->close();
   ?>

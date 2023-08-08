@@ -42,6 +42,7 @@
     padding: 0;
     overflow-x: hidden; /* Prevent horizontal scrolling */
     overflow-y: hidden;
+    touch-action: manipulation;
   }
 
   div {
@@ -122,5 +123,9 @@
 
   #quitButton:hover {
     background-color: #d32f2f;
+  }
+
+  .numInput:active:hover{
+    background-color: green;
   }
 }
