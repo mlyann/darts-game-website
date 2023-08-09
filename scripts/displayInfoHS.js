@@ -1,7 +1,7 @@
-function displayInfo() {
+function displayInfoHS() {
 
   $.ajax({
-    url: 'scripts/displayInfo.php',
+    url: 'scripts/displayInfoHS.php',
     method: 'GET',
     datatype: 'json',
     success: function(response) {

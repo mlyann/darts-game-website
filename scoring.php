@@ -8,9 +8,10 @@
     <script type="text/javascript" src="scripts/getCurrentPlayer.js"></script>
     <script type="text/javascript" src="scripts/updateTableCell.js"></script>
     <script type="text/javascript" src="scripts/displayNames.js"></script>
-    <script type="text/javascript" src="scripts/displayInfo.js"></script>
     <script type="text/javascript" src="scripts/resetMultipliers.js"></script>
     <script type="text/javascript" src="scripts/multiplier.js"></script>
+    <script type="text/javascript" src="scripts/displayInfoCD.js"></script>
+    <script type="text/javascript" src="scripts/displayInfoHS.js"></script>
     <script>
 
         //get the gamemode
@@ -28,6 +29,15 @@
           echo "var gamemode = '$mode';";
           $conn->close();
         ?>
+
+        function displayInfo() {
+          if (gamemode == 'Countdown') {
+            displayInfoCD();
+          }
+          else if (gamemode = 'Highscore') {
+            displayInfoHS();
+          }
+        }
 
         multiplierValue = 1;
         let multiplierActive = false; // Flag to track the active state of the multiplier
