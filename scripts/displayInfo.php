@@ -1,5 +1,5 @@
 <?php
-// Connect to the MySQL database
+
 require 'connect.php';
 
 if ($conn->connect_error) {
@@ -20,6 +20,8 @@ $playersArray = json_decode($playersJSON, true);
 
 if($gamemode == 'Countdown')
     require 'checkout.php';
+else if ($gamemode == 'Highscore')
+    $currentPlayerIndex = array_search($currentPlayer, $playersArray);
 
 $allScores = [];
 foreach ($playersArray as $player) {
@@ -120,7 +122,10 @@ foreach ($playersArray as $player) {
                     //updates help guide (Highscore)
                     if($bestRow['name'] == $player){
 
-                        $help = "You are the score leader";
+                        if ($currentPlayerIndex < (count($playersArray) - 1)) 
+                            $help = "You are the score leader";
+                        else
+                            $help = "Round won!";
                     }
                     else{
                         $help = $bestRow['overall'] + 1 - $row['overall'] . " to win"; 
