@@ -30,6 +30,12 @@ function displayInfo() {
 
           updateTableCell(nameCell, player.name);
 
+          //adds round wins (Highscore)
+          if(gamemode == 'Highscore'){
+            roundWinsCell = playerIndex +'roundWinsCell';
+            updateTableCell(roundWinsCell,"Wins: "+player.rWins);
+          }
+
           updateTableCell(overallCell, player.overall);
           updateTableCell(firstCell, player.first ?? '');
           updateTableCell(secondCell,player.second ?? '');

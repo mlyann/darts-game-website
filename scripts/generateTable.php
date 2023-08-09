@@ -30,7 +30,7 @@
             $img = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png";
         }
 
-        echo 
+        $html =  
         '<div class = "playerDiv" id = "' . $playerDiv . '">
             <div class = "topRow">
             <img class = "profile" src="' . $img . '">
@@ -44,8 +44,17 @@
                 <td class = "infoCell bigCell " id="' . $roundCell . '"></td>
             </table>
         </div>';
-        $playerIndex += 1;
-        
+
+        if($gamemode == 'Highscore'){
+
+            $rWinsCell = $playerIndex . "roundWinsCell";
+            $pt = strpos($html,"/p>") + 3;
+            $html = substr($html,0,$pt) . '<p class = "roundWins" id="'.$rWinsCell.'"></p>' . substr($html,$pt);
+        }
+
+        echo $html;
+
+        $playerIndex ++;
     }
 
     $conn->close();
