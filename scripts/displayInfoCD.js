@@ -45,7 +45,7 @@ function displayInfoCD() {
             ' = ' + playerTotal + ' (' + (player.avg  ?? "0") + ')'
             );
           
-          if ((gamemode == 'Highscore') || (gamemode == 'Countdown' && player.isCurrent)) {
+          if (player.isCurrent) {
 
             if (player.help == 'No outs possible') {
               player.help = ''}
