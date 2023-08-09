@@ -15,7 +15,7 @@ function displayInfoCD() {
             window.location.href = "https://darts.coretechs.com";
           }
           //update infocells
-          nameCell = playerIndex +'nameCell';
+          nameCell = playerIndex + 'nameCell';
           firstCell = playerIndex + 'firstCell';
           secondCell = playerIndex + 'secondCell';
           thirdCell = playerIndex + 'thirdCell';
@@ -24,17 +24,11 @@ function displayInfoCD() {
 
           playerTotal = ((parseInt(player.first) || 0) + (parseInt(player.second) || 0) + (parseInt(player.third) || 0));
 
-          if (gamemode == 'Countdown' && player.overall < 0 && player.overall == 1) {
+          if (player.overall < 0 && player.overall == 1) {
             player.overall = 'Bust!';
           } 
 
           updateTableCell(nameCell, player.name);
-
-          //adds round wins (Highscore)
-          if(gamemode == 'Highscore'){
-            roundWinsCell = playerIndex +'roundWinsCell';
-            updateTableCell(roundWinsCell,"Wins: "+player.rWins);
-          }
 
           updateTableCell(overallCell, player.overall);
           updateTableCell(firstCell, player.first ?? '');
