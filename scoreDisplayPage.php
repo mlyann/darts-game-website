@@ -65,18 +65,7 @@ updateInfo();
 <?php require 'scripts/generateTable.php' ?>
 <table class = "center gameInfo">
   <tr>
-    <td class = "infoCell" id ="turnCell" style="display:none;">Turn: 1</td>
-    <td class = "infoCell" id ="checkoutCell">D20 + D20 + D20</td>
-    <td class = "infoCell" id ="winsCell" style="display:none;">Wins</td>
-    <script>
-        if (gamemode == 'Highscore') {
-          winsCell = document.getElementById('winsCell');
-          winsCell.style.display = 'table-cell';
-
-          turnCell = document.getElementById('turnCell');
-          turnCell.style.display = 'table-cell';
-        }
-     </script>
+    <td class = "infoCell" id ="helpCell">D20 + D20 + D20</td>
   </tr>
 </table>
       </div>

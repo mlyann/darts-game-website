@@ -1,28 +1,17 @@
 <?php
 require 'connect.php';
 
-//create a new turn for the next player
-function newTurn(){
-    global $conn, $currentPlayer, $playerNames, $currentPlayerIndex, $maxTurn, $overall;
+//adds new turn rows for each player
+function newTurns(){
+    global $conn, $playerNames, $maxTurn;
 
-    $sql = "INSERT INTO scores (name, overall, turn) VALUES ('$currentPlayer', $overall, $maxTurn + 1)";
-    mysqli_query($conn, $sql);
-        
-    //updates game_data to create a new turn
-    if ($currentPlayerIndex == (count($playerNames) - 1)) {
-        $nextPlayer = $playerNames[0];
-    } else {
-        $nextPlayer = $playerNames[$currentPlayerIndex + 1];
-    }
-    $sql = "UPDATE game_data SET dartIndex = '0', currentPlayer ='$nextPlayer'";
-    mysqli_query($conn, $sql);
-    //reset player scores for highscore
-    $resetQuery = "UPDATE scores AS s1
-    JOIN (SELECT MAX(turn) AS max_turn FROM scores) AS s2
-    SET s1.overall = 0
-    WHERE s1.turn = s2.max_turn;
-    ";
-    mysqli_query($conn, $resetQuery);
+    foreach($playerNames as $p){
+
+        $sql = "INSERT INTO scores (name, overall, turn) VALUES ('$p', 0, $maxTurn + 1)";  
+        if(!mysqli_query($conn, $sql)){
+            echo "Error: " . mysqli_error($conn);
+        }
+    }   
 }
 
 //get currentPlayer
@@ -55,8 +44,8 @@ if ($currentPlayerIndex == (count($playerNames) - 1)) {
     //gets the highest scoring player and check for ties
     $query = "SELECT name, overall
     FROM scores
-    WHERE turn = (SELECT MAX(turn) FROM scores) - 1
-    AND overall = (SELECT MAX(overall) FROM scores WHERE turn = (SELECT MAX(turn) FROM scores) - 1)
+    WHERE turn = (SELECT MAX(turn) FROM scores)
+    AND overall = (SELECT MAX(overall) FROM scores WHERE turn = (SELECT MAX(turn) FROM scores))
     ORDER BY overall DESC";
     $result = $conn->query($query);
     if (!$result) {
@@ -94,17 +83,25 @@ if ($currentPlayerIndex == (count($playerNames) - 1)) {
 
         //winner
         if ($mostWins == $numRounds) {
+
             $sql = "INSERT INTO wins (name, time) VALUES ('$bestPlayer', NOW())";
             mysqli_query($conn, $sql);
-            $sql = "INSERT INTO scores (name, overall, turn) VALUES ('$bestPlayer', 9999, 999)";
+            $sql = "UPDATE scores SET overall = 9999, turn = 999 WHERE turn = '$maxTurn' AND Name = '$bestPlayer'";
             mysqli_query($conn, $sql);
 
             $conn->close();
             exit();
         }
     }
+    newTurns();
 }
-newTurn();
+
+
+//updates game_data after player turn
+$nextPlayer = $playerNames[($currentPlayerIndex + 1) % count($playerNames)];
+$sql = "UPDATE game_data SET dartIndex = '0', currentPlayer ='$nextPlayer'";
+mysqli_query($conn, $sql);
+
 
 $conn->close();
 ?>

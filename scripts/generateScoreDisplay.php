@@ -24,7 +24,7 @@ if ($result) {
         $tableHTML .= '</tr>';
 
         // Check if the player has an overall score of -353 and show the popup
-        if ($row['overall'] == -353) {
+        if ($row['overall'] == -353 || $row['overall'] == 9999) {
             echo '<script>alert("' . $row['Name'] . ' wins!");</script>';
         }
     }

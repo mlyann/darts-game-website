@@ -1,7 +1,6 @@
 <?php
-// Connect to the MySQL database
+
 require 'connect.php';
-require 'checkout.php';
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -19,6 +18,10 @@ $starting_points = $row['starting_points'];
 
 $playersArray = json_decode($playersJSON, true);
 
+if($gamemode == 'Countdown')
+    require 'checkout.php';
+else if ($gamemode == 'Highscore')
+    $currentPlayerIndex = array_search($currentPlayer, $playersArray);
 
 $allScores = [];
 foreach ($playersArray as $player) {
@@ -33,31 +36,44 @@ foreach ($playersArray as $player) {
                          THEN (SELECT MAX(turn) - 1 FROM scores WHERE Name = '$player')
                          ELSE (SELECT MAX(turn) FROM scores WHERE Name = '$player')
                        END)";
-
     }
-    else {
-        $query = "SELECT s.Name, s.overall, s.first, s.second, s.third, s.turn, r.roundWins, average
-        FROM scores s
-        LEFT JOIN roundWins r ON s.Name = r.Name
-        WHERE s.Name = '$player'
-        AND s.turn = IF(s.Name = '$currentPlayer',
-                        (SELECT MAX(turn) FROM scores WHERE Name = '$currentPlayer'),
-                        (SELECT MAX(turn) - 1 FROM scores WHERE Name = '$player' AND Name <> '$currentPlayer')
-                       )";
-    }
+    else if ($gamemode == 'Highscore' ){
 
+        $query = "SELECT Name, overall, first, second, third, turn, average
+          FROM scores
+          WHERE Name = '$player'
+          AND turn = (SELECT MAX(turn) FROM scores)";
+
+        //gets the round wins from a separate query
+        $winsQuery = "SELECT roundWins AS rWins FROM roundWins WHERE Name = '$player'";
+
+        $winsResult = mysqli_query($conn, $winsQuery);
+
+        if($winsResult){
+
+            $winRow = mysqli_fetch_assoc($winsResult);
+
+            $rWins = $winRow['rWins'];
+        }  
+    }
 
     $result = mysqli_query($conn, $query);
+
 
     // Get an array of scores for each player
     $scores = [];
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+
+            
             if ($gamemode == 'Countdown') {
+
                 if ($player == $currentPlayer) {
+
                     $playerDartIndex = $dartIndex;
                     $isCurrent = true;
                 } else {
+                    
                     $playerDartIndex = 3;
                     $isCurrent = false;
                 }
@@ -82,24 +98,55 @@ foreach ($playersArray as $player) {
                     'second' => $row['second'],
                     'third' => $row['third'],
                     'avg' => $row['average'],
-                    'turn' => $row['turn'],
-                    'checkout' => $checkout,
+                    'checkout' => $help,
                     'isCurrent' => $isCurrent
                 );
-        }
-        else {
-            $scores[] = array(
-                'name' => $player,
-                'overall' => $row['overall'],
-                'first' => $row['first'],
-                'second' => $row['second'],
-                'third' => $row['third'],
-                'wins' => $row['roundWins'],
-                'turn' => $row['turn']
-                //'avg' => $row['overall'] / ($row['turn'] * 3 + $dartIndex)
-            );
-        }
+            }
 
+            else if ($gamemode == 'Highscore'){
+
+                if($player == $currentPlayer){/// can maybe be the entire file's condition
+                    //gets the highest score and highest scoring player
+                    $bestQuery = "SELECT name, overall
+                    FROM scores
+                    WHERE turn = (SELECT MAX(turn) FROM scores)
+                    AND overall = (SELECT MAX(overall) FROM scores WHERE turn = (SELECT MAX(turn) FROM scores))
+                    ORDER BY overall DESC";
+                    $bestResult = $conn->query($bestQuery);
+                    if (!$bestResult) {
+                        echo "Error getting the highest score: " . mysqli_error($conn);
+                    }
+
+                    $bestRow = $bestResult->fetch_assoc();
+
+                    //updates help guide (Highscore)
+                    if($bestRow['name'] == $player){
+
+                        if ($currentPlayerIndex < (count($playersArray) - 1)) 
+                            $help = "You are the score leader";
+                        else
+                            $help = "Round won!";
+                    }
+                    else{
+                        $help = $bestRow['overall'] + 1 - $row['overall'] . " to win"; 
+
+                        if($dartIndex != 3)
+                            $help = "Need " . $help; 
+                        else
+                            $help = "Needed " . $help;
+                    }
+                }
+
+                $scores[] = array(
+                    'name' => $player,
+                    'overall' => $row['overall'],
+                    'first' => $row['first'],
+                    'second' => $row['second'],
+                    'third' => $row['third'],
+                    'help' => $help,
+                    'rWins' => $rWins
+                );
+            }
         }
     }
     $allScores = array_merge($allScores, $scores);

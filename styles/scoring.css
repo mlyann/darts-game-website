@@ -75,7 +75,6 @@
   }
 
 
-
   p.overall {
     font-weight: bold;
     font-size: 6vw;
@@ -124,6 +123,13 @@
     background-color: transparent;
     margin-left: 3vw;
   }
+
+  .roundWins{
+    color: gray;
+    font-size: 5vw;
+    background-color: transparent;
+    margin-left: 6vw;
+  } 
 
   .button {
     display: block;
@@ -180,7 +186,7 @@
   }
 
 
-  #checkoutCell {
+  #helpCell {
     background-color: transparent;
     font-size: 6vw;
     vertical-align: middle;

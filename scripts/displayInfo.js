@@ -8,7 +8,8 @@ function displayInfo() {
       playerIndex = 1;
 
       response.forEach(player => {
-        //check for a winner
+
+        //check for a winner (CD or HS)
           if (player.overall == '-353' || player.overall == '9999') {
             alert(player.name + " wins!");
             window.location.href = "https://darts.coretechs.com";
@@ -23,17 +24,17 @@ function displayInfo() {
 
           playerTotal = ((parseInt(player.first) || 0) + (parseInt(player.second) || 0) + (parseInt(player.third) || 0));
 
-          //display bust
-          if (gamemode == 'Countdown') {
-            startingOverall = parseInt(player.overall) + playerTotal;
-            if (startingOverall - playerTotal <= 1 && startingOverall - playerTotal != 0) {
-              if (player.isCurrent) {
-                player.overall = 'Bust!';
-              }
-            } 
-        }
+          if (gamemode == 'Countdown' && player.overall < 0 && player.overall == 1) {
+            player.overall = 'Bust!';
+          } 
 
           updateTableCell(nameCell, player.name);
+
+          //adds round wins (Highscore)
+          if(gamemode == 'Highscore'){
+            roundWinsCell = playerIndex +'roundWinsCell';
+            updateTableCell(roundWinsCell,"Wins: "+player.rWins);
+          }
 
           updateTableCell(overallCell, player.overall);
           updateTableCell(firstCell, player.first ?? '');
@@ -44,27 +45,20 @@ function displayInfo() {
             ' = ' + playerTotal + ' (' + (player.avg  ?? "0") + ')'
             );
           
-          if (player.isCurrent) {
-          //updateTableCell('turnCell', 'Turn: ' + player.turn);
-          if (player.checkout == 'No outs possible') {
-            player.checkout = ''}
-          updateTableCell('checkoutCell',player.checkout);
+          if ((gamemode == 'Highscore') || (gamemode == 'Countdown' && player.isCurrent)) {
+
+            if (player.help == 'No outs possible') {
+              player.help = ''}
+
+            updateTableCell('helpCell',player.help);
           }
 
-          //update round wins cell if it is a highscore game 
-          if (player.wins) {
-            winsCell = playerIndex + 'winsCell';
-            updateTableCell(winsCell, player.wins);
-          }
-
-          playerIndex += 1;
+          playerIndex++;
       });
       
     },
     error: function(xhr, status, error) {
-      // Handle error
       console.error(error);
-
     }
   });
 }
