@@ -1,7 +1,7 @@
 <?php
     require 'connect.php';
 
-    //get info from game_data
+    //get starting points, players array, gamemode
     $sql = "SELECT starting_points, players, type from game_data";
     $players = mysqli_query($conn, $sql);
     $row = $players->fetch_assoc();
@@ -12,6 +12,8 @@
     $playerIndex = 1;
     
     foreach ($playersArray as $player) {
+        
+        //assigns cell IDs
         $nameCell = $playerIndex . "nameCell";
         $firstCell = $playerIndex . "firstCell";
         $secondCell = $playerIndex . "secondCell";
@@ -45,6 +47,7 @@
             </table>
         </div>';
 
+        //adds the round wins tag
         if($gamemode == 'Highscore'){
 
             $rWinsCell = $playerIndex . "roundWinsCell";
@@ -54,7 +57,7 @@
 
         echo $html;
 
-        $playerIndex ++;
+        $playerIndex++;
     }
 
     $conn->close();

@@ -12,6 +12,7 @@
     <script type="text/javascript" src="scripts/resetMultipliers.js"></script>
     <script type="text/javascript" src="scripts/multiplier.js"></script>
     <script>
+
         //get the gamemode
         <?php
           require 'scripts/connect.php';
@@ -28,7 +29,6 @@
           $conn->close();
         ?>
 
-      //initialize global vars
         multiplierValue = 1;
         let multiplierActive = false; // Flag to track the active state of the multiplier
 
@@ -46,11 +46,12 @@
               break;
             default:
               await dart(buttonType).then(() => {
-                resetMultipliers(); // Call resetMultipliers() after dart() is finished
+                resetMultipliers(); //call resetMultipliers() after dart() is finished
               });
           }
-          await displayInfo(); // Wait until the functions are done before calling displayInfo()
+          await displayInfo(); //wait until the functions are done before calling displayInfo()
         }
+
 
         function handleHover(buttonId) {
           console.log(buttonId);
@@ -90,7 +91,6 @@
         }
 
 
-        //backspace functionality
         function undo() {
           return new Promise((resolve, reject) => {
             let url = "scripts/undo";
@@ -117,7 +117,7 @@
 
         //submit turn functionality
         async function submitTurn() {
-          // Reset multiplier buttons
+
           resetMultipliers();
 
           let url = "scripts/submitTurn";
@@ -136,32 +136,35 @@
           }
 
           displayInfo();
-          await getCurrentPlayer(); // Wait for getCurrentPlayer to complete before proceeding
+          await getCurrentPlayer(); //wait for getCurrentPlayer to finish
         };
 
-function updateInfo(){
-getCurrentPlayer();
-displayInfo();
-setTimeout(updateInfo, 100);
-}
-updateInfo();
 
-  </script>
-  <style>
-.center {
-    margin-left: auto;
-    margin-right: auto;
-  }
+        function updateInfo(){
+
+          getCurrentPlayer();
+          displayInfo();
+          setTimeout(updateInfo, 100);
+        }
+        updateInfo();
+
+    </script>
+    <style>
+
+      .center {
+        margin-left: auto;
+        margin-right: auto;
+      }
   
-  .button {
-    display: block;
-    width: 100%;
-    text-align: center;
-  }
-</style>
-</head>
-<body>
+      .button {
+        display: block;
+        width: 100%;
+        text-align: center;
+      }
 
+    </style>
+  </head>
+<body>
 
 <div class = "center" id = "tableWrapper"> 
   <div class = "center" id = "infoContainer">
@@ -215,7 +218,9 @@ updateInfo();
 </tr>
 </table>
 <script>
+
   const inputButtons = document.getElementsByName('inputButton');
+
   inputButtons.forEach(button => {
     button.addEventListener('click', function() {
         handleButtonClick(this.id);
@@ -224,13 +229,14 @@ updateInfo();
       handlerHover(this.id);
     })
   });
+  
   buttons = document.getElementsByClassName('numInput');
   tripleButton = document.getElementById('tripleButton');
   doubleButton = document.getElementById('doubleButton');
   bullButton = document.getElementById('input_25');
+
   </script>
 </div>
-
 
 </body>
 </html>
