@@ -34,7 +34,7 @@
           if (gamemode == 'Countdown') {
             displayInfoCD();
           }
-          else if (gamemode = 'Highscore') {
+          else if (gamemode == 'Highscore') {
             displayInfoHS();
           }
         }
