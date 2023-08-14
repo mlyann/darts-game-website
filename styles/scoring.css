@@ -161,6 +161,7 @@
     flex-direction: column;
     height: 90%;
     margin-top: 8%;
+    margin-bottom: 0;
   }
 
   .playerDiv {
