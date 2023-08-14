@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="user-scalable=no">
     <title>Darts Score Input</title>
-    <link rel="stylesheet" type="text/css" href="styles/scoring.css">
+    <link id = "stylesheet" rel="stylesheet" type="text/css" href="styles/scoring.css">
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="scripts/getCurrentPlayer.js"></script>
     <script type="text/javascript" src="scripts/updateTableCell.js"></script>
@@ -14,21 +14,28 @@
     <script type="text/javascript" src="scripts/displayInfoHS.js"></script>
     <script>
 
-        //get the gamemode
+        //get the gamemode and number of players
         <?php
           require 'scripts/connect.php';
 
-          $query = "SELECT type FROM game_data";
+          $query = "SELECT type, player_count FROM game_data";
           $result = mysqli_query($conn, $query);
 
           if ($result && $result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $mode = $row['type'];
+            $playerCount = $row['player_count'];
           }
 
           echo "var gamemode = '$mode';";
+          echo "var playerCount = '$playerCount';";
           $conn->close();
         ?>
+
+        //determine sthe stylesheet based on the number of players and the gamemode
+        if (gamemode == 'Countdown' && playerCount == '3') {
+          stylesheet.href = 'styles/scoring3.css';
+        }
 
         function displayInfo() {
           if (gamemode == 'Countdown') {
