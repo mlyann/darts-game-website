@@ -19,7 +19,7 @@ CREATE TABLE `scores` (
   `second` int DEFAULT NULL,
   `third` int DEFAULT NULL,
   `lastMult` tinyint DEFAULT NULL,
-  `average` tinyint unsigned DEFAULT NULL
+  `average` decimal(4, 1) DEFAULT NULL
 );
 
 CREATE TABLE `roundWins` (
