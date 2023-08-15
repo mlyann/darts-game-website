@@ -31,7 +31,7 @@
         '<div class = "winnerContainer">
         <img class = "profile" src="' . $image . '">
         <p>' . $winner . ' wins!</p>
-        <p>Average: ' . $avg . '</p>
+        <p>Average: </p><p class ="avg">' . $avg . '</p>
         </div>';
 
         echo $html;

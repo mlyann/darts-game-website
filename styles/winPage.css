@@ -12,6 +12,7 @@ html, body {
     object-fit: cover;
     animation: grow 2s forwards, spin 10s linear infinite;
     will-change: transform;
+    margin-bottom: 1rem;
   }
 
   .winnerContainer {
@@ -24,6 +25,10 @@ html, body {
     color: white;
     font-size: 9rem;
     margin: 1rem;
+  }
+
+  .avg {
+    color: yellow;
   }
 
   @keyframes grow {
