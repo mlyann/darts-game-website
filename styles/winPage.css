@@ -1,0 +1,52 @@
+html, body {
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: hidden;
+    touch-action: manipulation;
+    background-color: #24292E;
+  }
+
+  img {
+    border-radius: 50%;
+    width: 20rem;
+    height: 20rem;
+    object-fit: cover;
+    animation: grow 2s forwards, spin 10s linear infinite;
+    will-change: transform;
+    margin-bottom: 1rem;
+  }
+
+  .winnerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  p {
+    color: white;
+    font-size: 9rem;
+    margin: 1rem;
+  }
+
+  .avg {
+    color: yellow;
+  }
+
+  @keyframes grow {
+    from {
+      width: 20rem;
+      height: 20rem;
+    }
+    to {
+      width: 50rem;
+      height: 50rem;
+    }
+  }
+
+  @keyframes spin {
+      0% {
+        transform: rotateZ(0deg);
+    }
+    100% {
+        transform: rotateZ(360deg);
+    }
+  }

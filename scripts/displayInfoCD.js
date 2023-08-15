@@ -11,9 +11,9 @@ function displayInfoCD() {
 
         //check for a winner (CD or HS)
           if (player.overall == '-353' || player.overall == '9999') {
-            alert(player.name + " wins!");
-            window.location.href = "https://darts.coretechs.com";
+            window.location.href = "/winPage.php";
           }
+
           //update infocells
           nameCell = playerIndex + 'nameCell';
           firstCell = playerIndex + 'firstCell';
