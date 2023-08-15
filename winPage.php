@@ -2,7 +2,18 @@
 <html>
 <head>
     <title>Victory Page</title>
-    <link id = "stylesheet" rel="stylesheet" type="text/css" href="styles/winPage.css">
+    <link id = "stylesheet" rel="stylesheet" type="text/css" href="styles/winPagePhone.css">
+    <script>
+        //this is weird but it lets me test on testserver and prod
+        switch(document.referrer[document.referrer.length - 5]) {
+            case 'e':
+                stylesheet.href = "styles/winPageIpad.css";
+                break;
+            default:
+                stylesheet.href = "styles/winPagePhone.css";
+                break;
+        }
+    </script>
 </head>
 <body>
         <?php
@@ -33,6 +44,10 @@
         <img class = "profile" src="' . $image . '">
         <p>' . $winner . ' wins!</p>
         <p>Average: </p><p class ="avg">' . $avg . '</p>
+        <div class = "buttonContainer">
+        <a href="/create_game_page.php"><button>New Game</button></a>
+        <a href="/homepage.php"><button>Homepage</button></a>
+        </div>
         </div>';
 
         echo $html;
