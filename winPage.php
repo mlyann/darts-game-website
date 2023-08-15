@@ -29,6 +29,7 @@
 
         $html = 
         '<div class = "winnerContainer">
+        <div class="confetti-container" id="confettiContainer"></div>
         <img class = "profile" src="' . $image . '">
         <p>' . $winner . ' wins!</p>
         <p>Average: </p><p class ="avg">' . $avg . '</p>
@@ -36,5 +37,24 @@
 
         echo $html;
         ?>
+
+
+
+<script>
+    // Generate confetti elements
+    const container = document.getElementById('confettiContainer');
+    const confettiCount = 50;
+    const colors = ['red', 'yellow', 'blue'];
+
+    for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.backgroundColor = randomColor;
+        confetti.className = 'confetti';
+        confetti.style.left = `${Math.random() * 100}%`;
+        confetti.style.animationDelay = `${Math.random()}s`;
+        container.appendChild(confetti);
+    }
+</script>
 </body>
 </html>
