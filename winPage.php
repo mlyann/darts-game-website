@@ -3,6 +3,8 @@
 <head>
     <title>Victory Page</title>
     <link id = "stylesheet" rel="stylesheet" type="text/css" href="styles/winPagePhone.css">
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/checkForNewGame.js"></script>
     <script>
         //this is weird but it lets me test on testserver and prod
         switch(document.referrer[document.referrer.length - 5]) {
@@ -18,6 +20,7 @@
 <body>
         <?php
         require 'scripts/connect.php';
+
         $winnerQuery = "SELECT name FROM wins ORDER BY time DESC LIMIT 1;";
         $winnerResult = mysqli_query($conn, $winnerQuery);
         $winnerRow = mysqli_fetch_assoc($winnerResult);
@@ -56,6 +59,21 @@
 
 
 <script>
+    <?php
+    require 'scripts/connect.php';
+
+    $idQuery = "SELECT id FROM game_data;";
+    $idResult = mysqli_query($conn, $idQuery);
+    $idRow = mysqli_fetch_assoc($idResult);
+    $game_id = $idRow['id'];
+
+    $conn->close();
+
+    echo "var game_id = '$game_id';\n";
+    ?>
+
+    checkForNewGame();
+
     // Generate confetti elements
     const container = document.getElementById('confettiContainer');
     const confettiCount = 50;
