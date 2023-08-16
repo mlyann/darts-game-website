@@ -39,6 +39,7 @@ form {
     border: 1px solid #ccc;
     border-radius: 4px;
     text-align: center;
+    padding-bottom: 0;
 }
 
 /* Style the form elements */
