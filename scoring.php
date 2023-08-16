@@ -33,18 +33,15 @@
         ?>
 
         //determine sthe stylesheet based on the number of players and the gamemode
-        if (gamemode == 'Countdown') {
-          switch(playerCount) {
-            case '3':
-              stylesheet.href = 'styles/scoring3.css';
-              break;
-            case '4':
-              stylesheet.href = 'styles/scoring4.css';
-              break;
-            default:
-              break;
-          }
-          
+        switch(playerCount) {
+          case '3':
+            stylesheet.href = 'styles/scoring3.css';
+            break;
+          case '4':
+            stylesheet.href = 'styles/scoring4.css';
+            break;
+          default:
+            break;
         }
 
         function displayInfo() {
