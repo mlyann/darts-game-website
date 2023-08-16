@@ -10,11 +10,12 @@ html {
 
 /* Set a background color and center the content */
 body {
+    margin-top: 1rem;
     background-color: #24292E;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     min-height: 100vh; /* Ensure content takes up at least the full viewport height */
     color: white;
 }
@@ -31,7 +32,6 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     width: 80%;
     max-width: 80%;
     padding: 20px;
@@ -53,6 +53,7 @@ select {
     width: 100%;
     margin-bottom: 16px;
     text-align: center;
+    color: black;
 }
 
 button {

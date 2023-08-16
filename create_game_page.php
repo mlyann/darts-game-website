@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Create Game</title>
+    <meta name="viewport" content="user-scalable=no">
     <link rel="stylesheet" type="text/css" href="styles/createGame.css">
     <script type="text/javascript" src="scripts/showConditionalCreateOption.js"></script>
     <script type="text/javascript">
