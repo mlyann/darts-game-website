@@ -113,7 +113,6 @@
                     echo '</div>';
 
                 } else {
-                    echo "No data found.";
                 }
 
                 //generate today table
@@ -161,7 +160,6 @@
                     echo '</div>';
 
                 } else {
-                    echo "No data found.";
                 }
 
                 //generate week table
@@ -210,7 +208,6 @@
                     echo '</div>';
 
                 } else {
-                    echo "No data found.";
                 }
 
                 $conn->close();
