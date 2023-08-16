@@ -15,7 +15,7 @@ html, body {
     width: 20rem;
     height: 20rem;
     object-fit: cover;
-    animation: grow 2s forwards, spin 10s linear infinite;
+    animation: grow 2s forwards;
     will-change: transform;
     margin: 1rem;
   }
