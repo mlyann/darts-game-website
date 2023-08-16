@@ -2,3 +2,4 @@ scripts/connect.php
 mysql.sh
 deployScript.sh
 todos.txt
+.DS_store
