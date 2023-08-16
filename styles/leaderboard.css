@@ -15,7 +15,6 @@ html, body {
   button {
     color: white;
     background-color: #3C4045;
-    border-radius: 2rem;
     padding: 10px;
     padding-left: 2rem;
     padding-right: 2rem;
@@ -36,5 +35,47 @@ html, body {
     font-size: 4rem;
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  .profile {
+    border-radius: 50%;
+    max-width: 15rem;
+    max-height: auto;
+    object-fit: cover;
+    margin-right: 1rem;
+  }
+
+  tr {
+    border: 1rem solid #3C4045;
+  }
+
+  .rowContainer {
+    display: flex;
+    flex-direction: column;
+    font-size: 4rem;
+    width: 80vw;
+  }
+
+  .playerRow {
+    display: flex;
+    margin-top: 1rem;
+  }
+
+  .labelRow {
+    display: flex;
+    font-size: 3rem;
+    width: 80vw;
+  }
+
+  .labelRow .wins {
+    margin-left: auto;
+  }
+
+  .labelRow .name {
+    margin-left: 16.25rem;
+  }
+
+  .playerRow .wins {
+    margin-left: auto;
   }
 
