@@ -41,10 +41,11 @@ html, body {
     border-radius: 50%;
     max-width: 15rem;
     max-height: 15rem;
-    width: auto;
-    height: auto;
+    height: 15rem;
+    width: 15rem;
     object-fit: cover;
     margin-right: 1rem;
+    margin-top: 1rem;
   }
 
   .profile.rank1 {
@@ -74,6 +75,7 @@ html, body {
     display: flex;
     margin-top: 1rem;
     border-top: .25rem solid #3C4045;
+    align-items: center;
   }
 
   .labelRow {
