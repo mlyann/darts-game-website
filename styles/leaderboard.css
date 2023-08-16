@@ -44,7 +44,7 @@ html, body {
     height: 15rem;
     width: 15rem;
     object-fit: cover;
-    margin-right: 1rem;
+    margin-right: 2rem;
     margin-top: 1rem;
   }
 
@@ -54,10 +54,12 @@ html, body {
 
   .profile.rank2 {
     border: .75rem solid silver;
+    margin-right: 1.25rem;
   }
 
   .profile.rank3 {
     border: .5rem solid #CD7F32;
+    margin-right: 1.5rem;
   }
 
   tr {
@@ -90,7 +92,7 @@ html, body {
   }
 
   .labelRow .name {
-    margin-left: 16.25rem;
+    margin-left: 18.55rem;
   }
 
   .playerRow .wins {
