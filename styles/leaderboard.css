@@ -1,0 +1,40 @@
+html, body {
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: hidden;
+    touch-action: manipulation;
+    background-color: #24292E;
+    color: white;
+  }
+
+  .leaderboardContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  button {
+    color: white;
+    background-color: #3C4045;
+    border-radius: 2rem;
+    padding: 10px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-size: 3rem;
+  }
+
+
+  h1 {
+    font-size: 6rem;
+  }
+
+  th {
+    font-size: 5rem;
+    padding: 1rem;
+  }
+
+  td {
+    font-size: 4rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+

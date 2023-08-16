@@ -1,5 +1,7 @@
 <html>
     <head>
+    <meta name="viewport" content="user-scalable=no">
+    <link id = "stylesheet" rel="stylesheet" type="text/css" href="styles/leaderboard.css">
         <style>
             .active {
                 background-color: green;
@@ -39,6 +41,7 @@
         </script>
     </head>
     <body>
+        <div class = "leaderboardContainer">
         <h1>Leaderboard</h1>
 
         <div name="timeButtons">
@@ -74,5 +77,6 @@
                 $conn->close();
             ?>
         </div>
+            </div>
     </body>
 </html>
