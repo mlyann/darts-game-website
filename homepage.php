@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Homepage</title>
+    <meta name="viewport" content="user-scalable=no">
     <link rel="stylesheet" type="text/css" href="styles/homepage.css">
 </head>
 <body>
