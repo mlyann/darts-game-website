@@ -67,7 +67,7 @@
     </div>
 
     <div name="player_form">
-        <label for="player_count">Select Number of Players (1-6):</label>
+        <label for="player_count">Select Number of Players:</label>
         <select name="player_count" id="player_count" onchange="showPlayerForm()" required>
             <option value="">Select Number</option>
             <option value="1">1</option>
