@@ -8,24 +8,27 @@
   <script type="text/javascript" src="scripts/getCurrentPlayer.js"></script>
   <script type="text/javascript" src="scripts/updateTableCell.js"></script>
   <script type="text/javascript" src="scripts/displayNames.js"></script>
-  <script type="text/javascript" src="scripts/displayInfo.js"></script>
   <script type="text/javascript" src="scripts/displayInfoCD.js"></script>
   <script type="text/javascript" src="scripts/displayInfoHS.js"></script>
+  <script type="text/javascript" src="scripts/checkForNewGame.js"></script>
 
   <script>
-      //get the gamemode
+      //get relevant game data
       <?php
         require 'scripts/connect.php';
 
-        $query = "SELECT type FROM game_data";
+        $query = "SELECT id, type FROM game_data";
         $result = mysqli_query($conn, $query);
 
         if ($result && $result->num_rows > 0) {
           $row = $result->fetch_assoc();
           $mode = $row['type'];
+          $game_id = $row['id'];
         }
 
         echo "var gamemode = '$mode';";
+        echo "var game_id = '$game_id';";
+        
         $conn->close();
       ?>
 
@@ -43,12 +46,14 @@
     displayNames();
     displayInfo();
 
-      function updateInfo(){
-      getCurrentPlayer();
-      displayInfo();
-      setTimeout(updateInfo, 100);
-      }
-      updateInfo();
+    function updateInfo(){
+    getCurrentPlayer();
+    displayInfo();
+    setTimeout(updateInfo, 100);
+    }
+
+    updateInfo();
+    checkForNewGame();
 
   </script>
   <style>
