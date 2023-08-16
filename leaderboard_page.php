@@ -112,7 +112,9 @@
                     }
                     echo '</div>';
 
-                } 
+                } else {
+                    echo "No data found.";
+                }
 
                 //generate today table
                 $rank = 1;
@@ -158,7 +160,9 @@
                     }
                     echo '</div>';
 
-                } 
+                } else {
+                    echo "No data found.";
+                }
 
                 //generate week table
                 $rank = 1;
@@ -205,7 +209,9 @@
                     }
                     echo '</div>';
 
-                } 
+                } else {
+                    echo "No data found.";
+                }
 
                 $conn->close();
             ?>
