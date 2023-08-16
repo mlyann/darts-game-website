@@ -31,7 +31,7 @@
             $image = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png";
         }
 
-        $avgQuery = "SELECT average FROM scores WHERE name = '$winner' AND overall = 0;";
+        $avgQuery = "SELECT average FROM scores WHERE name = '$winner' ORDER BY average DESC LIMIT 1;";
         $avgResult = mysqli_query($conn, $avgQuery);
         $avgRow = mysqli_fetch_assoc($avgResult);
         $avg = $avgRow['average'];
