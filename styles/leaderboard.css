@@ -40,9 +40,23 @@ html, body {
   .profile {
     border-radius: 50%;
     max-width: 15rem;
-    max-height: auto;
+    max-height: 15rem;
+    width: auto;
+    height: auto;
     object-fit: cover;
     margin-right: 1rem;
+  }
+
+  .profile.rank1 {
+    border: 1rem solid gold;
+  }
+
+  .profile.rank2 {
+    border: .75rem solid silver;
+  }
+
+  .profile.rank3 {
+    border: .5rem solid #CD7F32;
   }
 
   tr {
@@ -59,12 +73,14 @@ html, body {
   .playerRow {
     display: flex;
     margin-top: 1rem;
+    border-top: .25rem solid #3C4045;
   }
 
   .labelRow {
     display: flex;
     font-size: 3rem;
     width: 80vw;
+    margin-bottom: -3rem;
   }
 
   .labelRow .wins {
