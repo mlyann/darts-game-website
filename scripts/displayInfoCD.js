@@ -9,8 +9,8 @@ function displayInfoCD() {
 
       response.forEach(player => {
 
-        //check for a winner (CD or HS)
-          if (player.overall == '-353' || player.overall == '9999') {
+        //check for a winner 
+          if (player.overall == '-353') {
             window.location.href = "/winPage.php";
           }
 
