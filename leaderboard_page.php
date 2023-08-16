@@ -79,14 +79,35 @@
                     echo "<div class = 'labelRow'>
                         <p class ='name'>Name</p><p class = 'wins'>Wins</p>
                         </div>";
-
+                    $rank = 1;
+                    $winsCounter = 9999;
                     echo '<div class = "rowContainer" id = "allTime">';
                     while ($row = $result->fetch_assoc()) {
                         $name = $row['name'];
                         $wins = $row['wins'];
                         $image_url = $row['image_url'];
                         echo '<div class = playerRow>';
-                        echo "<img class = 'profile' src = '$image_url'><p>$name</p><p class = 'wins'>$wins</p>";
+
+                        if ($rank < 4) {
+                            switch($rank) {
+                                case 1;
+                                    echo "<img class = 'profile rank1' src = '$image_url'>";
+                                    break;
+                                case 2:
+                                    echo "<img class = 'profile rank2' src = '$image_url'>";
+                                    break;
+                                case 3:
+                                    echo "<img class = 'profile rank3' src = '$image_url'>";
+                                    break;
+                            }
+                            if ($wins < $winsCounter) {
+                                $winsCounter = $wins;
+                                $rank =  $rank + 1 ;
+                            }
+                        } else {
+                            echo "<img class = 'profile' src = '$image_url'>";
+                        }
+                        echo "<p>$name</p><p class = 'wins'>$wins</p>";
                         echo '</div>';
                     }
                     echo '</div>';
@@ -96,6 +117,9 @@
                 }
 
                 //generate today table
+                $rank = 1;
+                $winsCounter = 9999;
+
                 $sql = "SELECT u.name, u.image_url, COUNT(w.name) AS wins FROM users u
                 LEFT JOIN wins w ON u.name = w.name
                 WHERE DATE(w.time) = CURDATE() 
@@ -111,7 +135,27 @@
                         $wins = $row['wins'];
                         $image_url = $row['image_url'];
                         echo '<div class = playerRow>';
-                        echo "<img class = 'profile' src = '$image_url'><p>$name</p><p class = 'wins'>$wins</p>";
+
+                        if ($rank < 4) {
+                            switch($rank) {
+                                case 1;
+                                    echo "<img class = 'profile rank1' src = '$image_url'>";
+                                    break;
+                                case 2:
+                                    echo "<img class = 'profile rank2' src = '$image_url'>";
+                                    break;
+                                case 3:
+                                    echo "<img class = 'profile rank3' src = '$image_url'>";
+                                    break;
+                            }
+                            if ($wins < $winsCounter) {
+                                $winsCounter = $wins;
+                                $rank =  $rank + 1 ;
+                            }
+                        } else {
+                            echo "<img class = 'profile' src = '$image_url'>";
+                        }
+                        echo "<p>$name</p><p class = 'wins'>$wins</p>";
                         echo '</div>';
                     }
                     echo '</div>';
@@ -121,6 +165,9 @@
                 }
 
                 //generate week table
+                $rank = 1;
+                $winsCounter = 9999;
+
                 $sql = "SELECT u.name, u.image_url, COUNT(w.name) AS wins FROM users u
                 LEFT JOIN wins w ON u.name = w.name
                 WHERE DATE(w.time) >= CURDATE() - INTERVAL 7 DAY
@@ -136,7 +183,28 @@
                         $wins = $row['wins'];
                         $image_url = $row['image_url'];
                         echo '<div class = playerRow>';
-                        echo "<img class = 'profile' src = '$image_url'><p>$name</p><p class = 'wins'>$wins</p>";
+
+                        if ($rank < 4) {
+                            switch($rank) {
+                                case 1;
+                                    echo "<img class = 'profile rank1' src = '$image_url'>";
+                                    break;
+                                case 2:
+                                    echo "<img class = 'profile rank2' src = '$image_url'>";
+                                    break;
+                                case 3:
+                                    echo "<img class = 'profile rank3' src = '$image_url'>";
+                                    break;
+                            }
+                            if ($wins < $winsCounter) {
+                                $winsCounter = $wins;
+                                $rank =  $rank + 1 ;
+                            }
+                        } else {
+                            echo "<img class = 'profile' src = '$image_url'>";
+                        }
+
+                        echo "<p>$name</p><p class = 'wins'>$wins</p>";
                         echo '</div>';
                     }
                     echo '</div>';
