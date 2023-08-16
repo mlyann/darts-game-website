@@ -1,6 +1,5 @@
 html, body {
     overflow-x: hidden; /* Prevent horizontal scrolling */
-    overflow-y: hidden;
     touch-action: manipulation;
     background-color: #24292E;
     color: white;
