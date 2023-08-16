@@ -12,19 +12,19 @@
             function changeDateRange(interval) {
                 switch(interval) {
                     case 'today':
-                        document.getElementById("allTime").style.display = 'none';
+                        document.getElementById("month").style.display = 'none';
                         document.getElementById("week").style.display = 'none';
                         document.getElementById("today").style.display = 'flex';
                         break;
                     case 'week':
-                        document.getElementById("allTime").style.display = 'none';
+                        document.getElementById("month").style.display = 'none';
                         document.getElementById("today").style.display = 'none';
                         document.getElementById("week").style.display = 'flex';
                         break;
-                    case 'allTime':
+                    case 'month':
                         document.getElementById("week").style.display = 'none';
                         document.getElementById("today").style.display = 'none';
-                        document.getElementById("allTime").style.display = 'flex';
+                        document.getElementById("month").style.display = 'flex';
                         break;
                     default:
                         break;
@@ -34,11 +34,11 @@
             function handleButtonClick(button) {
                 var today_button = document.getElementById('today_button');
                 var week_button = document.getElementById('week_button');
-                var allTime_button = document.getElementById('allTime_button');
+                var month_button = document.getElementById('month_button');
 
                 today_button.classList.remove('active');
                 week_button.classList.remove('active');
-                allTime_button.classList.remove('active');
+                month_button.classList.remove('active');
 
                 // Toggle active class on the clicked button
                 if (button === 'today') {
@@ -47,9 +47,9 @@
                 } else if (button === 'week') {
                     week_button.classList.add('active');
                     changeDateRange('week');
-                } else if (button === 'allTime') {
-                    allTime_button.classList.add('active');
-                    changeDateRange('allTime');
+                } else if (button === 'month') {
+                    month_button.classList.add('active');
+                    changeDateRange('month');
                 }
             }
         </script>
@@ -59,17 +59,18 @@
         <h1>Leaderboard</h1>
 
         <div name="timeButtons">
-            <button onclick="handleButtonClick('today')" id="today_button">Today</button>
+            <button class = "active" onclick="handleButtonClick('today')" id="today_button">Today</button>
             <button onclick="handleButtonClick('week')" id="week_button">This Week</button>
-            <button class = "active" onclick="handleButtonClick('allTime')" id="allTime_button">All Time</button>
+            <button onclick="handleButtonClick('month')" id="month_button">This Month</button>
             <br><br>
         </div>
 
             <?php
                 require 'scripts/connect.php';
-                //generate allTime table
+                //generate month table
                 $sql = "SELECT u.name, u.image_url, COUNT(w.name) AS wins FROM users u
                     LEFT JOIN wins w ON u.name = w.name
+                    WHERE DATE(w.time) >= CURDATE() - INTERVAL 30 DAY
                     GROUP BY u.name, u.image_url
                     HAVING wins > 0
                     ORDER BY wins DESC;";
@@ -81,7 +82,7 @@
                         </div>";
                     $rank = 1;
                     $winsCounter = 9999;
-                    echo '<div class = "rowContainer" id = "allTime">';
+                    echo '<div class = "rowContainer" id = "month" style = "display: none;">';
                     while ($row = $result->fetch_assoc()) {
                         $name = $row['name'];
                         $wins = $row['wins'];
@@ -128,7 +129,7 @@
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
-                    echo '<div class = "rowContainer" id = "today" style = "display: none;">';
+                    echo '<div class = "rowContainer" id = "today">';
                     while ($row = $result->fetch_assoc()) {
                         $name = $row['name'];
                         $wins = $row['wins'];
