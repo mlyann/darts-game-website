@@ -15,9 +15,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     min-height: 100vh; /* Ensure content takes up at least the full viewport height */
     overflow-x: hidden; /* Prevent horizontal scrolling */
+    margin-top: 5rem;
 }
 
 /* Style the header */
@@ -71,6 +72,9 @@ img {
 #logo {
     max-width: 20vh;
     object-fit: contain;
+}
+#gameCreator {
+    font-weight: bold;
 }
 
 /* Add responsive styles for mobile devices */
