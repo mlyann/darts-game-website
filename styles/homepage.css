@@ -10,7 +10,8 @@ html {
 
 /* Set a background color and center the content */
 body {
-    background-color: #f2f2f2;
+    background-color: #3C4045;
+    color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,8 +45,8 @@ a {
     font-size: 18px;
     text-align: center;
     text-decoration: none;
-    color: #333;
-    background-color: #f2f2f2;
+    color: white;
+    background-color: #3C4045;
     border: 1px solid #ccc;
     border-radius: 4px;
     transition: background-color 0.3s ease;
@@ -75,12 +76,16 @@ img {
 /* Add responsive styles for mobile devices */
 @media only screen and (max-width: 1000px) {
     h1 {
-        font-size: 7vw;
+        font-size: 7rem;
         margin-top: 20px;
     }
 
     a {
-        font-size: 6vw;
+        font-size: 5rem;
         padding: 8px 16px;
+    }
+
+    #logo {
+        max-width: 30rem;
     }
 }
