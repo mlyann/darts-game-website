@@ -14,11 +14,28 @@ function newTurns(){
     }   
 }
 
+function updatePlayerAverage($player) {
+    global $conn;
+
+    $scoresQuery = "SELECT overall, turn FROM scores WHERE Name = '$player' AND turn = (SELECT MAX(turn) FROM scores WHERE Name = '$player');";
+    $scoresResult = mysqli_query($conn, $scoresQuery);
+    $scoresRow = mysqli_fetch_assoc($scoresResult);
+    $turn = $scoresRow['turn'];
+    $overall = $scoresRow['overall'];
+
+    $avg = round(($overall) / ($turn), 1);
+//TODO THIS UPDATES EVERY COLUMN IT IS INEFFICIENT
+    $avgQuery = "UPDATE scores SET average = $avg WHERE Name = '$player';";
+    mysqli_query($conn, $avgQuery);
+  }
+
 //get currentPlayer
 $query = "SELECT currentPlayer FROM game_data";
 $playerResult = mysqli_query($conn, $query);
 $row = mysqli_fetch_assoc($playerResult);
 $currentPlayer = $row['currentPlayer'];
+
+updatePlayerAverage($currentPlayer);
 
 //gets player names
 require "getPlayerNames.php";
