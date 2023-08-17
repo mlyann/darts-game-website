@@ -104,6 +104,9 @@
                 multiplierValue: multiplierValue
               },
               success: function(response) {
+                if (response == 'win') {
+                  window.location.href = "/winPage.php";
+                }
                 resolve(response);
               },
               error: function(xhr, status, error) {
