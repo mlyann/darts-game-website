@@ -6,10 +6,10 @@ function checkForNewGame(){
         if (response != game_id) {
             switch(document.referrer[document.referrer.length - 9]) {
                 case 'y': //scoreDisplayPage
-                    window.location.reload();
-                    break;
-                default: //winPage
                     window.location.href = '/scoreDisplayPage.php';
+                    break;
+                default: //scoring
+                    window.location.href = '/scoring.php';
                     break;
             }
         }
