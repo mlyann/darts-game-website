@@ -24,7 +24,7 @@ function displayInfoCD() {
 
           playerTotal = ((parseInt(player.first) || 0) + (parseInt(player.second) || 0) + (parseInt(player.third) || 0));
 
-          if (player.overall < 0 && player.overall == 1) {
+          if (player.overall < 0 || player.overall == 1) {
             player.overall = 'Bust!';
           } 
 
