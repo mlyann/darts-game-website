@@ -103,10 +103,8 @@ if ($currentPlayerIndex == (count($playerNames) - 1)) {
 
             $sql = "INSERT INTO wins (name, time) VALUES ('$bestPlayer', NOW())";
             mysqli_query($conn, $sql);
-            $sql = "UPDATE scores SET overall = 9999, turn = 999 WHERE turn = '$maxTurn' AND Name = '$bestPlayer'";
-            mysqli_query($conn, $sql);
-
             $conn->close();
+            echo 'win';
             exit();
         }
     }

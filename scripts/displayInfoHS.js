@@ -28,6 +28,10 @@ function displayInfoHS() {
           //adds round wins (Highscore)
           roundWinsCell = playerIndex +'roundWinsCell';
           updateTableCell(roundWinsCell,"Wins: "+player.rWins+'/'+numRounds);
+          //check win condition
+          if (player.rWins == numRounds) {
+            window.location.href = '/winPage.php';
+          }
 
           updateTableCell(overallCell, player.overall);
           updateTableCell(firstCell, player.first ?? '');

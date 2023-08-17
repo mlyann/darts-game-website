@@ -157,9 +157,14 @@
             url += 'HS.php';
 
           try {
-            await $.ajax({ 
+            const response = await $.ajax({ 
               url: url
             });
+
+            if (response == 'win') {
+              window.location.href = "/winPage.php";
+            }
+
           } catch (error) {
             console.error(error);
           }

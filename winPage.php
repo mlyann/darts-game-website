@@ -34,24 +34,56 @@
             $image = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png";
         }
 
-        $avgQuery = "SELECT average FROM scores WHERE name = '$winner' ORDER BY average DESC LIMIT 1;";
-        $avgResult = mysqli_query($conn, $avgQuery);
-        $avgRow = mysqli_fetch_assoc($avgResult);
-        $avg = $avgRow['average'];
+        $gamemodeQuery = "SELECT type FROM game_data;";
+        $gamemodeResult = mysqli_query($conn, $gamemodeQuery);
+        $gamemodeRow = mysqli_fetch_assoc($gamemodeResult);
+        $gamemode = $gamemodeRow['type'];
 
-        $conn->close();
+        if ($gamemode == 'Countdown') {
 
-        $html = 
-        '<div class = "winnerContainer">
-        <div class="confetti-container" id="confettiContainer"></div>
-        <img class = "profile" src="' . $image . '">
-        <p>' . $winner . ' wins!</p>
-        <p>Average: </p><p class ="avg">' . $avg . '</p>
-        <div class = "buttonContainer">
-        <a href="/create_game_page.php"><button>New Game</button></a>
-        <a href="/homepage.php"><button>Homepage</button></a>
-        </div>
-        </div>';
+            $avgQuery = "SELECT average FROM scores WHERE name = '$winner' ORDER BY average DESC LIMIT 1;";
+            $avgResult = mysqli_query($conn, $avgQuery);
+            $avgRow = mysqli_fetch_assoc($avgResult);
+            $avg = $avgRow['average'];
+
+            $conn->close();
+
+            $html = 
+            '<div class = "winnerContainer">
+            <div class="confetti-container" id="confettiContainer"></div>
+            <img class = "profile" src="' . $image . '">
+            <p>' . $winner . ' wins!</p>
+            <p>Average: </p><p class ="avg">' . $avg . '</p>
+            <div class = "buttonContainer">
+            <a href="/create_game_page.php"><button>New Game</button></a>
+            <a href="/homepage.php"><button>Homepage</button></a>
+            </div>
+            </div>';
+
+        }
+
+        elseif ($gamemode == 'Highscore') {
+
+            $bestScoreQuery = "SELECT MAX(overall) FROM scores WHERE name = '$winner'";
+            $bestScoreResult = mysqli_query($conn, $bestScoreQuery);
+            $bestScoreRow = mysqli_fetch_assoc($bestScoreResult);
+            $bestScore = $bestScoreRow['MAX(overall)'];
+
+            $conn->close();
+
+            $html = 
+            '<div class = "winnerContainer">
+            <div class="confetti-container" id="confettiContainer"></div>
+            <img class = "profile" src="' . $image . '">
+            <p>' . $winner . ' wins!</p>
+            <p>Best Score: </p><p class ="avg">' . $bestScore . '</p>
+            <div class = "buttonContainer">
+            <a href="/create_game_page.php"><button>New Game</button></a>
+            <a href="/homepage.php"><button>Homepage</button></a>
+            </div>
+            </div>';
+
+        }
 
         echo $html;
         ?>
