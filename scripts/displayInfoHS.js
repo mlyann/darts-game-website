@@ -35,8 +35,7 @@ function displayInfoHS() {
           updateTableCell(thirdCell, player.third ?? '');
 
           updateTableCell(roundCell,
-            ' = ' + playerTotal + ' (' + (player.avg  ?? "0") + ')'
-            );
+            ' = ' + playerTotal);
           
           if ((gamemode == 'Highscore') || (gamemode == 'Countdown' && player.isCurrent)) {
 
