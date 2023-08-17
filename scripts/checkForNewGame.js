@@ -8,8 +8,11 @@ function checkForNewGame(){
                 case 'y': //scoreDisplayPage
                     window.location.href = '/scoreDisplayPage.php';
                     break;
-                default: //scoring
+                case 'o': //scoring
                     window.location.href = '/scoring.php';
+                    break;
+                default: 
+                    window.location.href = '/homepage.php';
                     break;
             }
         }
