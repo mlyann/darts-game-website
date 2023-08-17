@@ -93,3 +93,27 @@ img {
         max-width: 30rem;
     }
 }
+
+
+/* iPad Pro 11-inch Portrait */
+@media only screen 
+  and (min-device-width: 834px) 
+  and (max-device-width: 834px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+  /* Your styles for iPad Pro 11-inch portrait */
+  h1 {
+    font-size: 5rem;
+    margin-top: 20px;
+}
+
+a {
+    font-size: 3.5rem;
+    padding: 8px 16px;
+}
+
+#logo {
+    max-width: 15rem;
+}
+}
+
