@@ -12,6 +12,7 @@
     <script type="text/javascript" src="scripts/multiplier.js"></script>
     <script type="text/javascript" src="scripts/displayInfoCD.js"></script>
     <script type="text/javascript" src="scripts/displayInfoHS.js"></script>
+    <script type="text/javascript" src="scripts/rearrangePlayers.js"></script>
     <script>
 
         //get the gamemode and number of players
@@ -163,6 +164,10 @@
 
             if (response == 'win') {
               window.location.href = "/winPage.php";
+            }
+            else if (response.split(':')[0] == 'Winning Player Index') {
+              const winningPlayerIndex = response.split(':')[1];
+              rearrangePlayers(winningPlayerIndex, playerCount); 
             }
 
           } catch (error) {

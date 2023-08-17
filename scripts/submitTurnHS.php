@@ -3,7 +3,7 @@ require 'connect.php';
 
 //adds new turn rows for each player
 function newTurns(){
-    global $conn, $playerNames, $maxTurn;
+    global $conn, $playerNames, $maxTurn, $bestPlayer;
 
     foreach($playerNames as $p){
 
@@ -12,6 +12,15 @@ function newTurns(){
             echo "Error: " . mysqli_error($conn);
         }
     }   
+
+    //make winning player go first
+    if ($bestPlayer) {
+        $setFirstPlayerQuery = "UPDATE game_data SET dartIndex = '0', currentPlayer = '$bestPlayer';";
+        mysqli_query($conn, $setFirstPlayerQuery);
+        $bestPlayerIndex = array_search($bestPlayer, $playerNames);
+        echo 'Winning Player Index:' . $bestPlayerIndex;
+        exit();
+    }
 }
 
 function updatePlayerAverage($player) {
@@ -24,10 +33,11 @@ function updatePlayerAverage($player) {
     $overall = $scoresRow['overall'];
 
     $avg = round(($overall) / ($turn), 1);
+
 //TODO THIS UPDATES EVERY COLUMN IT IS INEFFICIENT
     $avgQuery = "UPDATE scores SET average = $avg WHERE Name = '$player';";
     mysqli_query($conn, $avgQuery);
-  }
+}
 
 //get currentPlayer
 $query = "SELECT currentPlayer FROM game_data";
@@ -111,8 +121,6 @@ if ($currentPlayerIndex == (count($playerNames) - 1)) {
     newTurns();
 }
 
-
-//updates game_data after player turn
 $nextPlayer = $playerNames[($currentPlayerIndex + 1) % count($playerNames)];
 $sql = "UPDATE game_data SET dartIndex = '0', currentPlayer ='$nextPlayer'";
 mysqli_query($conn, $sql);

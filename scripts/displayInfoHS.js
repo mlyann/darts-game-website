@@ -50,8 +50,9 @@ function displayInfoHS() {
           }
 
           playerIndex++;
-      });
+      }
       
+      );
     },
     error: function(xhr, status, error) {
       console.error(error);
