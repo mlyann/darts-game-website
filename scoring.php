@@ -18,17 +18,19 @@
         <?php
           require 'scripts/connect.php';
 
-          $query = "SELECT type, player_count FROM game_data";
+          $query = "SELECT type, player_count, number_of_rounds FROM game_data";
           $result = mysqli_query($conn, $query);
 
           if ($result && $result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $mode = $row['type'];
             $playerCount = $row['player_count'];
+            $numRounds = $row['number_of_rounds'];
           }
 
           echo "var gamemode = '$mode';";
           echo "var playerCount = '$playerCount';";
+          echo "var numRounds = '$numRounds';";
           $conn->close();
         ?>
 

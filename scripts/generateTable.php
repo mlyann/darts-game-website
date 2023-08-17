@@ -7,6 +7,7 @@
     $row = $players->fetch_assoc();
     $playersArray = json_decode($row['players'], true);
     $starting_points = $row['starting_points'];
+    $gamemode = $row['type'];
 
     $playerIndex = 1;
     

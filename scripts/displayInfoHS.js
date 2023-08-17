@@ -27,7 +27,7 @@ function displayInfoHS() {
 
           //adds round wins (Highscore)
           roundWinsCell = playerIndex +'roundWinsCell';
-          updateTableCell(roundWinsCell,"Wins: "+player.rWins);
+          updateTableCell(roundWinsCell,"Wins: "+player.rWins+'/'+numRounds);
 
           updateTableCell(overallCell, player.overall);
           updateTableCell(firstCell, player.first ?? '');
