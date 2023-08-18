@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="user-scalable=no">
   <title>Score Display Page</title>
-  <link rel="stylesheet" type="text/css" href="styles/scoreDisplayPage.css">
+  <link id = "stylesheet" rel="stylesheet" type="text/css" href="styles/scoreDisplayPage.css">
   <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script type="text/javascript" src="scripts/getCurrentPlayer.js"></script>
   <script type="text/javascript" src="scripts/updateTableCell.js"></script>
@@ -17,7 +17,7 @@
       <?php
         require 'scripts/connect.php';
 
-        $query = "SELECT id, type, number_of_rounds FROM game_data";
+        $query = "SELECT id, type, number_of_rounds, player_count FROM game_data";
         $result = mysqli_query($conn, $query);
 
         if ($result && $result->num_rows > 0) {
@@ -25,14 +25,24 @@
           $mode = $row['type'];
           $game_id = $row['id'];
           $numRounds = $row['number_of_rounds'];
+          $playerCount = $row['player_count'];
         }
 
+        echo "var playerCount = '$playerCount';";
         echo "var gamemode = '$mode';";
         echo "var game_id = '$game_id';";
         echo "var numRounds = '$numRounds';";
         
         $conn->close();
       ?>
+
+        //determine sthe stylesheet based on the number of players and the gamemode
+        switch(playerCount) {
+          case '5':
+            stylesheet.href = 'styles/scoreDisplayPage5.css';
+          default:
+            break;
+        }
 
     function displayInfo() {
               if (gamemode == 'Countdown') {
