@@ -38,8 +38,12 @@ function displayInfoHS() {
           updateTableCell(secondCell,player.second ?? '');
           updateTableCell(thirdCell, player.third ?? '');
 
-          updateTableCell(roundCell,
-            ' = ' + playerTotal);
+          if (playerCount < 4) {
+            updateTableCell(roundCell,
+              ' = ' + playerTotal);
+          } else {
+            updateTableCell(roundCell, playerTotal);
+          }
           
           if ((gamemode == 'Highscore') || (gamemode == 'Countdown' && player.isCurrent)) {
 
