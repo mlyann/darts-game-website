@@ -57,8 +57,8 @@
 
 .profile {
   border-radius: 50%;
-  width: 9vw;
-  height: 9vw;
+  width: 5rem;
+  height: 5rem;
   flex: 0 0 auto;
   object-fit: cover;
 }
@@ -73,7 +73,7 @@
 
   p.overall {
     font-weight: bold;
-    font-size: 5vw;
+    font-size: 2.5rem;
     transform: scale(1.5);
     margin-left: auto;
     color: white;
@@ -89,9 +89,9 @@
 
 
   .infoCell {
-    font-size: 5vw;
+    font-size: 3rem;
     background-color: #efefef;
-    height: 7vw;
+    height: 4rem;
     border-collapse: separate;
     border-right: 10px solid #24292E;
   }
@@ -137,7 +137,7 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 5vw;
+    font-size: 3rem;
   }
 
   .overallCell {
@@ -163,7 +163,7 @@
   .playerDiv {
     width: 85vw;
     flex: content;
-    padding: 4%;
+    padding: 3%;
   }
 
   #infoContainer {
