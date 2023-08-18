@@ -65,8 +65,27 @@ $overallResult = mysqli_query($conn, $overallQuery);
 $row = mysqli_fetch_assoc($overallResult);
 $overall = $row['overall'];
 
-//each player has taken their turn
-if ($currentPlayerIndex == (count($playerNames) - 1)) {
+// if each player has taken their turn
+//taking a turn sets average, this is how we check if every player has gone
+$allPlayersThrownQuery = "SELECT average FROM scores WHERE turn = (SELECT MAX(turn) FROM scores);";
+$allPlayersThrownResult = mysqli_query($conn, $allPlayersThrownQuery);
+
+if ($allPlayersThrownResult) {
+    $allPlayersThrown = true;
+
+    while ($row = mysqli_fetch_assoc($allPlayersThrownResult)) {
+        if ($row['average'] === null) {
+            $allPlayersThrown = false;
+            break; // No need to continue checking if one value is null
+        }
+    }
+
+} else {
+    echo "allPlayersThrownQuery failed: " . mysqli_error($conn);
+}
+
+
+if ($allPlayersThrown) {
     
     //gets the highest scoring player and check for ties
     $query = "SELECT name, overall
