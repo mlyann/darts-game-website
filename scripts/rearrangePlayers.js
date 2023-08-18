@@ -8,15 +8,16 @@ function rearrangePlayers(winningPlayerIndex, playerCount) {
     '</tr>' +
     '</table>';
 
-
-    for (let i = 1; i <= playerCount; i++) {
-        if (i != winningPlayerIndex) {
-            newInner = '<div class="playerDiv" id = "' + i + 'playerDiv">' + document.getElementById(i + 'playerDiv').innerHTML + '</div>';
-            newDivs = newDivs + newInner;
+    let j = winningPlayerIndex + 1;
+    for (let i = 0; i < playerCount - 1; i++) {
+        newInner = '<div class="playerDiv" id = "' + j + 'playerDiv">' + document.getElementById(j + 'playerDiv').innerHTML + '</div>';
+        newDivs = newDivs + newInner;
+        if (j == playerCount) {
+            j = 1;
+        }
+        else {
+            j = j + 1;
         }
     }
     document.getElementById('infoContainer').innerHTML = newDivs + infoTable;
 }
-
-
-
