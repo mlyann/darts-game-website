@@ -223,6 +223,7 @@
                 echo $html;
             
             $html = '</div>';
+            echo $html;
     }
 
 
