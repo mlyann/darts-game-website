@@ -27,11 +27,6 @@
     background-color: #24292E;
   }
 
-  div {
-    justify-content: center;
-    align-items: center;
-  }
-
 .profile {
   border-radius: 50%;
   width: 10vw;
@@ -180,6 +175,7 @@
 
 .currentOne {
   width: 85vw;
+  display: flex;
 }
 
 .playerDiv.full .bigCell {
