@@ -12,19 +12,37 @@
             function changeDateRange(interval) {
                 switch(interval) {
                     case 'today':
-                        document.getElementById("month").style.display = 'none';
-                        document.getElementById("week").style.display = 'none';
-                        document.getElementById("today").style.display = 'flex';
+                        if (document.getElementById("month")) {
+                            document.getElementById("month").style.display = 'none';
+                        }
+                        if (document.getElementById("week")) {
+                            document.getElementById("week").style.display = 'none';
+                        }
+                        if (document.getElementById("today")) {
+                            document.getElementById("today").style.display = 'flex';
+                        }
                         break;
                     case 'week':
-                        document.getElementById("month").style.display = 'none';
-                        document.getElementById("today").style.display = 'none';
-                        document.getElementById("week").style.display = 'flex';
+                        if (document.getElementById("month")) {
+                            document.getElementById("month").style.display = 'none';
+                        }
+                        if (document.getElementById("today")) {
+                            document.getElementById("today").style.display = 'none';
+                        }
+                        if (document.getElementById("week")) {
+                            document.getElementById("week").style.display = 'flex';
+                        }
                         break;
                     case 'month':
-                        document.getElementById("week").style.display = 'none';
-                        document.getElementById("today").style.display = 'none';
-                        document.getElementById("month").style.display = 'flex';
+                        if (document.getElementById("week")) {
+                            document.getElementById("week").style.display = 'none';
+                        }
+                        if (document.getElementById("today")) {
+                            document.getElementById("today").style.display = 'none';
+                        }
+                        if (document.getElementById("month")) {
+                            document.getElementById("month").style.display = 'flex';
+                        }
                         break;
                     default:
                         break;
