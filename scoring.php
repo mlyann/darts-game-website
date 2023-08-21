@@ -50,7 +50,7 @@
             break;
         }
 
-        generateTable();
+        generateTable('Dustin Cory Charles Alex');
 
         function displayInfo() {
           if (gamemode == 'Countdown') {
@@ -212,7 +212,7 @@
 
 <div class = "center" id = "tableWrapper"> 
   <div class = "center" id = "infoContainer">
-    <div id = "generatedTable"></div>
+    <div id = "generatedTable" style = "display: flex; flex-direction: column;"></div>
 <table class = "center gameInfo">
   <tr>
     <td class = "infoCell" id ="helpCell"></td>
