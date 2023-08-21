@@ -13,6 +13,7 @@
     <script type="text/javascript" src="scripts/displayInfoCD.js"></script>
     <script type="text/javascript" src="scripts/displayInfoHS.js"></script>
     <script type="text/javascript" src="scripts/rearrangePlayers.js"></script>
+    <script type="text/javascript" src="scripts/generateTable.js"></script>
     <script>
 
         //get the gamemode and number of players
@@ -48,6 +49,8 @@
           default:
             break;
         }
+
+        generateTable();
 
         function displayInfo() {
           if (gamemode == 'Countdown') {
@@ -209,7 +212,7 @@
 
 <div class = "center" id = "tableWrapper"> 
   <div class = "center" id = "infoContainer">
-<?php require 'scripts/generateTable.php' ?>
+    <div id = "generatedTable"></div>
 <table class = "center gameInfo">
   <tr>
     <td class = "infoCell" id ="helpCell"></td>

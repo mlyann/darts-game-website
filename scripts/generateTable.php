@@ -17,6 +17,7 @@
         case 2:
         case 3:
         case 4:
+            $output = '';
             foreach ($playersArray as $player) {
         
                 //assigns cell IDs
@@ -61,15 +62,17 @@
                     $html = substr($html,0,$pt) . '<p class = "roundWins" id="'.$rWinsCell.'"></p>' . substr($html,$pt);
                 }
         
-                echo $html;
+                $output = $output . $html;
         
                 $playerIndex++;
             }
+            echo $output;
             break;
         case 5:
+            $output = '';
             $html = 
             '<div class = "rowOfTwo">';
-            echo $html;
+            $output = $output . $html;
             foreach ($playersArray as $player) {
 
                 //assigns cell IDs
@@ -113,7 +116,7 @@
                     $html = substr($html,0,$pt) . '<p class = "roundWins" id="'.$rWinsCell.'"></p>' . substr($html,$pt);
                 }
         
-                echo $html;
+                $output = $output . $html;
         
                 $playerIndex++;
                 if ($playerIndex == 3) {
@@ -122,7 +125,7 @@
             }
             $html = 
             '</div><div class = "rowOfTwo">'; 
-            echo $html;
+            $output = $output . $html;
             $playersArray = array_slice($playersArray, 2, 3);
             foreach ($playersArray as $player) {
 
@@ -167,7 +170,7 @@
                     $html = substr($html,0,$pt) . '<p class = "roundWins" id="'.$rWinsCell.'"></p>' . substr($html,$pt);
                 }
         
-                echo $html;
+                $output = $output . $html;
         
                 $playerIndex++;
                 if ($playerIndex == 5) {
@@ -175,7 +178,7 @@
                 }
             }
             $html = '</div><div class = "currentOne">';
-            echo $html;
+            $output = $output . $html;
             $lastPlayer = $playersArray[2];
 
                 //assigns cell IDs
@@ -220,10 +223,13 @@
                     $html = substr($html,0,$pt) . '<p class = "roundWins" id="'.$rWinsCell.'"></p>' . substr($html,$pt);
                 }
         
-                echo $html;
+                $output = $output . $html;
             
             $html = '</div>';
-            echo $html;
+            $output = $output . $html;
+            echo $output;
+            break;
+
     }
 
 
