@@ -38,8 +38,12 @@
 
         //determine sthe stylesheet based on the number of players and the gamemode
         switch(playerCount) {
+          case '4':
+            stylesheet.href = 'styles/scoreDisplayPage4.css';
+            break;
           case '5':
             stylesheet.href = 'styles/scoreDisplayPage5.css';
+            break;
           default:
             break;
         }
