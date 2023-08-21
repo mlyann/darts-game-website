@@ -76,7 +76,7 @@
     $getWinningTurnInfoResult = mysqli_query($conn, $getWinningTurnInfoQuery);
     $getWinningTurnInfoRow = mysqli_fetch_assoc($getWinningTurnInfoResult);
     $winningTurnScore = $getWinningTurnInfoRow['score'];
-    $winningTurn = $getWinningTurInfonRow['turn'];
+    $winningTurn = $getWinningTurnInfoRow['turn'];
 
     $avg = (($winnerAvg * ($winningTurn-1)) + $winningTurnScore) / $winningTurn;
 
