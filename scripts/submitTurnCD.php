@@ -78,7 +78,7 @@
     $winningTurnScore = $getWinningTurnInfoRow['score'];
     $winningTurn = $getWinningTurInfonRow['turn'];
 
-    $avg = ($winnerAvg + $winningTurnScore) / $winningTurn;
+    $avg = (($winnerAvg * ($winningTurn-1)) + $winningTurnScore) / $winningTurn;
 
     $winnerAvgQuery = "UPDATE scores SET average = $avg WHERE Name = '$currentPlayer';";
     mysqli_query($conn, $winnerAvgQuery);
