@@ -45,27 +45,23 @@
             $getWinnerAvgResult = mysqli_query($conn, $getWinnerAvgQuery);
             $getWinnerAvgRow = mysqli_fetch_assoc($getWinnerAvgResult);
             $winnerAvg = $getWinnerAvgRow['average'];
-
-            $getWinningTurnScoreQuery = "SELECT SUM(COALESCE(first, 0) + COALESCE(second, 0) + COALESCE(third, 0)) AS score
-                                        FROM scores WHERE Name = '$currentPlayer' AND overall = 0;";
-            $getWinningTurnScoreResult = mysqli_query($conn, $getWinningTurnScoreQuery);
-            $getWinningTurnScoreRow = mysqli_fetch_assoc($getWinningTurnScoreResult);
-            $winningTurnScore = $getWinningTurnScoreRow['score'];
-
-            $getWinningTurnQuery = "SELECT turn FROM scores WHERE Name = '$currentPlayer' AND overall = 0;";
-            $getWinningTurnResult = mysqli_query($conn, $getWinningTurnQuery);
-            $getWinningTurnRow = mysqli_fetch_assoc($getWinningTurnResult);
-            $winningTurn = $getWinningTurnRow['turn'];
-
-            $avg = ($winnerAvg + $winningTurnScore) / $winningTurn;
-
+        
+            $getWinningTurnInfoQuery = "SELECT SUM(COALESCE(first, 0) + COALESCE(second, 0) + COALESCE(third, 0)) AS score, turn
+                                          FROM scores WHERE Name = '$currentPlayer' AND overall = 0;";
+            $getWinningTurnInfoResult = mysqli_query($conn, $getWinningTurnInfoQuery);
+            $getWinningTurnInfoRow = mysqli_fetch_assoc($getWinningTurnInfoResult);
+            $winningTurnScore = $getWinningTurnInfoRow['score'];
+            $winningTurn = $getWinningTurnInfoRow['turn'];
+        
+            $avg = (($winnerAvg * ($winningTurn-1)) + $winningTurnScore) / $winningTurn;
+        
             $winnerAvgQuery = "UPDATE scores SET average = $avg WHERE Name = '$currentPlayer';";
             mysqli_query($conn, $winnerAvgQuery);
-
+        
             //update wins
             $sql = "INSERT INTO wins (name, time) VALUES ('$currentPlayer', NOW())";
             mysqli_query($conn, $sql);
-
+        
             $sql = "INSERT INTO scores (name, overall, turn) VALUES ('$currentPlayer', -353, 999)";
             mysqli_query($conn, $sql);
             echo 'win';
