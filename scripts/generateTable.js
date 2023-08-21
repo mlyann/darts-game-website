@@ -1,7 +1,10 @@
-function generateTable() {
+function generateTable(order = "default") {
+    var order = {order: order};
+
     $.ajax({
         url: 'scripts/generateTable.php',
         method: 'GET',
+        data: order,
         dataType: 'html',
         success: function(data) {
             console.log(data);

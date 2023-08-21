@@ -1,6 +1,8 @@
 <?php
     require 'connect.php';
 
+    $order = $_GET['order'];
+
     //get starting points, players array, gamemode
     $sql = "SELECT starting_points, players, type, player_count from game_data";
     $players = mysqli_query($conn, $sql);
@@ -9,6 +11,8 @@
     $starting_points = $row['starting_points'];
     $gamemode = $row['type'];
     $playerCount = $row['player_count'];
+
+    if ($order == 'default') {
 
     $playerIndex = 1;
     
@@ -231,6 +235,7 @@
             break;
 
     }
+}
 
 
     $conn->close();
