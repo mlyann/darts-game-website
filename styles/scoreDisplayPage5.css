@@ -219,9 +219,10 @@
 }
 
 .playerDiv.playerDiv.reduced p.overall {
-  margin-left: 3rem;
+  margin-left: 1rem;
   max-width: 2rem;
   padding: 0;
+  font-size: 3.5rem;
 }
   /* .numInput:active:hover{
   } */
