@@ -20,7 +20,7 @@
         <?php
           require 'scripts/connect.php';
 
-          $query = "SELECT type, player_count, number_of_rounds FROM game_data";
+          $query = "SELECT type, player_count, number_of_rounds, players FROM game_data";
           $result = mysqli_query($conn, $query);
 
           if ($result && $result->num_rows > 0) {
@@ -28,11 +28,13 @@
             $mode = $row['type'];
             $playerCount = $row['player_count'];
             $numRounds = $row['number_of_rounds'];
+            $playersArray = $row['players'];
           }
 
           echo "var gamemode = '$mode';";
           echo "var playerCount = '$playerCount';";
           echo "var numRounds = '$numRounds';";
+          echo "var playersArray = " . $playersArray . ";";
           $conn->close();
         ?>
 
@@ -50,19 +52,22 @@
             break;
         }
 
-        generateTable('Dustin Cory Charles Alex');
+        generateTable();
 
         function displayInfo() {
           if (gamemode == 'Countdown') {
             displayInfoCD();
           }
           else if (gamemode == 'Highscore') {
-            displayInfoHS();
+            displayInfoHS(order);
           }
         }
-
+        
         multiplierValue = 1;
         let multiplierActive = false; // Flag to track the active state of the multiplier
+
+        //set player order to default (for rearranging during highscore games)
+        var order = 'default';
 
         //populate info cells of table
         getCurrentPlayer();
@@ -172,7 +177,7 @@
             }
             else if (response.split(':')[0] == 'Winning Player Index') {
               const winningPlayerIndex = response.split(':')[1];
-              rearrangePlayers(winningPlayerIndex, playerCount); 
+              rearrangePlayers(winningPlayerIndex); 
             }
 
           } catch (error) {

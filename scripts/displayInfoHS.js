@@ -1,8 +1,10 @@
 function displayInfoHS(order = 'default') {
+  var order = {order:order};
 
   $.ajax({
     url: 'scripts/displayInfoHS.php',
     method: 'GET',
+    data: order,
     datatype: 'json',
     success: function(response) {
       playerIndex = 1;

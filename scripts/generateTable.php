@@ -13,7 +13,7 @@
     $playerCount = $row['player_count'];
 
     if ($order != 'default') {
-        $playersArray = explode(' ', $order);
+        $playersArray = explode(',', $order);
     }
 
     $playerIndex = 1;

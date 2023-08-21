@@ -20,7 +20,7 @@ if ($order == 'default' || !$order) {
     $playersArray = json_decode($playersJSON, true);
 }
 else {
-    $playersArray = explode(' ', $order);
+    $playersArray = explode(',', $order);
 }
 
 if($gamemode == 'Countdown')
