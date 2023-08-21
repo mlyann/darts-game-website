@@ -17,7 +17,7 @@ function checkForNewGame(){
                     break;
             }
           }
-          else if (window.location.pathname == 'scoreDisplayPage.php') {
+          else if (window.location.pathname == '/scoreDisplayPage.php') {
             location.reload();
           }
         }
