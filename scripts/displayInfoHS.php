@@ -1,5 +1,5 @@
 <?php
-
+$order = $_GET['order'];
 require 'connect.php';
 
 if ($conn->connect_error) {
@@ -16,7 +16,12 @@ $currentPlayer = $row['currentPlayer'];
 $dartIndex = $row['dartIndex'];
 $starting_points = $row['starting_points'];
 
-$playersArray = json_decode($playersJSON, true);
+if ($order == 'default' || !$order) {
+    $playersArray = json_decode($playersJSON, true);
+}
+else {
+    $playersArray = explode(' ', $order);
+}
 
 if($gamemode == 'Countdown')
     require 'checkout.php';

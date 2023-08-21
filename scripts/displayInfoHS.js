@@ -1,4 +1,4 @@
-function displayInfoHS() {
+function displayInfoHS(order = 'default') {
 
   $.ajax({
     url: 'scripts/displayInfoHS.php',
