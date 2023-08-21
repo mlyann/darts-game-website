@@ -71,16 +71,12 @@
     $getWinnerAvgRow = mysqli_fetch_assoc($getWinnerAvgResult);
     $winnerAvg = $getWinnerAvgRow['average'];
 
-    $getWinningTurnScoreQuery = "SELECT SUM(COALESCE(first, 0) + COALESCE(second, 0) + COALESCE(third, 0)) AS score
+    $getWinningTurnInfoQuery = "SELECT SUM(COALESCE(first, 0) + COALESCE(second, 0) + COALESCE(third, 0)) AS score, turn
                                   FROM scores WHERE Name = '$currentPlayer' AND overall = 0;";
-    $getWinningTurnScoreResult = mysqli_query($conn, $getWinningTurnScoreQuery);
-    $getWinningTurnScoreRow = mysqli_fetch_assoc($getWinningTurnScoreResult);
-    $winningTurnScore = $getWinningTurnScoreRow['score'];
-
-    $getWinningTurnQuery = "SELECT turn FROM scores WHERE Name = '$currentPlayer' AND overall = 0;";
-    $getWinningTurnResult = mysqli_query($conn, $getWinningTurnQuery);
-    $getWinningTurnRow = mysqli_fetch_assoc($getWinningTurnResult);
-    $winningTurn = $getWinningTurnRow['turn'];
+    $getWinningTurnInfoResult = mysqli_query($conn, $getWinningTurnInfoQuery);
+    $getWinningTurnInfoRow = mysqli_fetch_assoc($getWinningTurnInfoResult);
+    $winningTurnScore = $getWinningTurnInfoRow['score'];
+    $winningTurn = $getWinningTurInfonRow['turn'];
 
     $avg = ($winnerAvg + $winningTurnScore) / $winningTurn;
 
