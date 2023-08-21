@@ -12,7 +12,9 @@
     $gamemode = $row['type'];
     $playerCount = $row['player_count'];
 
-    if ($order == 'default') {
+    if ($order != 'default') {
+        $playersArray = explode(' ', $order);
+    }
 
     $playerIndex = 1;
     
@@ -235,7 +237,6 @@
             break;
 
     }
-}
 
 
     $conn->close();
