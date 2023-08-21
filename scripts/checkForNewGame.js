@@ -4,6 +4,7 @@ function checkForNewGame(){
       type: "GET",
       success: function(response){
         if (response != game_id) {
+          if (window.location.pathname == '/winPage.php') {
             switch(document.referrer[document.referrer.length - 9]) {
                 case 'y': //scoreDisplayPage
                     window.location.href = '/scoreDisplayPage.php';
@@ -15,6 +16,10 @@ function checkForNewGame(){
                     window.location.href = '/homepage.php';
                     break;
             }
+          }
+          else if (window.location.pathname == 'scoreDisplayPage.php') {
+            location.reload();
+          }
         }
         setTimeout(checkForNewGame, 5000);
       },
