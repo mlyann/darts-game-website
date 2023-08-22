@@ -8,7 +8,6 @@ async function displayInfo() {
             url: 'scripts/getOrder.php',
             method: 'GET',
             success: function(data) {
-              console.log('got order: ' + data);
               resolve(data); // Resolve the Promise with the data
             },
             error: function(xhr, status, error) {

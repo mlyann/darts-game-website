@@ -4,7 +4,6 @@ function displayNames() {
       method: 'GET',
       datatype: 'json',
       success: function(response) {
-        console.log(response);
         playerList = JSON.parse(response);
         playerIndex = 1;
 
