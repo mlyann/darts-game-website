@@ -38,5 +38,6 @@ CREATE TABLE `game_data` (
   `time` timestamp NOT NULL,
   `currentPlayer` varchar(50) DEFAULT NULL,
   `dartIndex` tinyint DEFAULT NULL,
+  `modified_order` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
