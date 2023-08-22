@@ -14,6 +14,7 @@
     <script type="text/javascript" src="scripts/displayInfoHS.js"></script>
     <script type="text/javascript" src="scripts/rearrangePlayers.js"></script>
     <script type="text/javascript" src="scripts/generateTable.js"></script>
+    <script type="text/javascript" src="scripts/displayInfo.js"></script>
     <script>
 
         //get the gamemode and number of players
@@ -53,21 +54,9 @@
         }
 
         generateTable();
-
-        function displayInfo() {
-          if (gamemode == 'Countdown') {
-            displayInfoCD();
-          }
-          else if (gamemode == 'Highscore') {
-            displayInfoHS(order);
-          }
-        }
         
         multiplierValue = 1;
         let multiplierActive = false; // Flag to track the active state of the multiplier
-
-        //set player order to default (for rearranging during highscore games)
-        var order = 'default';
 
         //populate info cells of table
         getCurrentPlayer();

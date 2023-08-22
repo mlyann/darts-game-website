@@ -11,6 +11,7 @@
   <script type="text/javascript" src="scripts/displayInfoCD.js"></script>
   <script type="text/javascript" src="scripts/displayInfoHS.js"></script>
   <script type="text/javascript" src="scripts/checkForNewGame.js"></script>
+  <script type="text/javascript" src="scripts/displayInfo.js"></script>
 
   <script>
       //get relevant game data
@@ -47,15 +48,6 @@
           default:
             break;
         }
-
-    function displayInfo() {
-              if (gamemode == 'Countdown') {
-                displayInfoCD();
-              }
-              else if (gamemode = 'Highscore') {
-                displayInfoHS();
-              }
-            }
 
     //populate info cells of table
     getCurrentPlayer();
