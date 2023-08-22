@@ -36,7 +36,6 @@
             
             playerForm.innerHTML = "";
 
-
             if (playerCount !== "") {
                 for (var i = 1; i <= playerCount; i++) {
                     var label = document.createElement("label");
@@ -47,11 +46,16 @@
                     select.id = "player_name_" + i;
                     select.name = "player_name_" + i;
                     <?php require 'scripts/fetch_names.php'; ?>
+                    //keeps current values when changing length
+                    if (i <= playersArray.length) {
+                        select.value = playersArray[i - 1];
+                    }
 
                     // Append the label, select, and line break to the form
                     playerForm.appendChild(label);
                     playerForm.appendChild(select);
                     playerForm.appendChild(document.createElement("br"));
+
                 }
             }
 
