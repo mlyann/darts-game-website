@@ -99,8 +99,8 @@
   }
 
   .scoreCell {
-    min-width: 5vw;
-    max-width: 5vw;
+    width: 15vw;
+    max-width: 15vw;
     font-size: 5vw;
     background-color: #3C4045;
     color: white;
