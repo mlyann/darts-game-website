@@ -16,7 +16,7 @@ $currentPlayer = $row['currentPlayer'];
 $dartIndex = $row['dartIndex'];
 $starting_points = $row['starting_points'];
 
-if ($order == 'default' || !$order) {
+if ($order == null || !$order) {
     $playersArray = json_decode($playersJSON, true);
 }
 else {

@@ -1,5 +1,9 @@
-function displayInfoHS(order = 'default') {
-  var order = {order:order};
+function displayInfoHS(order) {
+  if (order != null) {
+    order = {order:order};
+  }
+  //console.log('order:' + order);
+  
 
   $.ajax({
     url: 'scripts/displayInfoHS.php',
