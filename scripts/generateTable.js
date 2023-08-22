@@ -1,4 +1,4 @@
-function generateTable(order = "default") {
+function generateTable(order) {
     var order = {order: order};
 
     $.ajax({
