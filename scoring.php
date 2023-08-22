@@ -216,7 +216,7 @@
 
 <div class = "center" id = "tableWrapper"> 
   <div class = "center" id = "infoContainer">
-    <div id = "generatedTable" style = "display: flex; flex-direction: column;"></div>
+    <div id = "generatedTable" style = "display: flex; flex-direction: column; align-items: center;"></div>
 <table class = "center gameInfo">
   <tr>
     <td class = "infoCell" id ="helpCell"></td>

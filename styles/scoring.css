@@ -162,7 +162,6 @@
 
   .playerDiv {
     width: 85vw;
-    flex: content;
     padding: 4%;
   }
 
@@ -196,6 +195,7 @@
   align-items: center;
   margin-top: -5%;
 }
+
   /* .numInput:active:hover{
   } */
 }
