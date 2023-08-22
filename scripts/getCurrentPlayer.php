@@ -7,18 +7,23 @@ if ($conn->connect_error) {
 }
 
 //gets current player
-$query = "SELECT currentPlayer FROM game_data";
-$result = $conn->query($query);
+$query = "SELECT currentPlayer, modified_order FROM game_data;";
+$result = mysqli_query($conn, $query);
 
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
     $currentPlayer = $row['currentPlayer'];
+    $modified_order = $row['modified_order'];
 }
 
 //get index of currentplayer
 require "getPlayerNames.php";
-
-$currentPlayerIndex = array_search($currentPlayer, $playerNames);
+if ($modified_order == null) {
+    $currentPlayerIndex = array_search($currentPlayer, $playerNames);
+} else {
+    $modifiedPlayerNames = explode(',', $modified_order);
+    $currentPlayerIndex = array_search($currentPlayer, $modifiedPlayerNames);
+}
 
 $conn->close();
 
