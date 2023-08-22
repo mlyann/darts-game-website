@@ -39,5 +39,6 @@ CREATE TABLE `game_data` (
   `currentPlayer` varchar(50) DEFAULT NULL,
   `dartIndex` tinyint DEFAULT NULL,
   `modified_order` varchar(255) DEFAULT NULL,
+  `new_table_flag` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
 );
