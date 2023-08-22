@@ -2,7 +2,6 @@ function rearrangePlayers(winningPlayerIndex) {
     //create new order
 
     order = playersArray[winningPlayerIndex];
-    console.log('appending:' + winningPlayerIndex);
 
     var i = parseInt(winningPlayerIndex);
     i = (i + 1) % playerCount;
@@ -12,6 +11,14 @@ function rearrangePlayers(winningPlayerIndex) {
         
         // Increment the index and wrap around if needed
         i = (i + 1) % playerCount;
+    }
+
+    if (playerCount == '5') {
+        orderArray = order.split(',');
+        temp = orderArray[0];
+        orderArray[0] = orderArray[4];
+        orderArray[4] = temp;
+        order = orderArray.join(',');
     }
 
     //update order on server
