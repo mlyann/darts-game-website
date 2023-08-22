@@ -7,7 +7,6 @@ function generateTable(order = "default") {
         data: order,
         dataType: 'html',
         success: function(data) {
-            console.log(data);
             // Insert the PHP script's response into the 'phpResponse' div
             document.getElementById('generatedTable').innerHTML = data;
         },
