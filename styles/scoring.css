@@ -107,7 +107,7 @@
   .bigCell {
     color: black;
     background-color: #FDFDFD;
-    max-width: 10vw;
+    width: 25vw;
     border-left: 30px solid #24292E;
     border-right: none;
   }
