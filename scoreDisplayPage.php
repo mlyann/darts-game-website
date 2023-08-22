@@ -12,6 +12,8 @@
   <script type="text/javascript" src="scripts/displayInfoHS.js"></script>
   <script type="text/javascript" src="scripts/checkForNewGame.js"></script>
   <script type="text/javascript" src="scripts/displayInfo.js"></script>
+  <script type="text/javascript" src="scripts/generateTable.js"></script>
+  <script type="text/javascript" src="scripts/rearrangePlayers.js"></script>
 
   <script>
       //get relevant game data
@@ -50,6 +52,7 @@
         }
 
     //populate info cells of table
+    generateTable();
     getCurrentPlayer();
     displayNames();
     displayInfo();
@@ -82,7 +85,7 @@
 
 <div class = "center" id = "tableWrapper"> 
   <div class = "center" id = "infoContainer">
-    <?php require 'scripts/generateTable.php' ?>
+  <div id = "generatedTable" style = "display: flex; flex-direction: column; align-items: center;"></div>
     <table class = "center gameInfo">
       <tr>
         <td class = "infoCell" id ="helpCell">D20 + D20 + D20</td>
