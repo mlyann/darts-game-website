@@ -146,6 +146,7 @@
 
   #tableWrapper {
     margin: 5%;
+    margin-top: 3%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -194,6 +195,10 @@
   margin-left: 6vw;
   margin-top: 4rem;
 } 
+
+#helpCell {
+  font-size: 5.5rem;
+}
   /* .numInput:active:hover{
   } */
 

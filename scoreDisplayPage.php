@@ -110,6 +110,16 @@
     <table class = "center gameInfo">
       <tr>
         <td class = "infoCell" id ="helpCell">D20 + D20 + D20</td>
+        <script>
+          switch(playerCount) {
+            case '2':
+              document.getElementById('helpCell').style.fontSize = '7.5rem';
+              break;
+            case '3':
+              document.getElementById('helpCell').style.fontSize = '5.5rem';
+              break;
+          }
+        </script>
       </tr>
     </table>
   </div>
