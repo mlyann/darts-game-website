@@ -76,7 +76,6 @@
         
         async function handleButtonClick(buttonId) {
           let buttonType = buttonId.split('_')[1];
-          console.log(buttonType);
           switch (buttonType) {
             case 'undo':
               await undo();
