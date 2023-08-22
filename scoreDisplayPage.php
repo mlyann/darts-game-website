@@ -20,7 +20,7 @@
       <?php
         require 'scripts/connect.php';
 
-        $query = "SELECT id, type, number_of_rounds, player_count FROM game_data";
+        $query = "SELECT id, type, number_of_rounds, player_count, players FROM game_data";
         $result = mysqli_query($conn, $query);
 
         if ($result && $result->num_rows > 0) {
@@ -29,12 +29,14 @@
           $game_id = $row['id'];
           $numRounds = $row['number_of_rounds'];
           $playerCount = $row['player_count'];
+          $playersArray = $row['players'];
         }
 
         echo "var playerCount = '$playerCount';";
         echo "var gamemode = '$mode';";
         echo "var game_id = '$game_id';";
         echo "var numRounds = '$numRounds';";
+        echo "var playersArray = '$playersArray';";
         
         $conn->close();
       ?>
@@ -57,11 +59,30 @@
     displayNames();
     displayInfo();
 
-    function updateInfo(){
-    getCurrentPlayer();
-    displayInfo();
-    setTimeout(updateInfo, 100);
+    async function updateInfo(){
+      await updateTable();
+      getCurrentPlayer();
+      displayInfo();
+      setTimeout(updateInfo, 100);
     }
+
+    function updateTable() {
+    return new Promise(function(resolve, reject) {
+        $.ajax({
+            url: 'scripts/getNewTableFlag.php', // Replace with your PHP script's path
+            method: 'GET',
+            success: function(response) {
+                if (response == true) {
+                  generateTable();
+                }
+                resolve();
+            },
+            error: function(xhr, status, error) {
+                reject(error); // Reject in case of an error
+            }
+        });
+    });
+}
 
     updateInfo();
     checkForNewGame();

@@ -1,16 +1,15 @@
 <?php
     require 'connect.php';
 
-    $order = $_GET['order'];
-
     //get starting points, players array, gamemode
-    $sql = "SELECT starting_points, players, type, player_count from game_data";
+    $sql = "SELECT starting_points, players, type, player_count, modified_order from game_data";
     $players = mysqli_query($conn, $sql);
     $row = $players->fetch_assoc();
     $playersArray = json_decode($row['players'], true);
     $starting_points = $row['starting_points'];
     $gamemode = $row['type'];
     $playerCount = $row['player_count'];
+    $order = $row['modified_order'];
 
     if ($order != null) {
         $playersArray = explode(',', $order);

@@ -1,10 +1,7 @@
-function generateTable(order) {
-    var order = {order: order};
-
+function generateTable() {
     $.ajax({
         url: 'scripts/generateTable.php',
         method: 'GET',
-        data: order,
         dataType: 'html',
         success: function(data) {
             // Insert the PHP script's response into the 'phpResponse' div

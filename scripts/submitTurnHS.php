@@ -15,7 +15,7 @@ function newTurns(){
 
     //make winning player go first
     if ($bestPlayer) {
-        $setFirstPlayerQuery = "UPDATE game_data SET dartIndex = '0', currentPlayer = '$bestPlayer';";
+        $setFirstPlayerQuery = "UPDATE game_data SET dartIndex = '0', currentPlayer = '$bestPlayer', new_table_flag = true;";
         mysqli_query($conn, $setFirstPlayerQuery);
         $bestPlayerIndex = array_search($bestPlayer, $playerNames);
         echo 'Winning Player Index:' . $bestPlayerIndex;

@@ -18,18 +18,19 @@ function rearrangePlayers(winningPlayerIndex) {
     $.ajax({
         url: "scripts/setOrder.php", // Replace with your PHP script's path
         method: "POST", // Use POST if you're sending data to the server
-        data: {order: order}, // Include your data here
-
+        data: { order: order }, // Include your data here
+    
         success: function (response) {
             // Handle the success response here
             console.log("Order set successfully:", response);
+    
+            // Generate the new table after the order has been set
+            generateTable();
         },
         error: function (xhr, status, error) {
             // Handle errors here
             console.error("Error setting order:", error);
         },
     });
-
-    //generate new table
-    generateTable(order);
+    
 }
