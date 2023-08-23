@@ -11,7 +11,12 @@ function displayInfoHS(order) {
     data: order,
     datatype: 'json',
     success: function(response) {
-      playerIndex = 1;
+
+      let playerIndex = 1;
+
+      //for highlighting the current score leader
+      let highestScore = 0;
+      let highestScoringPlayerIndex = false;
 
       response.forEach(player => {
 
@@ -30,6 +35,9 @@ function displayInfoHS(order) {
           playerTotal = ((parseInt(player.first) || 0) + (parseInt(player.second) || 0) + (parseInt(player.third) || 0));
 
           updateTableCell(nameCell, player.name);
+          document.getElementById(nameCell).style.color = 'white';
+          document.getElementById(overallCell).style.color = 'white';
+          document.getElementById(playerIndex + 'roundWinsCell').style.color = 'white';
 
           //adds round wins (Highscore)
           roundWinsCell = playerIndex +'roundWinsCell';
@@ -40,6 +48,10 @@ function displayInfoHS(order) {
           }
 
           updateTableCell(overallCell, player.overall);
+          if (player.overall > highestScore) {
+            highestScore = player.overall;
+            highestScoringPlayerIndex = playerIndex;
+          }
           updateTableCell(firstCell, player.first ?? '');
           updateTableCell(secondCell,player.second ?? '');
           updateTableCell(thirdCell, player.third ?? '');
@@ -60,9 +72,15 @@ function displayInfoHS(order) {
           }
 
           playerIndex++;
+      });
+
+      //highlight current score leader
+      if (highestScoringPlayerIndex) {
+        document.getElementById(highestScoringPlayerIndex + 'nameCell').style.color = 'gold';
+        document.getElementById(highestScoringPlayerIndex + 'overallCell').style.color = 'gold';
+        document.getElementById(highestScoringPlayerIndex + 'roundWinsCell').style.color = 'gold';
       }
-      
-      );
+
     },
     error: function(xhr, status, error) {
       console.error(error);
