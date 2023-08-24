@@ -70,45 +70,7 @@ foreach ($playersArray as $player) {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
 
-            
-            if ($gamemode == 'Countdown') {
-
-                if ($player == $currentPlayer) {
-
-                    $playerDartIndex = $dartIndex;
-                    $isCurrent = true;
-                } else {
-                    
-                    $playerDartIndex = 3;
-                    $isCurrent = false;
-                }
-
-                //calculate possible checkout
-                if ($dartIndex < 3) {
-                $checkout = generateCheckout($row['overall']);
-                if ($checkout != 'No outs possible') {
-                    $plusCount = substr_count($checkout, '+');
-                    if (($plusCount == 1 && $dartIndex > 1) || ($plusCount == 2 && $dartIndex > 0)) {
-                        $checkout = 'No outs possible';
-                    }
-                }
-            } else {
-                $checkout = 'No outs possible';
-            }
-
-                $scores[] = array(
-                    'name' => $player,
-                    'overall' => $row['overall'],
-                    'first' => $row['first'],
-                    'second' => $row['second'],
-                    'third' => $row['third'],
-                    'avg' => $row['average'],
-                    'checkout' => $help,
-                    'isCurrent' => $isCurrent
-                );
-            }
-
-            else if ($gamemode == 'Highscore'){
+            if ($gamemode == 'Highscore'){
 
                 if($player == $currentPlayer){/// can maybe be the entire file's condition
                     //gets the highest score and highest scoring player
@@ -132,13 +94,13 @@ foreach ($playersArray as $player) {
                         else
                             $help = "Round won!";
                     }
-                    else{
+                    else{   
                         $help = $bestRow['overall'] + 1 - $row['overall'] . " to win"; 
+                        $dartsNeeded = (($bestRow['overall'] + 1 - $row['overall']) / 60);
+                        if (!((($dartsNeeded <= 3) && ($dartIndex < 1)) || (($dartsNeeded <= 2) && ($dartIndex < 2)) || (($dartsNeeded <= 1) && ($dartIndex < 3)))) {
+                            $help = '';
+                        }
 
-                        if($dartIndex != 3)
-                            $help = "Need " . $help; 
-                        else
-                            $help = "Needed " . $help;
                     }
                 }
 
