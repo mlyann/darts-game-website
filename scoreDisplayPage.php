@@ -49,6 +49,9 @@
           case '5':
             stylesheet.href = 'styles/scoreDisplayPage5.css';
             break;
+          case '6':
+            stylesheet.href = 'styles/scoreDisplayPage6.css';
+            break;
           default:
             break;
         }

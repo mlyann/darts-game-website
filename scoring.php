@@ -49,6 +49,10 @@
             break;
           case '5':
             stylesheet.href = 'styles/scoring5.css';
+            break;
+          case '6':
+            stylesheet.href= 'styles/scoring6.css';
+            break;
           default:
             break;
         }
