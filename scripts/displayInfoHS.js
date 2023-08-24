@@ -40,7 +40,9 @@ function displayInfoHS(order) {
           playerTotal = ((parseInt(player.first) || 0) + (parseInt(player.second) || 0) + (parseInt(player.third) || 0));
 
           updateTableCell(nameCell, player.name);
-          document.getElementById(nameCell).style.color = 'white';
+          if (document.getElementById(nameCell)) {
+            document.getElementById(nameCell).style.color = 'white';
+          }
           document.getElementById(overallCell).style.color = 'white';
           document.getElementById(playerIndex + 'roundWinsCell').style.color = 'white';
 
