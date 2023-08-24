@@ -83,7 +83,9 @@ function displayInfoHS(order) {
 
       //highlight current score leader
       if (highestScoringPlayerIndex) {
-        document.getElementById(highestScoringPlayerIndex + 'nameCell').style.color = 'gold';
+        if (document.getElementById(highestScoringPlayerIndex + 'nameCell')) {
+          document.getElementById(highestScoringPlayerIndex + 'nameCell').style.color = 'gold';
+        }
         document.getElementById(highestScoringPlayerIndex + 'overallCell').style.color = 'gold';
         document.getElementById(highestScoringPlayerIndex + 'roundWinsCell').style.color = 'gold';
       }
