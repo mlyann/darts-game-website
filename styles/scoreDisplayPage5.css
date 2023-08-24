@@ -154,7 +154,7 @@
   margin-top: -5%;
 }
 
-.roundWins{
+.aux{
   color: white;
   font-size: 5vw;
   background-color: transparent;
@@ -183,7 +183,7 @@
   max-width: 20vw;
 }
 
-.playerDiv.reduced .roundWins {
+.playerDiv.reduced .aux {
   text-align: center;
 }
 

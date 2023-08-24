@@ -32,6 +32,7 @@ function displayInfoHS(order) {
           roundCell = playerIndex + 'roundCell';
           overallCell = playerIndex + 'overallCell';
           profilePic = playerIndex + 'profilePic';
+          auxCell = playerIndex +'auxCell';
 
           if (document.getElementById(profilePic).src != player.img) {
             document.getElementById(profilePic).src = player.img;
@@ -44,18 +45,17 @@ function displayInfoHS(order) {
             document.getElementById(nameCell).style.color = 'white';
           }
           document.getElementById(overallCell).style.color = 'white';
-          document.getElementById(playerIndex + 'roundWinsCell').style.color = 'white';
+          document.getElementById(auxCell).style.color = 'white';
 
           //adds round wins (Highscore)
-          roundWinsCell = playerIndex +'roundWinsCell';
-          updateTableCell(roundWinsCell,"Wins: "+player.rWins+'/'+numRounds);
+          updateTableCell(auxCell,"Wins: "+player.rWins+'/'+numRounds);
           //check win condition
           if (player.rWins == numRounds) {
             window.location.href = '/winPage.php';
           }
 
           updateTableCell(overallCell, player.overall);
-          if (player.overall > highestScore) {
+          if (parseInt(player.overall) > highestScore) {
             highestScore = player.overall;
             highestScoringPlayerIndex = playerIndex;
           }
@@ -87,7 +87,7 @@ function displayInfoHS(order) {
           document.getElementById(highestScoringPlayerIndex + 'nameCell').style.color = 'gold';
         }
         document.getElementById(highestScoringPlayerIndex + 'overallCell').style.color = 'gold';
-        document.getElementById(highestScoringPlayerIndex + 'roundWinsCell').style.color = 'gold';
+        document.getElementById(highestScoringPlayerIndex + 'auxCell').style.color = 'gold';
       }
 
     },

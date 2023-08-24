@@ -19,6 +19,7 @@
             $overallCell = $playerIndex . "overallCell";
             $playerDiv = $playerIndex . "playerDiv";
             $profilePic = $playerIndex  . "profilePic";
+            $auxCell = $playerIndex . "auxCell";
 
             //get image
             $imgQuery = "SELECT image_url FROM users WHERE name = '$player';";
@@ -34,6 +35,7 @@
                 <div class = "topRow">
                 <img id = "' . $profilePic . '" class = "profile" src="' . $img . '">
                     <p class = "overall" id="' . $overallCell . '"></p>
+                    <p class = "aux" id="'.$auxCell.'"></p>
                 </div>
                 <table class = "bottomRow">
                     <td class = "infoCell scoreCell" id="' . $firstCell . '"></td>
@@ -42,14 +44,6 @@
                     <td class = "infoCell bigCell " id="' . $roundCell . '"></td>
                 </table>
             </div>';
-
-            //adds the round wins tag
-            if($gamemode == 'Highscore'){
-
-                $rWinsCell = $playerIndex . "roundWinsCell";
-                $pt = strpos($html,"/p>") + 3;
-                $html = substr($html,0,$pt) . '<p class = "roundWins" id="'.$rWinsCell.'"></p>' . substr($html,$pt);
-            }
 
             $output = $output . $html;
             $playerIndex++;
@@ -93,6 +87,7 @@
                 $overallCell = $playerIndex . "overallCell";
                 $playerDiv = $playerIndex . "playerDiv";
                 $profilePic = $playerIndex . "profilePic";
+                $auxCell = $playerIndex . "auxCell";
         
                 //get image
                 $imgQuery = "SELECT image_url FROM users WHERE name = '$player';";
@@ -109,6 +104,7 @@
                     <img id = "' . $profilePic . '" class = "profile" src="' . $img . '">
                         <p class = "name" id="' . $nameCell . '"></p>
                         <p class = "overall" id="' . $overallCell . '"></p>
+                        <p class = "aux" id="'.$auxCell.'">
                     </div>
                     <table class = "bottomRow">
                         <td class = "infoCell scoreCell" id="' . $firstCell . '"></td>
@@ -117,14 +113,6 @@
                         <td class = "infoCell bigCell " id="' . $roundCell . '"></td>
                     </table>
                 </div>';
-        
-                //adds the round wins tag
-                if($gamemode == 'Highscore'){
-        
-                    $rWinsCell = $playerIndex . "roundWinsCell";
-                    $pt = strpos($html,"/p>") + 3;
-                    $html = substr($html,0,$pt) . '<p class = "roundWins" id="'.$rWinsCell.'"></p>' . substr($html,$pt);
-                }
         
                 $output = $output . $html;
         
@@ -151,6 +139,7 @@
                 $overallCell = $playerIndex . "overallCell";
                 $playerDiv = $playerIndex . "playerDiv";
                 $profilePic = $playerIndex . "profilePic";
+                $auxCell = $playerIndex . "auxCell";
         
                 //get image
                 $imgQuery = "SELECT image_url FROM users WHERE name = '$lastPlayer';";
@@ -166,6 +155,7 @@
                     <div class = "topRow">
                     <img id = "' . $profilePic . '" class = "profile" src="' . $img . '">
                         <p class = "name" id="' . $nameCell . '"></p>
+                        <p class = "aux" id="'.$auxCell.'"></p>
                         <p class = "overall" id="' . $overallCell . '"></p>
                     </div>
                     <table class = "bottomRow">
@@ -175,14 +165,6 @@
                         <td class = "infoCell bigCell " id="' . $roundCell . '"></td>
                     </table>
                 </div>';
-        
-                //adds the round wins tag
-                if($gamemode == 'Highscore'){
-        
-                    $rWinsCell = $playerIndex . "roundWinsCell";
-                    $pt = strpos($html,"/p>") + 3;
-                    $html = substr($html,0,$pt) . '<p class = "roundWins" id="'.$rWinsCell.'"></p>' . substr($html,$pt);
-                }
         
                 $output = $output . $html;
             
@@ -203,4 +185,4 @@
 
 
     $conn->close();
-?>
+?> 
