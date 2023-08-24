@@ -220,6 +220,7 @@
 
 .playerDiv.playerDiv.reduced p.overall {
   margin-left: 1rem;
+  margin-right: 1rem;
   max-width: 2rem;
   padding: 0;
   font-size: 3rem;

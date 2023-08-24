@@ -21,6 +21,7 @@ function displayInfoCD() {
           thirdCell = playerIndex + 'thirdCell';
           roundCell = playerIndex + 'roundCell';
           overallCell = playerIndex + 'overallCell';
+          auxCell = playerIndex + 'auxCell';
 
           playerTotal = ((parseInt(player.first) || 0) + (parseInt(player.second) || 0) + (parseInt(player.third) || 0));
 
@@ -35,9 +36,8 @@ function displayInfoCD() {
           updateTableCell(secondCell,player.second ?? '');
           updateTableCell(thirdCell, player.third ?? '');
 
-          updateTableCell(roundCell,
-            ' = ' + playerTotal + ' (' + (player.avg  ?? "0") + ')'
-            );
+          updateTableCell(roundCell, playerTotal)
+          updateTableCell(auxCell,'Avg: <br>' + (player.average ?? 0));
           
           if (player.isCurrent) {
 

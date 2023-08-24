@@ -72,6 +72,7 @@
 
   .playerDiv.playerDiv.reduced p.overall {
     margin-left: 1.5rem;
+    margin-right: 1rem;
     max-width: 2rem;
     padding: 0;
     text-align: center;
