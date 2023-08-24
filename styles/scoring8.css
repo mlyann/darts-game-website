@@ -100,7 +100,7 @@
     font-size: 5vw;
     background-color: transparent;
     position: absolute;
-    margin-left: 19rem;
+    margin-left: 10rem;
   } 
 
   .button {
@@ -139,10 +139,16 @@
   .playerDiv {
     flex: content;
     padding: 2.5%;
+    min-width: 42.5vw;
     width: 42.5vw;
+    max-width: 42.5vw;
     box-sizing: border-box;
     display: flex;
     align-items: center;
+  }
+
+  .displayPageDiv {
+    display: flex;
   }
 
   .rowOfTwo {

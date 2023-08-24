@@ -84,9 +84,11 @@
             $html =  
             '<div class = "playerDiv" id = "' . $playerDiv . '">
                 <img id = "' . $profilePic . '" class = "profile" src="' . $img . '">
-                    <p class = "overall" id="' . $overallCell . '"></p>
-                    <p class = "aux" id="'.$auxCell.'"></p>
-                    <p class = "infoCell bigCell " id="' . $roundCell . '"></p>
+                <div class = "displayPageDiv">
+                <p class = "overall" id="' . $overallCell . '"></p>
+                <p class = "aux" id="'.$auxCell.'"></p>
+                <p class = "infoCell bigCell " id="' . $roundCell . '"></p>
+                </div>
             </div>';
 
             $output = $output . $html;

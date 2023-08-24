@@ -29,10 +29,17 @@
 
 .profile {
   border-radius: 50%;
-  width: 15vw;
-  height: 15vw;
+  width: 20vw;
+  height: 20vw;
   flex: 0 0 auto;
   object-fit: cover;
+}
+
+.displayPageDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 3rem;
 }
 
   table {
@@ -48,12 +55,9 @@
     font-weight: bold;
     font-size: 6vw;
     transform: scale(1.5);
-    margin-left: auto;
     color: white;
-    margin-left: 1rem;
-    max-width: 2rem;
-    margin-right: 1rem;
     padding: 0;
+    margin: 1rem;
     font-size: 3rem;
   }
 
@@ -101,9 +105,6 @@
     font-size: 6vw;
   }
 
-  .overallCell {
-    margin-left: auto;
-  }
 
   .button:hover,
   .button:active,
@@ -125,6 +126,7 @@
     flex: content;
     padding: 4%;
     display: flex;
+    align-items: center;
   }
 
   #infoContainer {
@@ -144,20 +146,21 @@
   }
 
 
-.aux{
-  color: white;
-  font-size: 5vw;
-  background-color: transparent;
-  margin-left: 6vw;
-  margin-top: 4rem;
-  text-align: center;
-} 
+  .aux{
+    margin: 0;
+    text-align: center;
+    color: white;
+    font-size: 5vw;
+    background-color: transparent;
+  } 
 
 
 .playerDiv {
   flex: content;
   padding: 2.5%;
+  min-width: 42.5vw;
   width: 42.5vw;
+  max-width: 42.5vw;
   box-sizing: border-box;
 }
 
