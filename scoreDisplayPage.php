@@ -32,7 +32,7 @@
           $playersArray = $row['players'];
         }
 
-        echo "var playerCount = '$playerCount';";
+        echo "var parseInt(playerCount) = '$playerCount';";
         echo "var gamemode = '$mode';";
         echo "var game_id = '$game_id';";
         echo "var numRounds = '$numRounds';";

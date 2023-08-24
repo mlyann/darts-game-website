@@ -1,6 +1,6 @@
 <?php
 
-    function appendRowofTwo($playersArray, &$output) {
+    function appendMediumRow($playersArray, &$output) {
         global $conn;
         global $playerIndex;
         global $gamemode;
@@ -43,6 +43,50 @@
                     <td class = "infoCell scoreCell" id="' . $thirdCell . '"></td>
                     <td class = "infoCell bigCell " id="' . $roundCell . '"></td>
                 </table>
+            </div>';
+
+            $output = $output . $html;
+            $playerIndex++;
+        }    
+        $output = $output . '</div>';
+    }
+
+    function appendSmallRow($playersArray, &$output) {
+        global $conn;
+        global $playerIndex;
+        global $gamemode;
+        $html = 
+        '<div class = "rowOfTwo">';
+        $output = $output . $html;
+        foreach ($playersArray as $player) {
+
+            //assigns cell IDs
+            $nameCell = $playerIndex . "nameCell";
+            $firstCell = $playerIndex . "firstCell";
+            $secondCell = $playerIndex . "secondCell";
+            $thirdCell = $playerIndex . "thirdCell";
+            $winsCell = $playerIndex . "winsCell";
+            $roundCell = $playerIndex . "roundCell";
+            $overallCell = $playerIndex . "overallCell";
+            $playerDiv = $playerIndex . "playerDiv";
+            $profilePic = $playerIndex  . "profilePic";
+            $auxCell = $playerIndex . "auxCell";
+
+            //get image
+            $imgQuery = "SELECT image_url FROM users WHERE name = '$player';";
+            $imgResult = mysqli_query($conn, $imgQuery);
+            $imgRow = mysqli_fetch_assoc($imgResult);
+            $img = $imgRow['image_url'];
+            if ($img == '') {
+                $img = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png";
+            }
+
+            $html =  
+            '<div class = "playerDiv" id = "' . $playerDiv . '">
+                <img id = "' . $profilePic . '" class = "profile" src="' . $img . '">
+                    <p class = "overall" id="' . $overallCell . '"></p>
+                    <p class = "aux" id="'.$auxCell.'"></p>
+                    <p class = "infoCell bigCell " id="' . $roundCell . '"></p>
             </div>';
 
             $output = $output . $html;
@@ -122,8 +166,8 @@
             break;
         case 5:
             $output = '';
-            appendRowofTwo(array_slice($playersArray, 0, 2), $output);
-            appendRowofTwo(array_slice($playersArray, 2, 2), $output);
+            appendMediumRow(array_slice($playersArray, 0, 2), $output);
+            appendMediumRow(array_slice($playersArray, 2, 2), $output);
 
             $html = '</div><div class = "currentOne">';
             $output = $output . $html;
@@ -174,10 +218,18 @@
             break;
         case 6:
             $output = '';
-            appendRowofTwo(array_slice($playersArray, 0, 2), $output);
-            appendRowofTwo(array_slice($playersArray, 2, 2), $output);
-            appendRowofTwo(array_slice($playersArray, 4, 2), $output);
+            appendMediumRow(array_slice($playersArray, 0, 2), $output);
+            appendMediumRow(array_slice($playersArray, 2, 2), $output);
+            appendMediumRow(array_slice($playersArray, 4, 2), $output);
 
+            echo $output;
+            break;
+        case 8:
+            $output = '';
+            appendSmallRow(array_slice($playersArray, 0, 2), $output);
+            appendSmallRow(array_slice($playersArray, 2, 2), $output);
+            appendSmallRow(array_slice($playersArray, 4, 2), $output);
+            appendSmallRow(array_slice($playersArray, 6, 2), $output);
             echo $output;
             break;
 
