@@ -34,6 +34,7 @@
                 $roundCell = $playerIndex . "roundCell";
                 $overallCell = $playerIndex . "overallCell";
                 $playerDiv = $playerIndex . "playerDiv";
+                $profilePic = $playerIndex . "profilePic";
         
                 //get image
                 $imgQuery = "SELECT image_url FROM users WHERE name = '$player';";
@@ -47,7 +48,7 @@
                 $html =  
                 '<div class = "playerDiv" id = "' . $playerDiv . '">
                     <div class = "topRow">
-                    <img class = "profile" src="' . $img . '">
+                    <img id = "' . $profilePic . '" class = "profile" src="' . $img . '">
                         <p class = "name" id="' . $nameCell . '"></p>
                         <p class = "overall" id="' . $overallCell . '"></p>
                     </div>
@@ -89,6 +90,7 @@
                 $roundCell = $playerIndex . "roundCell";
                 $overallCell = $playerIndex . "overallCell";
                 $playerDiv = $playerIndex . "playerDiv";
+                $profilePic = $playerIndex  . "profilePic";
         
                 //get image
                 $imgQuery = "SELECT image_url FROM users WHERE name = '$player';";
@@ -102,7 +104,7 @@
                 $html =  
                 '<div class = "playerDiv reduced" id = "' . $playerDiv . '">
                     <div class = "topRow">
-                    <img class = "profile" src="' . $img . '">
+                    <img id = "' . $profilePic . '" class = "profile" src="' . $img . '">
                         <p class = "overall" id="' . $overallCell . '"></p>
                     </div>
                     <table class = "bottomRow">
@@ -143,6 +145,7 @@
                 $roundCell = $playerIndex . "roundCell";
                 $overallCell = $playerIndex . "overallCell";
                 $playerDiv = $playerIndex . "playerDiv";
+                $profilePic = $playerIndex  . 'profilePic';
         
                 //get image
                 $imgQuery = "SELECT image_url FROM users WHERE name = '$player';";
@@ -156,7 +159,7 @@
                 $html =  
                 '<div class = "playerDiv reduced" id = "' . $playerDiv . '">
                     <div class = "topRow">
-                    <img class = "profile" src="' . $img . '">
+                    <img id = "' . $profilePic . '" class = "profile" src="' . $img . '">
                         <p class = "overall" id="' . $overallCell . '"></p>
                     </div>
                     <table class = "bottomRow">
@@ -195,6 +198,7 @@
                 $roundCell = $playerIndex . "roundCell";
                 $overallCell = $playerIndex . "overallCell";
                 $playerDiv = $playerIndex . "playerDiv";
+                $profilePic = $playerIndex . "profilePic";
         
                 //get image
                 $imgQuery = "SELECT image_url FROM users WHERE name = '$lastPlayer';";
@@ -208,7 +212,7 @@
                 $html =  
                 '<div class = "playerDiv full" id = "' . $playerDiv . '">
                     <div class = "topRow">
-                    <img class = "profile" src="' . $img . '">
+                    <img id = "' . $profilePic . '" class = "profile" src="' . $img . '">
                         <p class = "name" id="' . $nameCell . '"></p>
                         <p class = "overall" id="' . $overallCell . '"></p>
                     </div>

@@ -35,18 +35,22 @@ foreach ($playersArray as $player) {
 
     //gets the round wins from a separate query
     $winsQuery = "SELECT roundWins AS rWins FROM roundWins WHERE Name = '$player'";
-
     $winsResult = mysqli_query($conn, $winsQuery);
 
     if($winsResult){
 
         $winRow = mysqli_fetch_assoc($winsResult);
-
         $rWins = $winRow['rWins'];
     }  
     
 
     $result = mysqli_query($conn, $query);
+
+    //get player image url
+    $imgQuery = "SELECT image_url FROM users WHERE name = '$player';";
+    $imgResult = mysqli_query($conn, $imgQuery);
+    $imgRow = mysqli_fetch_assoc($imgResult);
+    $img = $imgRow['image_url'];
 
 
     // Get an array of scores for each player
@@ -93,6 +97,7 @@ foreach ($playersArray as $player) {
                 'second' => $row['second'],
                 'third' => $row['third'],
                 'help' => $help,
+                'img' => $img,
                 'rWins' => $rWins
             );
         

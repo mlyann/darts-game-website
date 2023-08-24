@@ -31,6 +31,11 @@ function displayInfoHS(order) {
           thirdCell = playerIndex + 'thirdCell';
           roundCell = playerIndex + 'roundCell';
           overallCell = playerIndex + 'overallCell';
+          profilePic = playerIndex + 'profilePic';
+
+          if (document.getElementById(profilePic).src != player.img) {
+            document.getElementById(profilePic).src = player.img;
+          }
 
           playerTotal = ((parseInt(player.first) || 0) + (parseInt(player.second) || 0) + (parseInt(player.third) || 0));
 
