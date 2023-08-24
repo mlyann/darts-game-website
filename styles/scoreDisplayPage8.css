@@ -1,0 +1,175 @@
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.info {
+  height: 50%;
+}
+
+.gameInfo {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  align-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: hidden;
+    touch-action: manipulation;
+    background-color: #24292E;
+  }
+
+.profile {
+  border-radius: 50%;
+  width: 15vw;
+  height: 15vw;
+  flex: 0 0 auto;
+  object-fit: cover;
+}
+
+  table {
+    width: 100%;
+    margin: 0;
+    background-color: #fff;
+    border-collapse: collapse;
+  }
+
+
+
+  p.overall {
+    font-weight: bold;
+    font-size: 6vw;
+    transform: scale(1.5);
+    margin-left: auto;
+    color: white;
+    margin-left: 1rem;
+    max-width: 2rem;
+    margin-right: 1rem;
+    padding: 0;
+    font-size: 3rem;
+  }
+
+  p.scoreText {
+    font-size: 2.5vh;
+  }
+
+
+  td {
+    text-align: center;
+  }
+
+  .scoreCell {
+    min-width: 5vw;
+    max-width: 5vw;
+    background-color: #3C4045;
+    color: white;
+    border-left: 0;
+    font-size: 4vw;
+    padding: 0;
+  }
+
+  .bigCell {
+    display: none;
+  }
+
+  .name {
+    color: white;
+    font-size: 7vw;
+    background-color: transparent;
+    margin-left: 3vw;
+  }
+
+
+  .button {
+    display: block;
+    width: 100%; /* Set width to 100% */
+    height: 100%; /* Set height to auto */
+    padding: 20px;
+    text-align: center;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 6vw;
+  }
+
+  .overallCell {
+    margin-left: auto;
+  }
+
+  .button:hover,
+  .button:active,
+  .button:focus {
+    background-color: darkgray;
+  }
+
+  #tableWrapper {
+    margin: 5%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 90%;
+    margin-top: 8%;
+  }
+
+  .playerDiv {
+    width: 85vw;
+    flex: content;
+    padding: 4%;
+    display: flex;
+  }
+
+  #infoContainer {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+  }
+
+
+  #helpCell {
+    background-color: transparent;
+    font-size: 6vw;
+    vertical-align: middle;
+    color: yellow;
+    flex: 1;
+  }
+
+
+.aux{
+  color: white;
+  font-size: 5vw;
+  background-color: transparent;
+  margin-left: 6vw;
+  margin-top: 4rem;
+  text-align: center;
+} 
+
+
+.playerDiv {
+  flex: content;
+  padding: 2.5%;
+  width: 42.5vw;
+  box-sizing: border-box;
+}
+
+.rowOfTwo {
+  display: flex;
+  justify-content: center;
+  max-width: 85vw;
+}
+
+#helpCell {
+  font-size: 5.5rem;
+}
+  /* .numInput:active:hover{
+  } */
+
