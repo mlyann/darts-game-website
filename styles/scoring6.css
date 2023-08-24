@@ -30,6 +30,7 @@
   align-content: center;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-top: -1rem;
 }
 
 .double {
