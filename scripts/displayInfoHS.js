@@ -48,7 +48,11 @@ function displayInfoHS(order) {
           document.getElementById(auxCell).style.color = 'white';
 
           //adds round wins (Highscore)
-          updateTableCell(auxCell,"Wins: "+player.rWins+'/'+numRounds);
+          if (playerCount <= 6) {
+            updateTableCell(auxCell,"Wins: "+player.rWins+'/'+numRounds);
+          } else {
+            updateTableCell(auxCell, player.rWins+'/'+numRounds);
+          }
           //check win condition
           if (player.rWins == numRounds) {
             window.location.href = '/winPage.php';
@@ -66,9 +70,7 @@ function displayInfoHS(order) {
           if (playerCount < 4) {
             updateTableCell(roundCell,
               ' = ' + playerTotal);
-          } else {
-            updateTableCell(roundCell, playerTotal);
-          }
+          } 
           
           if ((gamemode == 'Highscore') || (gamemode == 'Countdown' && player.isCurrent)) {
 

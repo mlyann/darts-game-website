@@ -56,8 +56,8 @@
 
 .profile {
   border-radius: 50%;
-  width: 15.5vw;
-  height: 15.5vw;
+  width: 15vw;
+  height: 15vw;
   flex: 0 0 auto;
   object-fit: cover;
 }
@@ -73,11 +73,8 @@
   p.overall {
     font-weight: bold;
     transform: scale(1.5);
-    margin-left: auto;
+    margin-left: 2rem;
     color: white;
-    margin-left: 1.5rem;
-    margin-right: 1rem;
-    max-width: 2rem;
     padding: 0;
     text-align: center;
     font-size: 5vw;
@@ -92,30 +89,9 @@
     text-align: center;
   }
 
-  .scoreCell {
-    min-width: 5vw;
-    max-width: 5vw;
-    background-color: #3C4045;
-    color: white;
-    border-left: 0;
-    font-size: 4vw;
-    padding: 0;
-  }
 
   .bigCell {
-    color: white;
-    width: 10vw;
-    height: 10vw;
-    max-height: 10vw;
-    max-width: 10vw;
-    font-size: 5vw;
-  }
-
-  .name {
-    color: white;
-    font-size: 6vw;
-    background-color: transparent;
-    margin-left: 3vw;
+    display: none;
   }
 
   .aux{
@@ -123,6 +99,8 @@
     color: white;
     font-size: 5vw;
     background-color: transparent;
+    position: absolute;
+    margin-left: 19rem;
   } 
 
   .button {
@@ -161,7 +139,7 @@
   .playerDiv {
     flex: content;
     padding: 2.5%;
-    max-width: 42.5vw;
+    width: 42.5vw;
     box-sizing: border-box;
     display: flex;
     align-items: center;
