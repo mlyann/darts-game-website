@@ -32,7 +32,7 @@
           $playersArray = $row['players'];
         }
 
-        echo "var parseInt(playerCount) = '$playerCount';";
+        echo "var playerCount = '$playerCount';";
         echo "var gamemode = '$mode';";
         echo "var game_id = '$game_id';";
         echo "var numRounds = '$numRounds';";
@@ -51,6 +51,9 @@
             break;
           case '6':
             stylesheet.href = 'styles/scoreDisplayPage6.css';
+            break;
+          case '8':
+            stylesheet.href = 'styles/scoreDisplayPage8.css';
             break;
           default:
             break;
