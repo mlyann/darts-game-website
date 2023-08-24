@@ -51,6 +51,9 @@ foreach ($playersArray as $player) {
     $imgResult = mysqli_query($conn, $imgQuery);
     $imgRow = mysqli_fetch_assoc($imgResult);
     $img = $imgRow['image_url'];
+    if ($img == null) {
+        $img = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png";
+    }
 
 
     // Get an array of scores for each player
