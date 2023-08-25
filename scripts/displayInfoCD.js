@@ -37,7 +37,7 @@ function displayInfoCD() {
           updateTableCell(thirdCell, player.third ?? '');
 
           updateTableCell(roundCell, playerTotal)
-          updateTableCell(auxCell,'Avg: <br>' + (player.average ?? 0));
+          updateTableCell(auxCell,'Avg: <br>' + (player.avg ?? 0));
           
           if (player.isCurrent) {
 
