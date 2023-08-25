@@ -69,7 +69,7 @@
     border-collapse: collapse;
   }
 
-  .playerDiv.playerDiv.reduced p.overall {
+  .playerDiv.reduced p.overall {
     margin-left: 1.5rem;
     margin-right: 1rem;
     max-width: 2rem;
@@ -133,8 +133,8 @@
     text-align: center;
     font-size: 5vw;
     background-color: transparent;
-    margin-left: 6vw;
-    margin-top: 3.75rem;
+    margin: 2rem;
+    margin-left: 9vw;
   } 
 
   .button {
@@ -177,6 +177,7 @@
 
   .playerDiv.reduced {
     box-sizing: border-box;
+    min-width: 42.5vw;
     max-width: 42.5vw;
   }
 
