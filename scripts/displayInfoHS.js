@@ -70,7 +70,9 @@ function displayInfoHS(order) {
           if (playerCount < 4) {
             updateTableCell(roundCell,
               ' = ' + playerTotal);
-          } 
+          } else {
+            updateTableCell(roundCell, playerTotal);
+          }
           
           if ((gamemode == 'Highscore') || (gamemode == 'Countdown' && player.isCurrent)) {
 
