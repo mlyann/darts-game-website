@@ -14,7 +14,7 @@ function getCurrentPlayer() {
       if (currentPlayerDiv.style.border != highlightBorder) {
         currentPlayerDiv.style.border = highlightBorder;
 
-      for (let i = 1; i <= 6 ; i++) {
+      for (let i = 1; i <= playerCount ; i++) {
         if (document.getElementById(i + 'playerDiv') === null) { break; }
         if (i != index) {
           document.getElementById(i + 'playerDiv').style.border = defaultBorder;
