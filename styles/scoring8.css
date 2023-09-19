@@ -29,7 +29,7 @@
   align-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top: -1rem;
+  margin: 2rem;
 }
 
 .double {
@@ -113,7 +113,7 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 3rem;
+    font-size: 4rem;
   }
 
   .overallCell {
