@@ -53,6 +53,9 @@
           case '6':
             stylesheet.href= 'styles/scoring6.css';
             break;
+          case '7':
+            stylesheet.href = 'styles/scoring7.css';
+            break;
           case '8':
             stylesheet.href= 'styles/scoring8.css';
             break;

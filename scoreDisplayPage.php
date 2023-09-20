@@ -52,6 +52,9 @@
           case '6':
             stylesheet.href = 'styles/scoreDisplayPage6.css';
             break;
+          case '7':
+            stylesheet.href = 'styles/scoreDisplayPage7.css';
+            break;
           case '8':
             stylesheet.href = 'styles/scoreDisplayPage8.css';
             break;
