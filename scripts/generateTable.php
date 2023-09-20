@@ -226,6 +226,60 @@
 
             echo $output;
             break;
+        case 7:
+            $output = '';
+            appendSmallRow(array_slice($playersArray, 0, 2), $output);
+            appendSmallRow(array_slice($playersArray, 2, 2), $output);
+            appendSmallRow(array_slice($playersArray, 4, 2), $output);
+            
+            $html = '</div><div class = "currentOne">';
+            $output = $output . $html;
+            $lastPlayer = $playersArray[4];
+
+                //assigns cell IDs
+                $nameCell = $playerIndex . "nameCell";
+                $firstCell = $playerIndex . "firstCell";
+                $secondCell = $playerIndex . "secondCell";
+                $thirdCell = $playerIndex . "thirdCell";
+                $winsCell = $playerIndex . "winsCell";
+                $roundCell = $playerIndex . "roundCell";
+                $overallCell = $playerIndex . "overallCell";
+                $playerDiv = $playerIndex . "playerDiv";
+                $profilePic = $playerIndex . "profilePic";
+                $auxCell = $playerIndex . "auxCell";
+        
+                //get image
+                $imgQuery = "SELECT image_url FROM users WHERE name = '$lastPlayer';";
+                $imgResult = mysqli_query($conn, $imgQuery);
+                $imgRow = mysqli_fetch_assoc($imgResult);
+                $img = $imgRow['image_url'];
+                if ($img == '') {
+                    $img = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png";
+                }
+        
+                $html =  
+                '<div class = "playerDiv full" id = "' . $playerDiv . '">
+                    <div class = "topRow">
+                    <img id = "' . $profilePic . '" class = "profile" src="' . $img . '">
+                        <p class = "name" id="' . $nameCell . '"></p>
+                        <p class = "aux" id="'.$auxCell.'"></p>
+                        <p class = "overall" id="' . $overallCell . '"></p>
+                    </div>
+                    <table class = "bottomRow">
+                        <td class = "infoCell scoreCell" id="' . $firstCell . '"></td>
+                        <td class = "infoCell scoreCell" id="' . $secondCell . '"></td>
+                        <td class = "infoCell scoreCell" id="' . $thirdCell . '"></td>
+                        <td class = "infoCell bigCell " id="' . $roundCell . '"></td>
+                    </table>
+                </div>';
+        
+                $output = $output . $html;
+            
+            $html = '</div>';
+            $output = $output . $html;
+
+            echo $output;
+            break;
         case 8:
             $output = '';
             appendSmallRow(array_slice($playersArray, 0, 2), $output);
