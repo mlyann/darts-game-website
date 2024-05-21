@@ -27,6 +27,16 @@ if ($conn->connect_error) {
 ```
 This is the code for connect.php, which is needed for the app to work but is inside of the gitignore.
 
+## Production Deployee
+Open the path of the file: 
+```
+ubuntu@DartsProd:/var/www/html/darts-prod/darts-app$ 
+```
+Then do the updates:
+```
+git pull production prod
+``` 
+
 ## Authors and acknowledgment
 Thanks go out to:  
 Jonathan Bannick  
