@@ -7,23 +7,8 @@
 
     updatePlayerAverage($currentPlayer);
 
-    $query = "SELECT players FROM game_data";
-    $result = mysqli_query($conn, $query);
-
-    if (!$result) {
-        echo "Error getting players: " . mysqli_error($conn);
-    }
-
-    $playerNames = [];
-
-    while ($row = $result->fetch_assoc()) {
-        $jsonNames = $row['players'];
-        $namesArray = json_decode($jsonNames, true);
-        
-        if (is_array($namesArray)) {
-            $playerNames = array_merge($playerNames, $namesArray);
-        }
-    }
+    //get players
+    require "getPlayerNames.php";
     
     $currentPlayerIndex = array_search($currentPlayer, $playerNames);
     if ($currentPlayerIndex == (count($playerNames) - 1)) {
@@ -80,7 +65,25 @@
   //winner
   //check win conditions
   if ($overall == 0 && $lastMult == 2) {
+    //set average
+    $getWinnerAvgQuery = "SELECT average FROM scores WHERE Name = '$currentPlayer' AND turn = 1;";
+    $getWinnerAvgResult = mysqli_query($conn, $getWinnerAvgQuery);
+    $getWinnerAvgRow = mysqli_fetch_assoc($getWinnerAvgResult);
+    $winnerAvg = $getWinnerAvgRow['average'];
 
+    $getWinningTurnInfoQuery = "SELECT SUM(COALESCE(first, 0) + COALESCE(second, 0) + COALESCE(third, 0)) AS score, turn
+                                  FROM scores WHERE Name = '$currentPlayer' AND overall = 0;";
+    $getWinningTurnInfoResult = mysqli_query($conn, $getWinningTurnInfoQuery);
+    $getWinningTurnInfoRow = mysqli_fetch_assoc($getWinningTurnInfoResult);
+    $winningTurnScore = $getWinningTurnInfoRow['score'];
+    $winningTurn = $getWinningTurnInfoRow['turn'];
+
+    $avg = (($winnerAvg * ($winningTurn-1)) + $winningTurnScore) / $winningTurn;
+
+    $winnerAvgQuery = "UPDATE scores SET average = $avg WHERE Name = '$currentPlayer';";
+    mysqli_query($conn, $winnerAvgQuery);
+
+    //update wins
     $sql = "INSERT INTO wins (name, time) VALUES ('$currentPlayer', NOW())";
     mysqli_query($conn, $sql);
 

@@ -99,8 +99,8 @@
   }
 
   .scoreCell {
-    min-width: 5vw;
-    max-width: 5vw;
+    width: 15vw;
+    max-width: 15vw;
     font-size: 5vw;
     background-color: #3C4045;
     color: white;
@@ -109,7 +109,7 @@
   .bigCell {
     color: black;
     background-color: #FDFDFD;
-    max-width: 10vw;
+    width: 25vw;
     border-left: 30px solid #24292E;
     border-right: none;
   }
@@ -187,6 +187,15 @@
   align-items: center;
   margin-top: -5%;
 }
+
+.aux{
+  color: white;
+  text-align: center;
+  font-size: 5vw;
+  background-color: transparent;
+  margin-left: 6vw;
+  margin-top: 4rem;
+} 
   /* .numInput:active:hover{
   } */
 

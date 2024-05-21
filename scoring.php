@@ -3,32 +3,68 @@
 <head>
 <meta name="viewport" content="user-scalable=no">
     <title>Darts Score Input</title>
-    <link rel="stylesheet" type="text/css" href="styles/scoring.css">
+    <link id = "stylesheet" rel="stylesheet" type="text/css" href="styles/scoring.css">
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="scripts/getCurrentPlayer.js"></script>
     <script type="text/javascript" src="scripts/updateTableCell.js"></script>
     <script type="text/javascript" src="scripts/displayNames.js"></script>
-    <script type="text/javascript" src="scripts/displayInfo.js"></script>
     <script type="text/javascript" src="scripts/resetMultipliers.js"></script>
     <script type="text/javascript" src="scripts/multiplier.js"></script>
+    <script type="text/javascript" src="scripts/displayInfoCD.js"></script>
+    <script type="text/javascript" src="scripts/displayInfoHS.js"></script>
+    <script type="text/javascript" src="scripts/rearrangePlayers.js"></script>
+    <script type="text/javascript" src="scripts/generateTable.js"></script>
+    <script type="text/javascript" src="scripts/displayInfo.js"></script>
     <script>
 
-        //get the gamemode
+        //get the gamemode and number of players
         <?php
           require 'scripts/connect.php';
 
-          $query = "SELECT type FROM game_data";
+          $query = "SELECT type, player_count, number_of_rounds, players FROM game_data";
           $result = mysqli_query($conn, $query);
 
           if ($result && $result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $mode = $row['type'];
+            $playerCount = $row['player_count'];
+            $numRounds = $row['number_of_rounds'];
+            $playersArray = $row['players'];
           }
 
           echo "var gamemode = '$mode';";
+          echo "var playerCount = '$playerCount';";
+          echo "var numRounds = '$numRounds';";
+          echo "var playersArray = " . $playersArray . ";";
           $conn->close();
         ?>
 
+        //determine sthe stylesheet based on the number of players and the gamemode
+        switch(playerCount) {
+          case '3':
+            stylesheet.href = 'styles/scoring3.css';
+            break;
+          case '4':
+            stylesheet.href = 'styles/scoring4.css';
+            break;
+          case '5':
+            stylesheet.href = 'styles/scoring5.css';
+            break;
+          case '6':
+            stylesheet.href= 'styles/scoring6.css';
+            break;
+          case '7':
+            stylesheet.href = 'styles/scoring7.css';
+            break;
+          case '8':
+            stylesheet.href= 'styles/scoring8.css';
+            break;
+          default:
+            break;
+        }
+
+        generateTable();
+        
         multiplierValue = 1;
         let multiplierActive = false; // Flag to track the active state of the multiplier
 
@@ -39,7 +75,6 @@
         
         async function handleButtonClick(buttonId) {
           let buttonType = buttonId.split('_')[1];
-          console.log(buttonType);
           switch (buttonType) {
             case 'undo':
               await undo();
@@ -80,6 +115,9 @@
                 multiplierValue: multiplierValue
               },
               success: function(response) {
+                if (response == 'win') {
+                  window.location.href = "/winPage.php";
+                }
                 resolve(response);
               },
               error: function(xhr, status, error) {
@@ -128,9 +166,18 @@
             url += 'HS.php';
 
           try {
-            await $.ajax({ 
+            const response = await $.ajax({ 
               url: url
             });
+
+            if (response == 'win') {
+              window.location.href = "/winPage.php";
+            }
+            else if (response.split(':')[0] == 'Winning Player Index') {
+              const winningPlayerIndex = response.split(':')[1];
+              rearrangePlayers(winningPlayerIndex); 
+            }
+
           } catch (error) {
             console.error(error);
           }
@@ -168,7 +215,7 @@
 
 <div class = "center" id = "tableWrapper"> 
   <div class = "center" id = "infoContainer">
-<?php require 'scripts/generateTable.php' ?>
+    <div id = "generatedTable" style = "display: flex; flex-direction: column; align-items: center;"></div>
 <table class = "center gameInfo">
   <tr>
     <td class = "infoCell" id ="helpCell"></td>

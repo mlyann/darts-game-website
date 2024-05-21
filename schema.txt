@@ -12,15 +12,16 @@ CREATE TABLE `wins` (
 );
 
 CREATE TABLE `scores` (
-  `Name` varchar(50) DEFAULT NULL,
-  `overall` int DEFAULT NULL,
-  `turn` int DEFAULT NULL,
-  `first` int DEFAULT NULL,
-  `second` int DEFAULT NULL,
-  `third` int DEFAULT NULL,
+  `Name` varchar(50) NOT NULL,
+  `overall` smallint DEFAULT NULL,
+  `turn` smallint DEFAULT NULL,
+  `first` tinyint unsigned DEFAULT NULL,
+  `second` tinyint unsigned DEFAULT NULL,
+  `third` tinyint unsigned DEFAULT NULL,
   `lastMult` tinyint DEFAULT NULL,
-  `average` tinyint unsigned DEFAULT NULL
-);
+  `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `average` decimal(4,1) DEFAULT NULL
+)
 
 CREATE TABLE `roundWins` (
   `Name` varchar(50) NOT NULL,
@@ -37,5 +38,7 @@ CREATE TABLE `game_data` (
   `time` timestamp NOT NULL,
   `currentPlayer` varchar(50) DEFAULT NULL,
   `dartIndex` tinyint DEFAULT NULL,
+  `modified_order` varchar(255) DEFAULT NULL,
+  `new_table_flag` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
 );

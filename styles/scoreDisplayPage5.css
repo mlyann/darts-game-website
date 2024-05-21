@@ -3,23 +3,8 @@
   margin-right: auto;
 }
 
-.button {
-  display: block;
-  width: 100%;
-  text-align: center;
-}
-
 .info {
   height: 50%;
-}
-
-.inputs {
-  height: auto;
-  border: none;
-}
-
-.inputs td {
-  border:  10px solid #24292E;
 }
 
 .gameInfo {
@@ -32,18 +17,6 @@
   flex-wrap: wrap;
 }
 
-.double {
-  background-color: #bd3932 !important;
-  color: #fff !important;
-}
-
-.triple {
-  background-color: #32BD50 !important;
-  color: #fff !important;
-}
-
-/* Styles for mobile devices */
-@media only screen and (max-width: 1000px) {
   html, body {
     width: 100%;
     height: 100%;
@@ -56,8 +29,8 @@
 
 .profile {
   border-radius: 50%;
-  width: 10vw;
-  height: 10vw;
+  width: 15vw;
+  height: 15vw;
   flex: 0 0 auto;
   object-fit: cover;
 }
@@ -68,6 +41,7 @@
     background-color: #fff;
     border-collapse: collapse;
   }
+
 
 
   p.overall {
@@ -97,7 +71,8 @@
   }
 
   .scoreCell {
-    width: 15vw;
+    min-width: 5vw;
+    max-width: 5vw;
     font-size: 5vw;
     background-color: #3C4045;
     color: white;
@@ -106,26 +81,18 @@
   .bigCell {
     color: black;
     background-color: #FDFDFD;
-    width: 25vw;
+    max-width: 10vw;
     border-left: 30px solid #24292E;
     border-right: none;
   }
 
   .name {
     color: white;
-    font-size: 6vw;
+    font-size: 7vw;
     background-color: transparent;
     margin-left: 3vw;
   }
 
-  .aux{
-    color: white;
-    text-align: center;
-    font-size: 5vw;
-    background-color: transparent;
-    margin-left: 6vw;
-    margin-top: 3.75rem;
-  } 
 
   .button {
     display: block;
@@ -157,11 +124,11 @@
     flex-direction: column;
     height: 90%;
     margin-top: 8%;
-    margin-bottom: 0;
   }
 
   .playerDiv {
     width: 85vw;
+    flex: content;
     padding: 4%;
   }
 
@@ -172,22 +139,13 @@
     flex: 1;
   }
 
-  #doubleButton, #tripleButton, #input_25 {
-    background-color: #D3D4D5;
-  }
-
-  #doubleButton, #tripleButton {
-    background-color: rgba(100, 106, 133, 0.1);
-    color: rgba(161, 161, 161, 1);
-  }
-
 
   #helpCell {
     background-color: transparent;
     font-size: 6vw;
     vertical-align: middle;
-    flex: 1;
     color: yellow;
+    flex: 1;
   }
 .topRow {
   display: flex;
@@ -196,6 +154,82 @@
   margin-top: -5%;
 }
 
+.aux{
+  color: white;
+  font-size: 5vw;
+  text-align: center;
+  background-color: transparent;
+  margin-left: 6vw;
+  margin-top: 4rem;
+} 
+
+
+.playerDiv {
+  flex: content;
+  padding: 2.5%;
+}
+
+.playerDiv.reduced {
+  max-width: 42.5vw;
+  box-sizing: border-box;
+}
+
+.currentOne {
+  width: 85vw;
+  display: flex;
+}
+
+.playerDiv.full .bigCell {
+  width: 20vw;
+  max-width: 20vw;
+}
+
+.playerDiv.reduced .aux {
+  text-align: center;
+}
+
+.playerDiv.reduced .bigCell {
+  width: 10vw;
+  height: 10vw;
+  max-height: 10vw;
+  max-width: 10vw;
+  border-left: 0;
+}
+
+.playerDiv.reduced .scoreCell {
+  border-left: 0;
+  font-size: 4vw;
+  padding: 0;
+}
+
+.playerDiv.reduced .infoCell {
+  width: 8vw;
+  height: 8vw;
+  max-width: 8vw;
+  max-height: 8vw;
+}
+
+.playerDiv.full .infoCell {
+  max-height: 8vw;
+}
+
+.rowOfTwo {
+  display: flex;
+  justify-content: center;
+  max-width: 85vw;
+}
+
+.playerDiv.playerDiv.reduced p.overall {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  max-width: 2rem;
+  padding: 0;
+  font-size: 3rem;
+}
+
+#helpCell {
+  font-size: 5.5rem;
+}
   /* .numInput:active:hover{
   } */
-}
+

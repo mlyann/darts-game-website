@@ -7,33 +7,23 @@ if ($conn->connect_error) {
 }
 
 //gets current player
-$query = "SELECT currentPlayer FROM game_data";
-$result = $conn->query($query);
+$query = "SELECT currentPlayer, modified_order FROM game_data;";
+$result = mysqli_query($conn, $query);
 
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
     $currentPlayer = $row['currentPlayer'];
+    $modified_order = $row['modified_order'];
 }
 
 //get index of currentplayer
-$query = "SELECT players FROM game_data";
-$result = mysqli_query($conn, $query);
-if (!$result) {
-    echo "Error getting players: " . mysqli_error($conn);
+require "getPlayerNames.php";
+if ($modified_order == null) {
+    $currentPlayerIndex = array_search($currentPlayer, $playerNames);
+} else {
+    $modifiedPlayerNames = explode(',', $modified_order);
+    $currentPlayerIndex = array_search($currentPlayer, $modifiedPlayerNames);
 }
-
-$playerNames = [];
-
-while ($row = $result->fetch_assoc()) {
-    $jsonNames = $row['players'];
-    $namesArray = json_decode($jsonNames, true);
-    
-    if (is_array($namesArray)) {
-        $playerNames = array_merge($playerNames, $namesArray);
-    }
-}
-
-$currentPlayerIndex = array_search($currentPlayer, $playerNames);
 
 $conn->close();
 

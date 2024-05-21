@@ -10,13 +10,15 @@ html {
 
 /* Set a background color and center the content */
 body {
-    background-color: #f2f2f2;
+    background-color: #24292E;
+    color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     min-height: 100vh; /* Ensure content takes up at least the full viewport height */
     overflow-x: hidden; /* Prevent horizontal scrolling */
+    margin-top: 5rem;
 }
 
 /* Style the header */
@@ -44,8 +46,8 @@ a {
     font-size: 18px;
     text-align: center;
     text-decoration: none;
-    color: #333;
-    background-color: #f2f2f2;
+    color: white;
+    background-color: #3C4045;
     border: 1px solid #ccc;
     border-radius: 4px;
     transition: background-color 0.3s ease;
@@ -71,16 +73,47 @@ img {
     max-width: 20vh;
     object-fit: contain;
 }
+#gameCreator {
+    font-weight: bold;
+}
 
 /* Add responsive styles for mobile devices */
 @media only screen and (max-width: 1000px) {
     h1 {
-        font-size: 7vw;
+        font-size: 6rem;
         margin-top: 20px;
     }
 
     a {
-        font-size: 6vw;
+        font-size: 5rem;
         padding: 8px 16px;
     }
+
+    #logo {
+        max-width: 30rem;
+    }
 }
+
+
+/* iPad Pro 11-inch Portrait */
+@media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+  /* Your styles for iPad Pro 11-inch portrait */
+  h1 {
+    font-size: 5rem;
+    margin-top: 20px;
+}
+
+a {
+    font-size: 3.5rem;
+    padding: 8px 16px;
+}
+
+#logo {
+    max-width: 15rem;
+}
+}
+

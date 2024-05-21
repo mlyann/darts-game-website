@@ -2,15 +2,39 @@
 <html>
 <head>
     <title>Create Game</title>
+    <meta name="viewport" content="user-scalable=no">
     <link rel="stylesheet" type="text/css" href="styles/createGame.css">
-    <script type="text/javascript" src="scripts/showConditionalCreateOption.js"></script>
     <script type="text/javascript">
+
+        function showConditionalCreateOption() {
+            var gameType = document.getElementById("game_type").value;
+            var count_form = document.getElementById("count_form");
+            var highscore_form = document.getElementById("highscore_form");
+            highscore_form.style.display = "none";
+            count_form.style.display = "none";
+
+            if (gameType === "Countdown") {
+                count_form.style.display = "block";
+                highscore_form.style.display = "none";
+            } 
+            else if (gameType === "Highscore") {
+                count_form.style.display = "none";
+                highscore_form.style.display = "block";
+            }
+            
+            if (gameType === "Countdown") {
+                document.getElementById("count_label").innerHTML = "Count Down From:";
+            }
+            else if (gameType === "Highscore") {
+                document.getElementById("round_label").innerHTML = "Number of Rounds:";
+            }
+        }
+
         function showPlayerForm() {
             var playerCount = document.getElementById("player_count").value;
             var playerForm = document.getElementById("player_form");
             
             playerForm.innerHTML = "";
-
 
             if (playerCount !== "") {
                 for (var i = 1; i <= playerCount; i++) {
@@ -22,11 +46,16 @@
                     select.id = "player_name_" + i;
                     select.name = "player_name_" + i;
                     <?php require 'scripts/fetch_names.php'; ?>
+                    //keeps current values when changing length
+                    if (i <= playersArray.length) {
+                        select.value = playersArray[i - 1];
+                    }
 
                     // Append the label, select, and line break to the form
                     playerForm.appendChild(label);
                     playerForm.appendChild(select);
                     playerForm.appendChild(document.createElement("br"));
+
                 }
             }
 
@@ -67,7 +96,7 @@
     </div>
 
     <div name="player_form">
-        <label for="player_count">Select Number of Players (1-6):</label>
+        <label for="player_count">Select Number of Players:</label>
         <select name="player_count" id="player_count" onchange="showPlayerForm()" required>
             <option value="">Select Number</option>
             <option value="1">1</option>
@@ -76,6 +105,8 @@
             <option value="4">4</option>
             <option value="5">5</option>
             <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
         </select>
         <div id = player_form></div>
 

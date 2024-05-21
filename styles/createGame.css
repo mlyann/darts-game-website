@@ -10,12 +10,14 @@ html {
 
 /* Set a background color and center the content */
 body {
-    background-color: #f2f2f2;
+    margin-top: 1rem;
+    background-color: #24292E;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     min-height: 100vh; /* Ensure content takes up at least the full viewport height */
+    color: white;
 }
 
 /* Style the header */
@@ -30,13 +32,14 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     width: 80%;
     max-width: 80%;
     padding: 20px;
-    background-color: #fff;
+    background-color: #3C4045;
     border: 1px solid #ccc;
     border-radius: 4px;
+    text-align: center;
+    padding-bottom: 0;
 }
 
 /* Style the form elements */
@@ -49,7 +52,9 @@ select {
     font-size: 16px;
     padding: 8px;
     width: 100%;
-    margin-bottom: 16px;
+    margin-bottom: .4rem;
+    text-align: center;
+    color: black;
 }
 
 button {
@@ -73,20 +78,21 @@ button:hover {
         overflow-x: hidden; /* Prevent horizontal scrolling */
     }
     h1 {
-        font-size: 6vw;
+        font-size: 8rem;
     }
 
     label {
-        font-size: 4vw;
+        font-size: 4rem;
     }
 
     select {
-        font-size: 4vw;
+        font-size: 4rem;
     }
 
     button {
-        font-size: 4vw;
-        padding: 8px 16px;
+        font-size: 5rem;
+        padding: 1rem 2rem;
+        margin: 1rem;
     }
 
     form {

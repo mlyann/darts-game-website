@@ -1,5 +1,7 @@
 <html>
     <head>
+    <meta name="viewport" content="user-scalable=no">
+    <link id = "stylesheet" rel="stylesheet" type="text/css" href="styles/leaderboard.css">
         <style>
             .active {
                 background-color: green;
@@ -7,68 +9,225 @@
             }
         </style>
         <script type="text/javascript">
+            function changeDateRange(interval) {
+                switch(interval) {
+                    case 'today':
+                        if (document.getElementById("month")) {
+                            document.getElementById("month").style.display = 'none';
+                        }
+                        if (document.getElementById("week")) {
+                            document.getElementById("week").style.display = 'none';
+                        }
+                        if (document.getElementById("today")) {
+                            document.getElementById("today").style.display = 'flex';
+                        }
+                        break;
+                    case 'week':
+                        if (document.getElementById("month")) {
+                            document.getElementById("month").style.display = 'none';
+                        }
+                        if (document.getElementById("today")) {
+                            document.getElementById("today").style.display = 'none';
+                        }
+                        if (document.getElementById("week")) {
+                            document.getElementById("week").style.display = 'flex';
+                        }
+                        break;
+                    case 'month':
+                        if (document.getElementById("week")) {
+                            document.getElementById("week").style.display = 'none';
+                        }
+                        if (document.getElementById("today")) {
+                            document.getElementById("today").style.display = 'none';
+                        }
+                        if (document.getElementById("month")) {
+                            document.getElementById("month").style.display = 'flex';
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             function handleButtonClick(button) {
                 var today_button = document.getElementById('today_button');
                 var week_button = document.getElementById('week_button');
-                var allTime_button = document.getElementById('allTime_button');
+                var month_button = document.getElementById('month_button');
 
                 today_button.classList.remove('active');
                 week_button.classList.remove('active');
-                allTime_button.classList.remove('active');
+                month_button.classList.remove('active');
 
                 // Toggle active class on the clicked button
                 if (button === 'today') {
                     today_button.classList.add('active');
+                    changeDateRange('today');
                 } else if (button === 'week') {
                     week_button.classList.add('active');
-                } else if (button === 'allTime') {
-                    allTime_button.classList.add('active');
+                    changeDateRange('week');
+                } else if (button === 'month') {
+                    month_button.classList.add('active');
+                    changeDateRange('month');
                 }
-
-                // Make an AJAX request to fetch the leaderboard data based on the selected button
-                var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        var leaderboardTable = document.getElementById('leaderboard_table');
-                        leaderboardTable.innerHTML = xhr.responseText;
-                    }
-                };
-                xhr.open('GET', 'scripts/show_leaderboard.php?timeRange=' + button, true);
-                xhr.send();
             }
         </script>
     </head>
     <body>
+        <div class = "leaderboardContainer">
         <h1>Leaderboard</h1>
 
         <div name="timeButtons">
-            <button onclick="handleButtonClick('today')" id="today_button">Today</button>
+            <button class = "active" onclick="handleButtonClick('today')" id="today_button">Today</button>
             <button onclick="handleButtonClick('week')" id="week_button">This Week</button>
-            <button onclick="handleButtonClick('allTime')" id="allTime_button">All Time</button>
+            <button onclick="handleButtonClick('month')" id="month_button">This Month</button>
             <br><br>
         </div>
 
-        <div id="leaderboard_table">
             <?php
                 require 'scripts/connect.php';
-
-                $sql = "SELECT name, COUNT(name) AS wins FROM wins GROUP BY name ORDER BY wins DESC";
+                //generate month table
+                $sql = "SELECT u.name, u.image_url, COUNT(w.name) AS wins FROM users u
+                    LEFT JOIN wins w ON u.name = w.name
+                    WHERE DATE(w.time) >= CURDATE() - INTERVAL 30 DAY
+                    GROUP BY u.name, u.image_url
+                    HAVING wins > 0
+                    ORDER BY wins DESC;";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
-                    echo "<table>";
-                    echo "<tr><th>Name</th><th>Wins</th></tr>";
-
+                    echo "<div class = 'labelRow'>
+                        <p class ='name'>Name</p><p class = 'wins'>Wins</p>
+                        </div>";
+                    $rank = 0;
+                    $winsCounter = 9999;
+                    echo '<div class = "rowContainer" id = "month" style = "display: none;">';
                     while ($row = $result->fetch_assoc()) {
                         $name = $row['name'];
                         $wins = $row['wins'];
+                        $image_url = $row['image_url'];
+                        echo '<div class = playerRow>';
 
-                        echo "<tr><td>$name</td><td>$wins</td></tr>";
+                        if ($wins < $winsCounter) {
+                            $winsCounter = $wins;
+                            $rank = $rank + 1;
+                        }
+                        if ($rank < 4) {
+                            switch($rank) {
+                                case 1;
+                                    echo "<img class = 'profile rank1' src = '$image_url'>";
+                                    break;
+                                case 2:
+                                    echo "<img class = 'profile rank2' src = '$image_url'>";
+                                    break;
+                                case 3:
+                                    echo "<img class = 'profile rank3' src = '$image_url'>";
+                                    break;
+                            }
+                        } else {
+                            echo "<img class = 'profile' src = '$image_url'>";
+                        }
+                        echo "<p>$name</p><p class = 'wins'>$wins</p>";
+                        echo '</div>';
                     }
+                    echo '</div>';
 
-                    echo "</table>";
                 } else {
-                    echo "No data found.";
+                }
+
+                //generate today table
+                $rank = 0;
+                $winsCounter = 9999;
+
+                $sql = "SELECT u.name, u.image_url, COUNT(w.name) AS wins FROM users u
+                LEFT JOIN wins w ON u.name = w.name
+                WHERE DATE(w.time) = CURDATE() 
+                GROUP BY u.name, u.image_url 
+                HAVING wins > 0
+                ORDER BY wins DESC;";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    echo '<div class = "rowContainer" id = "today">';
+                    while ($row = $result->fetch_assoc()) {
+                        $name = $row['name'];
+                        $wins = $row['wins'];
+                        $image_url = $row['image_url'];
+                        echo '<div class = playerRow>';
+
+                        if ($wins < $winsCounter) {
+                            $winsCounter = $wins;
+                            $rank = $rank + 1;
+                        }
+                        if ($rank < 4) {
+                            switch($rank) {
+                                case 1;
+                                    echo "<img class = 'profile rank1' src = '$image_url'>";
+                                    break;
+                                case 2:
+                                    echo "<img class = 'profile rank2' src = '$image_url'>";
+                                    break;
+                                case 3:
+                                    echo "<img class = 'profile rank3' src = '$image_url'>";
+                                    break;
+                            }
+                        } else {
+                            echo "<img class = 'profile' src = '$image_url'>";
+                        }
+
+                        echo "<p>$name</p><p class = 'wins'>$wins</p>";
+                        echo '</div>';
+                    }
+                    echo '</div>';
+
+                } else {
+                }
+
+                //generate week table
+                $rank = 0;
+                $winsCounter = 9999;
+
+                $sql = "SELECT u.name, u.image_url, COUNT(w.name) AS wins FROM users u
+                LEFT JOIN wins w ON u.name = w.name
+                WHERE DATE(w.time) >= CURDATE() - INTERVAL 7 DAY
+                GROUP BY u.name, u.image_url
+                HAVING wins > 0
+                ORDER BY wins DESC;";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    echo '<div class = "rowContainer" id = "week" style = "display: none;">';
+                    while ($row = $result->fetch_assoc()) {
+                        $name = $row['name'];
+                        $wins = $row['wins'];
+                        $image_url = $row['image_url'];
+                        echo '<div class = playerRow>';
+
+                        if ($wins < $winsCounter) {
+                            $winsCounter = $wins;
+                            $rank = $rank + 1;
+                        }
+                        if ($rank < 4) {
+                            switch($rank) {
+                                case 1;
+                                    echo "<img class = 'profile rank1' src = '$image_url'>";
+                                    break;
+                                case 2:
+                                    echo "<img class = 'profile rank2' src = '$image_url'>";
+                                    break;
+                                case 3:
+                                    echo "<img class = 'profile rank3' src = '$image_url'>";
+                                    break;
+                            }
+                        } else {
+                            echo "<img class = 'profile' src = '$image_url'>";
+                        }
+
+                        echo "<p>$name</p><p class = 'wins'>$wins</p>";
+                        echo '</div>';
+                    }
+                    echo '</div>';
+
+                } else {
                 }
 
                 $conn->close();
