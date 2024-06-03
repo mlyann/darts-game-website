@@ -1,16 +1,26 @@
 <?php
 require 'connect.php';
 
-$name = $_POST['deregister_select'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['deregister_select']) && !empty($_POST['deregister_select'])) {
+        $name = $_POST['deregister_select'];
 
-$sql = "DELETE FROM users WHERE name = '$name'";
+        $stmt = $conn->prepare("DELETE FROM users WHERE name = ?");
+        $stmt->bind_param("s", $name);
 
-if ($conn->query($sql) === TRUE) {
-    echo "User removed successfully.";
+        if ($stmt->execute()) {
+            echo "User removed successfully.";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+        $stmt->close();
+    } else {
+        echo "Error: Name is required.";
+    }
 } else {
-    echo "Error: " . mysqli_error($conn);
+    echo "Error: Invalid request method.";
 }
 
-// Close the database connection
 $conn->close();
 ?>
