@@ -259,10 +259,19 @@
   <td><button id = "input_2" class="button numInput" name ="inputButton">2</button></td>
   <td style = "border-right: none;"><button id = "input_1" class="button numInput" name ="inputButton">1</button></td>
 </tr>
-<tr>
+<!-- <tr>
   <td colspan = "2" style = "border-bottom: none; border-left: none"  id = "undoCell"><button id = "input_undo" class ="button" name ="inputButton">Undo</button></td>
   <td colspan="3" style = "border-right: none; border-bottom: none;"><button class="button" onclick="submitTurn()">Enter Turn</button></td>
+</tr> -->
+<tr>
+  <td style="border-left: none; width: 20%;"><button id="input_0" class="button numInput" name="inputButton">0</button></td>
+  <td colspan="2" style="width: 40%;"><button id="input_undo" class="button" name="inputButton">Undo</button></td>
+  <td colspan="2" style="border-right: none; width: 40%;"><button class="button" onclick="submitTurn()">Enter Turn</button></td>
 </tr>
+
+</tr>
+
+
 </table>
 <script>
 
