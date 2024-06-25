@@ -3,8 +3,7 @@
 <head>
     <title>Homepage</title>
     <meta name="viewport" content="user-scalable=no">
-    <!-- 链接到CSS文件 -->
-    <link rel="stylesheet" type="text/css" href="homepage.css">
+    <link rel="stylesheet" type="text/css" href="styles/homepage.css">
 </head>
 <body>
     <img id="logo" src="https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png"></img>
