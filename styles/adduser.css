@@ -1,0 +1,51 @@
+/* Basic page formatting */
+html, body {
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: hidden;
+    touch-action: manipulation;
+    background-color: #24292E; /* Dark background */
+    color: white; /* White text for contrast */
+    font-family: Arial, sans-serif; /* Common, readable font */
+}
+
+/* Container for registration messages */
+.registerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+/* Large headings for clear communication */
+h1 {
+    font-size: 3rem; /* Larger font size for headers */
+    margin-bottom: 1rem; /* Space below the header */
+}
+
+/* General text adjustments for visibility */
+p {
+    font-size: 2rem; /* Larger font size for paragraphs */
+}
+
+/* Style for buttons, enhanced for better visibility and interaction */
+.button {
+    color: white;
+    background-color: #3C4045; /* Dark grey background for buttons */
+    border: none;
+    border-radius: 2rem;
+    padding: 20px 40px; /* Increased padding for a larger button */
+    text-align: center;
+    display: inline-block;
+    font-size: 2.5rem; /* Increased font size for easier reading */
+    cursor: pointer; /* Pointer cursor on hover */
+    margin-top: 20px; /* Added space above the button */
+}
+
+/* Styling for images */
+img {
+    border-radius: 50%;
+    width: 15rem;
+    height: 15rem;
+    object-fit: cover;
+    margin: 0.25rem;
+}
