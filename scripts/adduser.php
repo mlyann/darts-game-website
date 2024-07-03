@@ -2,9 +2,8 @@
 require 'connect.php';
 
 $name = $_POST['name'];
-$image = $_POST['image'] ?? null; // Use null coalescing operator for image
+$image = $_POST['image'] ?? null; 
 
-// Prepare SQL based on the presence of the image
 if ($image) {
     $sql = "INSERT INTO users (name, image_url) VALUES (?, ?)";
     $stmt = $conn->prepare($sql);
@@ -15,7 +14,6 @@ if ($image) {
     $stmt->bind_param("s", $name);
 }
 
-// Start outputting HTML
 echo "<!DOCTYPE html>";
 echo "<html><head>";
 echo "<meta name='viewport' content='width=device-width, initial-scale=1'>";
@@ -38,9 +36,7 @@ if ($stmt->execute()) {
     echo "<button class='button' onclick='location.href=\"../register_page.php\"'>Return to Registration Page</button>"; // Also show this button in case of an error
     echo "</div>";
 }
-
 $stmt->close();
 $conn->close();
-
 echo "</body></html>";
 ?>
