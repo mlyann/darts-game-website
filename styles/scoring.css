@@ -199,3 +199,67 @@
   /* .numInput:active:hover{
   } */
 }
+
+
+@media (min-width: 1000px) {
+  html, body {
+      background-color: #24292E; /* 统一背景色 */
+      color: #fff; /* 文字颜色 */
+      font-family: 'Arial', sans-serif; /* 统一字体 */
+      width: 100%; /* 视窗宽度 */
+      height: 100%; /* 视窗高度 */
+      margin: 0; /* 移除外边距 */
+      overflow-x: hidden; /* 隐藏水平滚动条 */
+  }
+
+  .center {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* 居中对齐子元素 */
+      width: 90%; /* 中央区域宽度 */
+      margin: 0 auto; /* 上下无间隔，左右自动调整 */
+  }
+
+  .avatar {
+      width: 80px; /* 调整头像大小 */
+      height: 80px;
+      border-radius: 50%; /* 圆形头像 */
+  }
+
+  .player-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* 文本居中 */
+      font-size: 18px; /* 调整字体大小 */
+  }
+
+  .button {
+      width: auto; /* 按钮自适应内容宽度 */
+      padding: 15px 30px; /* 内边距 */
+      margin: 5px; /* 外边距 */
+      font-size: 1.2rem; /* 字体大小 */
+      background-color: #fff; /* 按钮背景色改为白色 */
+      color: #000; /* 按钮文字颜色改为黑色 */
+      border-radius: 5px; /* 圆角 */
+      cursor: pointer; /* 鼠标样式 */
+      border: 2px solid #444; /* 添加深色边框 */
+  }
+
+  .inputs, .gameInfo {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; /* 按钮居中对齐 */
+      align-items: center; /* 垂直居中对齐 */
+      margin: 20px 0; /* 顶部和底部间隔 */
+  }
+
+  .infoCell, .scoreCell, .bigCell {
+      font-size: 1rem; /* 单元格字体大小 */
+      background-color: #3C4045; /* 背景颜色 */
+      color: #fff; /* 文字颜色 */
+      padding: 10px; /* 内边距 */
+      margin: 5px; /* 外边距 */
+      border: none; /* 去除边框 */
+  }
+}
+
