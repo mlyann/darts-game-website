@@ -38,5 +38,4 @@ git pull production prod
 ``` 
 
 ## Authors
-Thanks go out to:  
-James
+Mr. Yang
