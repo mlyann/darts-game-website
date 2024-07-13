@@ -1,10 +1,10 @@
 # Darts App
 
 ## Name
-Coretechs Darts App
+Darts App
 
 ## Description
-This is an internship project of Sam Hopkins and Daniel Wang. The end goal is to create a web app that allows Coretechs employees to:
+This is an internship project of Sam Hopkins and Daniel Wang. The end goal is to create a web app that allows competitors to:
 1) View and update a live scoreboard during a game of darts (Countdown or Highscore)
 2) Maintain a leaderboard of win data 
 3) Maintain advanced stats (potential feature)
@@ -37,13 +37,6 @@ Then do the updates:
 git pull production prod
 ``` 
 
-## Authors and acknowledgment
+## Authors
 Thanks go out to:  
-Jonathan Bannick  
-James Bloomer  
-Hariz Hameed  
-Dipin Krishna  
-Jawad Madanat  
-Raymond Phan  
-Uzoma Uwanamodo  
-ChatGPT  
+James

@@ -27,7 +27,7 @@
             $imgRow = mysqli_fetch_assoc($imgResult);
             $img = $imgRow['image_url'];
             if ($img == '') {
-                $img = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png";
+                $img = "../styles/logo.webp";
             }
 
             $html =  
@@ -78,7 +78,7 @@
             $imgRow = mysqli_fetch_assoc($imgResult);
             $img = $imgRow['image_url'];
             if ($img == '') {
-                $img = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png";
+                $img = "../styles/logo.webp";
             }
 
             $html =  
@@ -141,7 +141,7 @@
                 $imgRow = mysqli_fetch_assoc($imgResult);
                 $img = $imgRow['image_url'];
                 if ($img == '') {
-                    $img = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png";
+                    $img = "../styles/logo.webp";
                 }
         
                 $html =  
@@ -193,7 +193,7 @@
                 $imgRow = mysqli_fetch_assoc($imgResult);
                 $img = $imgRow['image_url'];
                 if ($img == '') {
-                    $img = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png";
+                    $img = "../styles/logo.webp";
                 }
         
                 $html =  
@@ -251,7 +251,7 @@
             $imgRow = mysqli_fetch_assoc($imgResult);
             $img = $imgRow['image_url'];
             if ($img == '') {
-                $img = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png";
+                $img = "../styles/logo.webp";
             }
 
             $html =  

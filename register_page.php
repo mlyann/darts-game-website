@@ -82,7 +82,7 @@
         $conn->close();
         ?>
     </select>
-    <img id="img" src = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png"></img>
+    <img id="img" src = "../styles/logo.webp"></img>
     <script>document.getElementById('img').src = defaultURL;</script>
     <label for="edit_name">New Name:</label>
     <input type="text" name="edit_name" id="edit_name" required>

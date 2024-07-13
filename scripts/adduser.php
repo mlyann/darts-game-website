@@ -23,7 +23,7 @@ echo "</head><body>";
 
 if ($stmt->execute()) {
     echo "<div class='registerContainer'>";
-    echo "<h1>Welcome " . htmlspecialchars($name) . " to Coretechs!</h1>";
+    echo "<h1>Welcome " . htmlspecialchars($name) . " to Minglai Yang's darts!</h1>";
     echo "<p>User registered successfully.</p>";
     echo "<button class='button' onclick='location.href=\"../homepage.php\"'>Return to Home</button>";
     echo "<button class='button' onclick='location.href=\"../register_page.php\"'>Return to Registration Page</button>"; // New button to return to the registration page

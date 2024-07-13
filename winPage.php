@@ -31,7 +31,7 @@
         $imageRow = mysqli_fetch_assoc($imageResult);
         $image = $imageRow['image_url'];
         if ($image == '') {
-            $image = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png";
+            $image = "../styles/logo.webp";
         }
 
         $gamemodeQuery = "SELECT type FROM game_data;";
