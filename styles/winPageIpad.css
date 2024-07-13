@@ -1,0 +1,102 @@
+html, body {
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: hidden;
+    touch-action: manipulation;
+    background-color: #24292E;
+  }
+
+  img {
+    border-radius: 50%;
+    width: 20rem;
+    height: 20rem;
+    object-fit: cover;
+    animation: grow 2s forwards;
+    will-change: transform;
+  }
+
+  .winnerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+  }
+
+  p {
+    color: white;
+    font-size: 9rem;
+    margin: -.2rem;
+  }
+
+  .avg {
+    color: yellow;
+  }
+
+  @keyframes grow {
+    from {
+      width: 20rem;
+      height: 20rem;
+    }
+    to {
+      width: 40rem;
+      height: 40rem;
+    }
+  }
+
+  @keyframes spin {
+      0% {
+        transform: rotateZ(0deg);
+    }
+    100% {
+        transform: rotateZ(360deg);
+    }
+  }
+
+
+  .confetti-container {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #f00; /* Adjust colors as needed */
+    border-radius: 50%;
+    animation: fall linear 3s infinite, cspin 1s infinite;
+}
+
+@keyframes fall {
+    0% {
+        top: -10px;
+        opacity: 1;
+    }
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+@keyframes cspin {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+button {
+    color: white;
+    background-color: #3C4045;
+    font-size: 5rem;
+    border-radius: 2rem;
+    padding: 10px;
+    margin-bottom: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
