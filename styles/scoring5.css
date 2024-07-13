@@ -1,0 +1,261 @@
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.info {
+  height: 50%;
+}
+
+.inputs {
+  height: auto;
+  border: none;
+}
+
+.inputs td {
+  border:  10px solid #24292E;
+}
+
+.gameInfo {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  align-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.double {
+  background-color: #bd3932 !important;
+  color: #fff !important;
+}
+
+.triple {
+  background-color: #32BD50 !important;
+  color: #fff !important;
+}
+
+/* Styles for mobile devices */
+@media only screen and (max-width: 1000px) {
+  html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: hidden;
+    touch-action: manipulation;
+    background-color: #24292E;
+  }
+
+.profile {
+  border-radius: 50%;
+  width: 10vw;
+  height: 10vw;
+  flex: 0 0 auto;
+  object-fit: cover;
+}
+
+  table {
+    width: 100%;
+    margin: 0;
+    background-color: #fff;
+    border-collapse: collapse;
+  }
+
+  .playerDiv.reduced p.overall {
+    margin-left: 1.5rem;
+    margin-right: 1rem;
+    max-width: 2rem;
+    padding: 0;
+    text-align: center;
+    font-size: 5vw;
+  }
+
+
+  p.overall {
+    font-weight: bold;
+    font-size: 6vw;
+    transform: scale(1.5);
+    margin-left: auto;
+    color: white;
+  }
+
+  p.scoreText {
+    font-size: 2.5vh;
+  }
+
+
+  td {
+    text-align: center;
+  }
+
+
+  .infoCell {
+    font-size: 5vw;
+    background-color: #efefef;
+    height: 10vw;
+    border-collapse: separate;
+    border-right: 10px solid #24292E;
+  }
+
+  .scoreCell {
+    min-width: 5vw;
+    max-width: 5vw;
+    font-size: 4.5vw;
+    background-color: #3C4045;
+    color: white;
+  }
+
+  .bigCell {
+    color: black;
+    background-color: #FDFDFD;
+    max-width: 10vw;
+    border-left: 30px solid #24292E;
+    border-right: none;
+  }
+
+  .name {
+    color: white;
+    font-size: 6vw;
+    background-color: transparent;
+    margin-left: 3vw;
+  }
+
+  .aux{
+    color: white;
+    text-align: center;
+    font-size: 5vw;
+    background-color: transparent;
+    margin: 2rem;
+    margin-left: 9vw;
+  } 
+
+  .button {
+    display: block;
+    width: 100%; /* Set width to 100% */
+    height: 100%; /* Set height to auto */
+    padding: 10px;
+    text-align: center;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 3rem;
+  }
+
+  .overallCell {
+    margin-left: auto;
+  }
+
+  .button:hover,
+  .button:active,
+  .button:focus {
+    background-color: darkgray;
+  }
+
+  #tableWrapper {
+    margin: 5%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 90%;
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+
+  .playerDiv {
+    flex: content;
+    padding: 2.5%;
+  }
+
+  .playerDiv.reduced {
+    box-sizing: border-box;
+    min-width: 42.5vw;
+    max-width: 42.5vw;
+  }
+
+  .currentOne {
+    width: 85vw;
+  }
+
+  .playerDiv.full .bigCell {
+    width: 20vw;
+    max-width: 20vw;
+  }
+
+  .playerDiv.reduced .aux {
+    text-align: center;
+  }
+
+  .playerDiv.reduced .bigCell {
+    width: 10vw;
+    height: 10vw;
+    max-height: 10vw;
+    max-width: 10vw;
+    border-left: 0;
+  }
+
+  .playerDiv.reduced .scoreCell {
+    border-left: 0;
+    font-size: 4vw;
+    padding: 0;
+  }
+
+  .playerDiv.reduced .infoCell {
+    width: 8vw;
+    height: 8vw;
+    max-width: 8vw;
+    max-height: 8vw;
+  }
+
+  .playerDiv.full .infoCell {
+    max-height: 8vw;
+  }
+
+  .rowOfTwo {
+    display: flex;
+    justify-content: center;
+    max-width: 85vw;
+  }
+
+  #infoContainer {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    width: 85vw;
+  }
+
+  #doubleButton, #tripleButton, #input_25 {
+    background-color: #D3D4D5;
+  }
+
+  #doubleButton, #tripleButton {
+    background-color: rgba(100, 106, 133, 0.1);
+    color: rgba(161, 161, 161, 1);
+  }
+
+
+  #helpCell {
+    background-color: transparent;
+    font-size: 6vw;
+    vertical-align: middle;
+    flex: 1;
+    color: yellow;
+  }
+.topRow {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: -5%;
+}
+  /* .numInput:active:hover{
+  } */
+}
