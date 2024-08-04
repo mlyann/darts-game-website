@@ -38,12 +38,4 @@ git pull production prod
 ``` 
 
 ## Authors and acknowledgment
-Thanks go out to:  
-Jonathan Bannick  
-James Bloomer  
-Hariz Hameed  
-Dipin Krishna  
-Jawad Madanat  
-Raymond Phan  
-Uzoma Uwanamodo  
-ChatGPT  
+Minglai Yang
