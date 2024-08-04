@@ -40,7 +40,7 @@
 
     <h1>User Deregistration</h1>
 
-<form action="scripts/removeuser.php" method="POST" onsubmit="return confirm('Are you sure you want to remove this user?');">
+<form action="scripts/removeUser.php" method="POST" onsubmit="return confirm('Are you sure you want to remove this user?');">
     <label for="deregister_select">Name:</label>
     <select name="deregister_select" id="deregister_select">
         <?php
@@ -62,7 +62,7 @@
 
 <h1>Edit User</h1>
 
-<form action="scripts/editUser.php" method="POST" onchange="showEditUser()" onsubmit="return confirm('Are you sure you want to edit this user?');">
+<!-- <form action="scripts/editUser.php" method="POST" onchange="showEditUser()" onsubmit="return confirm('Are you sure you want to edit this user?');">
     <label for="edit_select">Name:</label>
     <select name="edit_select" id="edit_select">
         <?php
@@ -82,7 +82,7 @@
         $conn->close();
         ?>
     </select>
-    <img id="img" src = "../styles/logo.webp"></img>
+    <img id="img" src = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png"></img>
     <script>document.getElementById('img').src = defaultURL;</script>
     <label for="edit_name">New Name:</label>
     <input type="text" name="edit_name" id="edit_name" required>
@@ -91,6 +91,43 @@
     <input type="text" name="edit_image" id="edit_image">
     <br><br>
     <input class = "button" type="submit" value="Edit">
+</form> -->
+<form action="scripts/editUser.php" method="POST" onchange="showEditUser()" onsubmit="return confirm('Are you sure you want to edit this user?');">
+    <label for="edit_select">Name:</label>
+    <select name="edit_select" id="edit_select">
+        <?php
+        require 'scripts/connect.php';
+        $sql = "SELECT name, image_url FROM users";
+        $result = $conn->query($sql);
+
+        $image_url = "";
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $name = $row['name'];
+                if (empty($image_url) && !empty($row['image_url'])) {
+                    $image_url = $row['image_url'];
+                }
+                echo '<option value="' . $name . '">' . $name . '</option>';
+            }
+        }
+        $conn->close();
+        ?>
+    </select>
+    <img id="img" src="https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png">
+    <script>
+        var defaultURL = '<?php echo $image_url; ?>';
+        if (defaultURL) {
+            document.getElementById('img').src = defaultURL;
+        }
+    </script>
+    <label for="edit_name">New Name:</label>
+    <input type="text" name="edit_name" id="edit_name" required>
+    <br><br>
+    <label for="edit_image">New Image URL:</label>
+    <input type="text" name="edit_image" id="edit_image">
+    <br><br>
+    <input class="button" type="submit" value="Edit">
 </form>
     </div>
 

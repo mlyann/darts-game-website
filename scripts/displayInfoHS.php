@@ -52,7 +52,7 @@ foreach ($playersArray as $player) {
     $imgRow = mysqli_fetch_assoc($imgResult);
     $img = $imgRow['image_url'];
     if ($img == null) {
-        $img = "../styles/logo.webp";
+        $img = "https://www.coretechs.com/wp-content/uploads/2020/08/Coretechs_Mark.png";
     }
 
 
